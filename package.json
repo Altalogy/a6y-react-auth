@@ -1,0 +1,19 @@
+{
+  "name": "a6y-react-auth",
+  "version": "0.0.1",
+  "description": "Authentication forms for React.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Altalogy/a6y-react-auth.git"
+  },
+  "author": "Altalogy Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Altalogy/a6y-react-auth/issues"
+  },
+  "homepage": "https://github.com/Altalogy/a6y-react-auth#readme"
+}
