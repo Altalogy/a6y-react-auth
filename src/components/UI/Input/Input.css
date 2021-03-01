@@ -1,0 +1,19 @@
+label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+label input {
+  border: 1px solid rgba(229, 231, 235, 0.6);
+  border-radius: 4px;
+  margin-top: 10px;
+  padding: 5px 10px;
+  min-height: 20px;
+  max-width: 300px;
+}
+
+label input:hover {
+  border: 1px solid rgba(229, 231, 235, 1);
+}
