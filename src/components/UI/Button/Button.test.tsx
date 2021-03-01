@@ -5,7 +5,13 @@ import Button from './Button'
 describe(`button component test`, () => {
   it('button instance rendered properly', () => {
     const rendered = render(
-      <Button type='' classname='primary' onClick={e => e} label='submit' />,
+      <Button
+        typeRole='button'
+        className='primary'
+        onClick={e => e}
+        label='submit'
+        style='primary'
+      />,
     )
     expect(rendered).toBeDefined
   })
@@ -13,10 +19,11 @@ describe(`button component test`, () => {
     const handleClick = jest.fn()
     render(
       <Button
-        type=''
-        classname='primary'
+        typeRole='button'
+        className='primary'
         onClick={handleClick}
         label='submit'
+        style='primary'
       />,
     )
     fireEvent.click(screen.getByText(/submit/i))

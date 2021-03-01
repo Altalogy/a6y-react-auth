@@ -1,23 +1,36 @@
 import React from 'react'
+import './Button.css'
 
 /**
  * @typedef Props
  * @props {string} label
- * @props {string} type
+ * @props {string} typeRole
  * @props {function} onclick
  * @props {string} classname
+ * @props {enum} style
  */
 
 export interface Props {
   label: string
-  type: string
-  classname: string
+  typeRole: 'button' | 'submit'
+  className: string
   onClick: React.MouseEventHandler<HTMLButtonElement>
+  style: 'primary' | 'secondary'
 }
 
-const Button = ({ label, classname, onClick }: Props): JSX.Element => {
+const Button = ({
+  typeRole = 'button',
+  label,
+  className,
+  onClick,
+  style,
+}: Props): JSX.Element => {
   return (
-    <button onClick={onClick} className={`btn btn--${classname}`}>
+    <button
+      onClick={onClick}
+      className={style ? className + ' ' + style : className}
+      type={typeRole}
+    >
       {label}
     </button>
   )

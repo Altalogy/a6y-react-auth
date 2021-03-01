@@ -9,7 +9,7 @@ import './Input.css'
  * @props {function} onChange
  * @props {string} placeholder
  * @props {string} value
- * @props {string} type
+ * @props {string} typeInput
  */
 
 export interface Props {
@@ -19,7 +19,7 @@ export interface Props {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   placeholder: string
   value: string
-  type: string
+  typeInput: string
 }
 
 const Input = ({
@@ -29,7 +29,7 @@ const Input = ({
   onChange,
   placeholder,
   value,
-  type,
+  typeInput,
 }: Props): JSX.Element => {
   return (
     <label
@@ -42,7 +42,7 @@ const Input = ({
       <input
         id={id}
         name={id}
-        type={type}
+        type={typeInput}
         onChange={onChange}
         className={`${classNamePrefix}_label_input ${classNamePrefix}_label_input${
           id && '--' + id

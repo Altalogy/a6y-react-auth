@@ -12,6 +12,7 @@ describe(`input component test`, () => {
         placeholder='e.g. User'
         label=''
         value=''
+        typeInput='text'
       />,
     )
     expect(rendered).toBeDefined
@@ -29,6 +30,7 @@ describe(`input component test`, () => {
         placeholder='user'
         label='username'
         value={value}
+        typeInput='text'
       />,
     )
     const input = getByPlaceholderText(/user/i)
