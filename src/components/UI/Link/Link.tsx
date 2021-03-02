@@ -22,7 +22,7 @@ export interface Props {
 
 const Link = ({
   children,
-  className = 'a6y-react-auth-link',
+  className = 'a6y-react-auth-form-link',
   onClick = undefined,
   color = 'primary',
   underline = 'none',

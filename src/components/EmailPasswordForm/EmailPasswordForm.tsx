@@ -6,10 +6,16 @@ import { Button, Input } from '../UI'
  * @props {string} email
  * @props {string} password
  */
+
 export interface ISignUpData {
   email: string
   password: string
 }
+
+/**
+ * @typedef Props
+ * @props {string} classname
+ */
 
 export interface Props {
   className?: string

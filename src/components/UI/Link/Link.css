@@ -16,7 +16,7 @@ a.underline-hover:hover {
 a.underline-always {
   text-decoration: underline !important;
 }
-a.a6y-react-auth-link {
+a.a6y-react-auth-form-link {
   letter-spacing: normal;
   font-size: .9rem;
   margin: 5px 0;
