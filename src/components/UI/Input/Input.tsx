@@ -14,29 +14,27 @@ import './Input.css'
 
 export interface Props {
   id: string
-  label: string
-  classNamePrefix: string
+  label?: string
+  className?: string
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-  placeholder: string
+  placeholder?: string
   value: string
   typeInput: string
 }
 
 const Input = ({
   id,
-  label,
-  classNamePrefix,
+  label = '',
+  className = 'a6y-react-auth-input',
   onChange,
-  placeholder,
+  placeholder = id,
   value,
   typeInput,
 }: Props): JSX.Element => {
   return (
     <label
       htmlFor={id}
-      className={`${classNamePrefix}_label ${classNamePrefix}_label${
-        id && '--' + id
-      }`}
+      className={`${className} ${className}${id && '--' + id}`}
     >
       {label && label}
       <input
@@ -44,9 +42,7 @@ const Input = ({
         name={id}
         type={typeInput}
         onChange={onChange}
-        className={`${classNamePrefix}_label_input ${classNamePrefix}_label_input${
-          id && '--' + id
-        }`}
+        className={`${className} ${className}${id && '--' + id}`}
         placeholder={placeholder}
         value={value ? value : ''}
       />

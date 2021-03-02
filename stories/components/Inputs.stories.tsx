@@ -9,7 +9,7 @@ export const Text: React.VFC<unknown> = args => {
       id='input-text'
       typeInput='text'
       onChange={e => setVal(e.target.value)}
-      classNamePrefix='input_story'
+      className='input_story'
       label='input text'
       placeholder='...'
       value={val}

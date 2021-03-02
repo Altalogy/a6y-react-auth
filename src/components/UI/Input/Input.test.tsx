@@ -7,7 +7,7 @@ describe(`input component test`, () => {
     const rendered = render(
       <Input
         id='username'
-        classNamePrefix='sign_in'
+        className='sign_in'
         onChange={e => e}
         placeholder='e.g. User'
         label=''
@@ -25,7 +25,7 @@ describe(`input component test`, () => {
     const { getByPlaceholderText } = render(
       <Input
         id='username'
-        classNamePrefix='sign_in'
+        className='sign_in'
         onChange={e => handleChange(e.target.value)}
         placeholder='user'
         label='username'
