@@ -25,7 +25,7 @@ export interface Props {
 const Input = ({
   id,
   label = '',
-  className = 'a6y-react-auth-input',
+  className = 'a6y-react-auth',
   onChange,
   placeholder = id,
   value,
@@ -34,7 +34,7 @@ const Input = ({
   return (
     <label
       htmlFor={id}
-      className={`${className} ${className}${id && '--' + id}`}
+      className={`${className}-label ${className}-label${id && '--' + id}`}
     >
       {label && label}
       <input
@@ -42,7 +42,9 @@ const Input = ({
         name={id}
         type={typeInput}
         onChange={onChange}
-        className={`${className} ${className}${id && '--' + id}`}
+        className={`${className}-label-input ${className}-label-input${
+          id && '--' + id
+        }`}
         placeholder={placeholder}
         value={value ? value : ''}
       />
