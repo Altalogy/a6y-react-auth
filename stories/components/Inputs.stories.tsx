@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Meta } from '@storybook/react'
 import Input from '../../src/components/UI/Input/Input'
 
-export const Text: React.VFC<unknown> = () => {
+export const Text: React.VFC<unknown> = args => {
   const [val, setVal] = useState('')
   return (
     <Input
@@ -13,6 +13,7 @@ export const Text: React.VFC<unknown> = () => {
       label='input text'
       placeholder='...'
       value={val}
+      {...args}
     />
   )
 }
