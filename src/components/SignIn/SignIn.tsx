@@ -1,6 +1,7 @@
 import React from 'react'
 import EmailPasswordForm from '../EmailPasswordForm'
 import FormLinks from '../FormLinks'
+import './SignIn.css'
 
 export interface Props {
   className?: string
@@ -8,9 +9,12 @@ export interface Props {
   apiError?: unknown
 }
 
-const SignIn = ({ className, onClick }: Props): JSX.Element => {
+const SignIn = ({
+  className = 'a6y-react-auth-sign-in-cmp',
+  onClick,
+}: Props): JSX.Element => {
   return (
-    <div className={className ? className : 'a6y-react-auth-sign-in-cmp'}>
+    <div className={className}>
       <EmailPasswordForm onClick={onClick} />
       <FormLinks />
     </div>
