@@ -13,17 +13,17 @@ import './Button.css'
 export interface Props {
   label: string
   typeRole: 'button' | 'submit'
-  className: string
+  className?: string
   onClick: React.MouseEventHandler<HTMLButtonElement>
-  style: 'primary' | 'secondary'
+  style?: 'primary' | 'secondary'
 }
 
 const Button = ({
   typeRole = 'button',
   label,
-  className,
+  className = 'a6y-react-auth-button',
   onClick,
-  style,
+  style = 'primary',
 }: Props): JSX.Element => {
   return (
     <button
