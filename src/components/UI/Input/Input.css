@@ -1,11 +1,11 @@
-label {
+label.a6y-react-auth-label {
   display: flex;
   flex-direction: column;
   font-weight: 600;
   text-transform: capitalize;
 }
 
-label input {
+label.a6y-react-auth-label input.a6y-react-auth-label-input {
   border: 1px solid rgba(229, 231, 235, 0.6);
   border-radius: 4px;
   margin-top: 10px;
@@ -14,6 +14,6 @@ label input {
   max-width: 300px;
 }
 
-label input:hover {
+label.a6y-react-auth-label input.a6y-react-auth-label-input:hover {
   border: 1px solid rgba(229, 231, 235, 1);
 }

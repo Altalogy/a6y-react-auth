@@ -6,22 +6,33 @@ import { Button, Input } from '../UI'
  * @props {string} email
  * @props {string} password
  */
+
 export interface ISignUpData {
   email: string
   password: string
 }
 
-function EmailPasswordForm(): JSX.Element {
+/**
+ * @typedef Props
+ * @props {string} classname
+ */
+
+export interface Props {
+  className?: string
+}
+
+function EmailPasswordForm({
+  className = 'a6y-react-auth-form',
+}: Props): JSX.Element {
   const [signUpData, setSignUpData] = useState({
     email: '',
     password: '',
   })
   return (
-    <form className='email_password_form'>
-      <div className='email_password_form_group'>
+    <form className={`${className}`}>
+      <div className={`${className}-group`}>
         <Input
           id='email'
-          classNamePrefix='email_password_form_group'
           placeholder='Email'
           typeInput='email'
           label=''
@@ -31,10 +42,9 @@ function EmailPasswordForm(): JSX.Element {
           value={signUpData.email}
         />
       </div>
-      <div className='email_password_form_group'>
+      <div className={`${className}-group`}>
         <Input
           id='password'
-          classNamePrefix='email_password_form_group'
           typeInput='password'
           placeholder='Password'
           label=''
@@ -46,7 +56,6 @@ function EmailPasswordForm(): JSX.Element {
       </div>
       <Button
         typeRole='button'
-        className='email_password_form_submit'
         label='Sign In'
         style='primary'
         onClick={e => e}

@@ -2,17 +2,18 @@ import React, { useState } from 'react'
 import { Meta } from '@storybook/react'
 import Input from '../../src/components/UI/Input/Input'
 
-export const Text: React.VFC<unknown> = () => {
+export const Text: React.VFC<unknown> = args => {
   const [val, setVal] = useState('')
   return (
     <Input
       id='input-text'
       typeInput='text'
       onChange={e => setVal(e.target.value)}
-      classNamePrefix='input_story'
+      className='input_story'
       label='input text'
       placeholder='...'
       value={val}
+      {...args}
     />
   )
 }
