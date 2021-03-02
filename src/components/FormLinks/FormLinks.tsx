@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from '../UI'
+import './FormLinks.css'
 
 /**
  * @typedef Props
@@ -15,10 +16,10 @@ const FormLinks = ({
 }: Props): JSX.Element => {
   return (
     <div className={className + '-links'}>
-      <Link className={className} to='/sign-up'>
+      <Link className={className + '-link'} to='/sign-up'>
         Forgot Password
       </Link>
-      <Link className={className} to='/forgot-password'>
+      <Link className={className + '-link'} to='/forgot-password'>
         Sign Up
       </Link>
     </div>
