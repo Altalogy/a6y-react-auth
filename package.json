@@ -2,29 +2,31 @@
   "name": "a6y-react-auth",
   "version": "0.0.1",
   "description": "Authentication forms for React.",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
+  "main": "./lib/index.js",
+  "module": "./lib/index.es.js",
+  "typings": "lib/index.d.ts",
   "files": [
-    "dist",
-    "src"
+    "lib/**/*"
   ],
   "engines": {
     "node": ">=10"
   },
   "scripts": {
     "start": "tsdx watch",
-    "build": "tsdx build",
+    "build": "rollup -c",
     "test": "tsdx test --passWithNoTests",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --quiet",
     "lint-fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "prepare": "tsdx build",
+    "prepublishOnly": "npm test && npm run lint-fix",
     "size": "size-limit",
     "analyze": "size-limit --why",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
   "peerDependencies": {
-    "react": ">=16"
+    "react": ">=16",
+    "react-dom": "16.13.1"
   },
   "husky": {
     "hooks": {
@@ -48,7 +50,6 @@
     "jsxSingleQuote": true,
     "trailingComma": "all"
   },
-  "module": "dist/a6y-react-auth.esm.js",
   "size-limit": [
     {
       "path": "dist/a6y-react-auth.cjs.production.min.js",
@@ -104,6 +105,10 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-is": "^17.0.1",
+    "rollup": "^2.40.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-scss": "^2.6.1",
+    "rollup-plugin-typescript2": "^0.30.0",
     "sass-loader": "^11.0.1",
     "size-limit": "^4.9.1",
     "ts-jest": "^26.5.2",
