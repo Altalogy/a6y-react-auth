@@ -15,21 +15,29 @@ export interface ISignUpData {
 /**
  * @typedef Props
  * @props {string} classname
+ * @props {() => void} onClick
  */
 
 export interface Props {
   className?: string
+  onClick?: () => void
 }
 
 function EmailPasswordForm({
   className = 'a6y-react-auth-form',
+  onClick,
 }: Props): JSX.Element {
   const [signUpData, setSignUpData] = useState({
     email: '',
     password: '',
   })
+
+  const onSubmit = () => {
+    if (onClick) onClick()
+  }
+
   return (
-    <form className={`${className}`}>
+    <form className={`${className}`} onSubmit={onSubmit}>
       <div className={`${className}-group`}>
         <Input
           id='email'
@@ -54,12 +62,7 @@ function EmailPasswordForm({
           value={signUpData.password}
         />
       </div>
-      <Button
-        typeRole='button'
-        label='Sign In'
-        style='primary'
-        onClick={e => e}
-      />
+      <Button typeRole='submit' label='Sign In' style='primary' />
     </form>
   )
 }

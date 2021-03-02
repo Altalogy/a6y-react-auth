@@ -8,10 +8,10 @@ export interface Props {
   apiError?: unknown
 }
 
-const SignIn = ({ className }: Props): JSX.Element => {
+const SignIn = ({ className, onClick }: Props): JSX.Element => {
   return (
     <div className={className ? className : 'a6y-react-auth-sign-in-cmp'}>
-      <EmailPasswordForm />
+      <EmailPasswordForm onClick={onClick} />
       <FormLinks />
     </div>
   )
