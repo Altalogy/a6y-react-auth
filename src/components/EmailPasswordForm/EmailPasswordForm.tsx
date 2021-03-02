@@ -16,7 +16,6 @@ function EmailPasswordForm(): JSX.Element {
     email: '',
     password: '',
   })
-
   return (
     <form className='email_password_form'>
       <div className='email_password_form_group'>

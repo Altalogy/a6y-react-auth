@@ -52,11 +52,11 @@
   },
   "size-limit": [
     {
-      "path": "dist/a6y-react-auth.cjs.production.min.js",
+      "path": "lib/a6y-react-auth.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/a6y-react-auth.esm.js",
+      "path": "lib/a6y-react-auth.esm.js",
       "limit": "10 KB"
     }
   ],
