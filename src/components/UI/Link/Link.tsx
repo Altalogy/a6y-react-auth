@@ -3,16 +3,16 @@ import './Link.css'
 
 /**
  * @typedef Props
- * @props {string} children
+ * @props {React.ReactNode} children
  * @props {string} className
- * @props {function} onCLick
+ * @props {() => void} onCLick
  * @props {string} to
  * @props {string} underline
  * @props {string} color
  */
 
 export interface Props {
-  children: string
+  children: React.ReactNode
   className?: string
   onClick?: () => void
   to: string

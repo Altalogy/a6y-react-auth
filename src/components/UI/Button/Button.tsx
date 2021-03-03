@@ -14,7 +14,7 @@ export interface Props {
   label: string
   typeRole: 'button' | 'submit'
   className?: string
-  onClick: React.MouseEventHandler<HTMLButtonElement>
+  onClick?: React.MouseEventHandler<HTMLButtonElement>
   style?: 'primary' | 'secondary'
 }
 
