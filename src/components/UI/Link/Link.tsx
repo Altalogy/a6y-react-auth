@@ -2,7 +2,7 @@ import React from 'react'
 import './Link.css'
 
 /**
- * @typedef Props
+ * @typedef ILinkProps
  * @props {React.ReactNode} children
  * @props {string} className
  * @props {() => void} onCLick
@@ -11,7 +11,7 @@ import './Link.css'
  * @props {string} color
  */
 
-export interface Props {
+export interface ILinkProps {
   children: React.ReactNode
   className?: string
   onClick?: () => void
@@ -27,7 +27,7 @@ const Link = ({
   color = 'primary',
   underline = 'none',
   to,
-}: Props): JSX.Element => {
+}: ILinkProps): JSX.Element => {
   function handleLinkClick(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
     e.preventDefault()
     e.stopPropagation()

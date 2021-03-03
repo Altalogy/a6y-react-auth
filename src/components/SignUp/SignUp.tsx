@@ -3,7 +3,14 @@ import EmailPasswordForm from '../EmailPasswordForm'
 import FormLinks from '../FormLinks'
 import './SignUp.css'
 
-export interface Props {
+/**
+ * @typedef ISignUpProps
+ * @props {string} [className]
+ * @props {() => void} [onClick]
+ * @props {unknown} [apiError]
+ */
+
+export interface ISignUpProps {
   className?: string
   onClick?: () => void
   apiError?: unknown
@@ -11,10 +18,11 @@ export interface Props {
 
 const SignUp = ({
   className = 'a6y-react-auth-sign-up-cmp',
-}: Props): JSX.Element => {
+  onClick,
+}: ISignUpProps): JSX.Element => {
   return (
     <div className={className}>
-      <EmailPasswordForm />
+      <EmailPasswordForm onClick={onClick} submitLabel='Sign Up' />
       <FormLinks />
     </div>
   )

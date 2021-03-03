@@ -3,17 +3,17 @@ import { Link } from '../UI'
 import './FormLinks.css'
 
 /**
- * @typedef Props
+ * @typedef IFormLinksProps
  * @props {string} classname
  */
 
-export interface Props {
+export interface IFormLinksProps {
   className?: string
 }
 
 const FormLinks = ({
   className = 'a6y-react-auth-form',
-}: Props): JSX.Element => {
+}: IFormLinksProps): JSX.Element => {
   return (
     <div className={className + '-links'}>
       <Link className={className + '-link'} to='/sign-up'>

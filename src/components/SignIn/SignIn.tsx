@@ -3,7 +3,14 @@ import EmailPasswordForm from '../EmailPasswordForm'
 import FormLinks from '../FormLinks'
 import './SignIn.css'
 
-export interface Props {
+/**
+ * @typedef ISignInProps
+ * @props {string} [className]
+ * @props {() => void} [onClick]
+ * @props {unknown} [apiError]
+ */
+
+export interface ISignInProps {
   className?: string
   onClick?: () => void
   apiError?: unknown
@@ -12,10 +19,10 @@ export interface Props {
 const SignIn = ({
   className = 'a6y-react-auth-sign-in-cmp',
   onClick,
-}: Props): JSX.Element => {
+}: ISignInProps): JSX.Element => {
   return (
     <div className={className}>
-      <EmailPasswordForm onClick={onClick} />
+      <EmailPasswordForm onClick={onClick} submitLabel='Sign In' />
       <FormLinks />
     </div>
   )

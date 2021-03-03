@@ -2,7 +2,7 @@ import React from 'react'
 import './Input.css'
 
 /**
- * @typedef Props
+ * @typedef IInputProps
  * @props {string} id
  * @props {string} label
  * @props {string} classNamePrefix
@@ -12,7 +12,7 @@ import './Input.css'
  * @props {string} typeInput
  */
 
-export interface Props {
+export interface IInputProps {
   id: string
   label?: string
   className?: string
@@ -30,7 +30,7 @@ const Input = ({
   placeholder = id,
   value,
   typeInput,
-}: Props): JSX.Element => {
+}: IInputProps): JSX.Element => {
   return (
     <label
       htmlFor={id}

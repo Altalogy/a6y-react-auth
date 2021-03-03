@@ -2,31 +2,34 @@ import React, { useState } from 'react'
 import { Button, Input } from '../UI'
 
 /**
- * @typedef ISignUpData
+ * @typedef ISignInData
  * @props {string} email
  * @props {string} password
  */
 
-export interface ISignUpData {
+export interface ISignInData {
   email: string
   password: string
 }
 
 /**
- * @typedef Props
- * @props {string} classname
- * @props {() => void} onClick
+ * @typedef IEmailPasswordFormProps
+ * @props {string} [classname]
+ * @props {() => void} [onClick]
+ * @props {string} [submitLabel]
  */
 
-export interface Props {
+export interface IEmailPasswordFormProps {
   className?: string
   onClick?: () => void
+  submitLabel?: string
 }
 
 function EmailPasswordForm({
   className = 'a6y-react-auth-form',
   onClick,
-}: Props): JSX.Element {
+  submitLabel = 'Submit',
+}: IEmailPasswordFormProps): JSX.Element {
   const [signUpData, setSignUpData] = useState({
     email: '',
     password: '',
@@ -62,7 +65,7 @@ function EmailPasswordForm({
           value={signUpData.password}
         />
       </div>
-      <Button typeRole='submit' label='Sign In' style='primary' />
+      <Button typeRole='submit' label={submitLabel} style='primary' />
     </form>
   )
 }

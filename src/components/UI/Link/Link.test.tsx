@@ -2,7 +2,7 @@ import React from 'react'
 import { fireEvent, render, screen } from '@testing-library/react'
 import Link from './Link'
 
-describe(`input component test`, () => {
+describe(`link element test`, () => {
   it('link href instance rendered properly', () => {
     const rendered = render(
       <Link to='#' color='custom'>

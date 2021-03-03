@@ -2,7 +2,7 @@ import React from 'react'
 import './Button.css'
 
 /**
- * @typedef Props
+ * @typedef IButtonProps
  * @props {string} label
  * @props {string} typeRole
  * @props {function} onclick
@@ -10,7 +10,7 @@ import './Button.css'
  * @props {enum} style
  */
 
-export interface Props {
+export interface IButtonProps {
   label: string
   typeRole: 'button' | 'submit'
   className?: string
@@ -24,7 +24,7 @@ const Button = ({
   className = 'a6y-react-auth-button',
   onClick,
   style = 'primary',
-}: Props): JSX.Element => {
+}: IButtonProps): JSX.Element => {
   return (
     <button
       onClick={onClick}
