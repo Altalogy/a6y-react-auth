@@ -2,8 +2,8 @@ import React from 'react'
 import { fireEvent, render, screen } from '@testing-library/react'
 import { Link } from '../../components/UI'
 
-describe(`link element test`, () => {
-  it('link href instance rendered properly', () => {
+describe(`Component:Link test`, () => {
+  it('renders with href', () => {
     const rendered = render(
       <Link to='#' style='custom'>
         Link
@@ -11,7 +11,7 @@ describe(`link element test`, () => {
     )
     expect(rendered).toBeDefined
   })
-  it('link href with underline instance rendered properly', () => {
+  it('renders with underline prop', () => {
     const rendered = render(
       <Link to='#' underline='hover' style='custom'>
         Link
@@ -19,7 +19,7 @@ describe(`link element test`, () => {
     )
     expect(rendered).toBeDefined
   })
-  it('link onClick instance rendered properly', () => {
+  it('renders with click event', () => {
     const handleClick = jest.fn()
     render(
       <Link to='#' onClick={handleClick} style='primary'>

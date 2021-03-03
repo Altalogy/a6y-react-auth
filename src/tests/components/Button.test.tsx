@@ -2,8 +2,8 @@ import React from 'react'
 import { fireEvent, render, screen } from '@testing-library/react'
 import { Button } from '../../components/UI'
 
-describe(`button component test`, () => {
-  it('button instance rendered properly', () => {
+describe(`Component:Button test`, () => {
+  it('renders without crashing', () => {
     const rendered = render(
       <Button
         role='button'
@@ -16,7 +16,7 @@ describe(`button component test`, () => {
     )
     expect(rendered).toBeDefined
   })
-  it('button click', () => {
+  it('renders with button click', () => {
     const handleClick = jest.fn()
     render(
       <Button

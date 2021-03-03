@@ -6,7 +6,7 @@ import './Button.css'
  * @props {React.ReactNode} children - the button's text
  * @props {string} role - the html role for button 'button' | 'submit'
  * @props {React.MouseEventHandler<HTMLButtonElement>} [onclick] - onClick handler.
- * @props {string} [classname] - the CSS classes.
+ * @props {string} [className] - the CSS classes.
  * @props {string} [style] - the CSS default style 'primary' | 'secondary'
  */
 

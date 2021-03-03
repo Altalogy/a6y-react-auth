@@ -2,8 +2,8 @@ import React from 'react'
 import { fireEvent, render } from '@testing-library/react'
 import { Input } from '../../components/UI'
 
-describe(`input component test`, () => {
-  it('input instance rendered properly', () => {
+describe(`Component:Input test`, () => {
+  it('renders without crashing', () => {
     const rendered = render(
       <Input
         id='username'

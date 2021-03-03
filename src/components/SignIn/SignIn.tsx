@@ -20,7 +20,7 @@ export interface ISignInProps {
 /**
  * Renders the sign-in component
  *
- * @param  {string} [classname] - the CSS classes
+ * @param  {string} [className] - the CSS classes
  * @param  {() => void} [onClick] - onClick handler launching after submit form
  * @param  {string} [apiError] - api error messages
  *
@@ -35,7 +35,7 @@ const SignIn = ({
   className = 'a6y-react-auth__sign-in',
   onClick,
   apiError,
-}: Props): JSX.Element => {
+}: ISignInProps): JSX.Element => {
   return (
     <div className={className}>
       <ErrorBoundary showError={apiError ? true : false}>

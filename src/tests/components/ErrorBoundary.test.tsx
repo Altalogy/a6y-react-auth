@@ -5,20 +5,20 @@ import { ErrorBoundary } from '../../components/UI'
 const ErrorText = 'Error message'
 const ErrorChild = <div className='custom-class'>{ErrorText}</div>
 
-describe(`ErrorBoundary component test`, () => {
-  it('should component rendered properly with status [false]', () => {
+describe(`Component:ErrorBoundary test`, () => {
+  it('renders with status [false]', () => {
     const rendered = render(
       <ErrorBoundary showError={false}>{ErrorText}</ErrorBoundary>,
     )
     expect(rendered).toBeDefined
   })
-  it('should component rendered properly with status [true]', () => {
+  it('renders with status [true]', () => {
     const rendered = render(
       <ErrorBoundary showError={true}>{ErrorText}</ErrorBoundary>,
     )
     expect(rendered).toBeDefined
   })
-  it('should component rendered properly with status [true] and with H1 tag', () => {
+  it('renders with status [true] and with H1 tag', () => {
     const rendered = render(
       <ErrorBoundary showError={true}>
         <h1>{ErrorText}</h1>
@@ -26,7 +26,7 @@ describe(`ErrorBoundary component test`, () => {
     )
     expect(rendered).toBeDefined
   })
-  it('should component rendered properly with status [true] and with react child', () => {
+  it('renders with status [true] and with react child', () => {
     const rendered = render(
       <ErrorBoundary showError={true}>{ErrorChild}</ErrorBoundary>,
     )
