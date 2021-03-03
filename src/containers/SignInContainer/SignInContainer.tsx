@@ -12,7 +12,7 @@ export interface ISignInContainerProps {
 /**
  * Renders the sign-in component with API call
  *
- * @param  {string} [classname] - the CSS classes
+ * @param  {string} [className] - the CSS classes
  *
  * @example
  * <SignInContainer
@@ -21,7 +21,7 @@ export interface ISignInContainerProps {
  */
 
 const SignInContainer = ({ className }: ISignInContainerProps): JSX.Element => {
-  const [apiError, setApiError] = useState(null)
+  const [apiError, setApiError] = useState(undefined)
   async function signIn() {
     try {
       // sign in service
