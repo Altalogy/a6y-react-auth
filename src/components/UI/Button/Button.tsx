@@ -47,11 +47,14 @@ const Button = ({
 }: IButtonProps): JSX.Element => {
   const classNames = require('classnames')
   const btnClass = classNames({
-    [`${className}`]: true,
     [`${className}--${style}`]: style ? true : false,
   })
   return (
-    <button onClick={onClick} className={btnClass} type={role}>
+    <button
+      onClick={onClick}
+      className={className + ' ' + btnClass}
+      type={role}
+    >
       {children}
     </button>
   )

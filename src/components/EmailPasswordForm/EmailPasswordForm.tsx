@@ -14,7 +14,7 @@ export interface ISignInData {
 
 /**
  * @typedef IEmailPasswordFormProps
- * @props {string} [classname] - the CSS classes
+ * @props {string} [className] - the CSS classes
  * @props {() => void} [onClick] - onClick handler launching after submit form
  * @props {string} [submitLabel] - submit button text
  */
@@ -28,7 +28,7 @@ export interface IEmailPasswordFormProps {
 /**
  * Renders form component with email and password
  *
- * @param  {string} [classname] - the CSS classes
+ * @param  {string} [className] - the CSS classes
  * @param  {() => void} [onClick] - onClick handler launching after submit form
  * @param  {string} [submitLabel] - submit button text
  *

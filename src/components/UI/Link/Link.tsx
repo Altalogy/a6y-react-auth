@@ -52,7 +52,6 @@ const Link = ({
   const classNames = require('classnames')
 
   const LinkClass = classNames({
-    [`${className}`]: true,
     [`${className}--${style}`]: style ? true : false,
     [`${className}--underline-${underline}`]: underline ? true : false,
   })
@@ -70,7 +69,7 @@ const Link = ({
     )
   }
   return (
-    <a href={to} className={LinkClass}>
+    <a href={to} className={className + ' ' + LinkClass}>
       {children}
     </a>
   )
