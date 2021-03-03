@@ -4,12 +4,21 @@ import './FormLinks.css'
 
 /**
  * @typedef IFormLinksProps
- * @props {string} classname
+ * @props {string} [classname] - the CSS classes
  */
 
 export interface IFormLinksProps {
   className?: string
 }
+
+/**
+ * Renders form component with links
+ *
+ * @param  {string} [classname] - the CSS classes
+ *
+ * @example
+ * <FormLinks className='a6y-react-auth-form' />
+ */
 
 const FormLinks = ({
   className = 'a6y-react-auth-form',

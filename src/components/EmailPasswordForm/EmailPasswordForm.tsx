@@ -3,8 +3,8 @@ import { Button, Input } from '../UI'
 
 /**
  * @typedef ISignInData
- * @props {string} email
- * @props {string} password
+ * @props {string} email - email input state
+ * @props {string} password - password input state
  */
 
 export interface ISignInData {
@@ -14,9 +14,9 @@ export interface ISignInData {
 
 /**
  * @typedef IEmailPasswordFormProps
- * @props {string} [classname]
- * @props {() => void} [onClick]
- * @props {string} [submitLabel]
+ * @props {string} [classname] - the CSS classes
+ * @props {() => void} [onClick] - onClick handler launching after submit form
+ * @props {string} [submitLabel] - submit button text
  */
 
 export interface IEmailPasswordFormProps {
@@ -24,6 +24,21 @@ export interface IEmailPasswordFormProps {
   onClick?: () => void
   submitLabel?: string
 }
+
+/**
+ * Renders form component with email and password
+ *
+ * @param  {string} [classname] - the CSS classes
+ * @param  {() => void} [onClick] - onClick handler launching after submit form
+ * @param  {string} [submitLabel] - submit button text
+ *
+ * @example
+ * <EmailPasswordForm
+ *  className='a6y-react-auth-form'
+ *  onClick={onClick}
+ *  submitLabel='Submit'
+ * />
+ */
 
 function EmailPasswordForm({
   className = 'a6y-react-auth-form',

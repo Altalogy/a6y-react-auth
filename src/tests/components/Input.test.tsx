@@ -25,7 +25,7 @@ describe(`input component test`, () => {
     const { getByPlaceholderText } = render(
       <Input
         id='username'
-        className='sign_in'
+        className='a6y-react-auth'
         onChange={e => handleChange(e.target.value)}
         placeholder='user'
         label='username'

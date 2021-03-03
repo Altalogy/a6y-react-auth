@@ -5,9 +5,9 @@ import './SignIn.css'
 
 /**
  * @typedef ISignInProps
- * @props {string} [className]
- * @props {() => void} [onClick]
- * @props {unknown} [apiError]
+ * @props {string} [className] - the CSS classes
+ * @props {() => void} [onClick] - onClick handler launching after submit form
+ * @props {unknown} [apiError] - api error messages
  */
 
 export interface ISignInProps {
@@ -15,6 +15,20 @@ export interface ISignInProps {
   onClick?: () => void
   apiError?: unknown
 }
+
+/**
+ * Renders the sign-in component
+ *
+ * @param  {string} [classname] - the CSS classes
+ * @param  {() => void} [onClick] - onClick handler launching after submit form
+ * @param  {unknown} [apiError] - api error messages
+ *
+ * @example
+ * <SignIn
+ *  className='a6y-react-auth-sign-in-cmp'
+ *  onClick={onClick}
+ * />
+ */
 
 const SignIn = ({
   className = 'a6y-react-auth-sign-in-cmp',
