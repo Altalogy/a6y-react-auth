@@ -42,7 +42,7 @@ const SignIn = ({
         {apiError}
       </ErrorBoundary>
       <EmailPasswordForm onClick={onClick} />
-      <FormLinks />
+      <FormLinks path='sign-up' />
     </div>
   )
 }

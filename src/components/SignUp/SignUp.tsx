@@ -41,7 +41,7 @@ const SignUp = ({
         {apiError}
       </ErrorBoundary>
       <EmailPasswordForm />
-      <FormLinks />
+      <FormLinks path='sign-up' />
     </div>
   )
 }
