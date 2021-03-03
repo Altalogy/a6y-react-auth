@@ -80,7 +80,9 @@ function EmailPasswordForm({
           value={signUpData.password}
         />
       </div>
-      <Button typeRole='submit' label={submitLabel} style='primary' />
+      <Button role='submit' style='primary'>
+        {submitLabel}
+      </Button>
     </form>
   )
 }
