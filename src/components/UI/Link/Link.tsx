@@ -8,7 +8,7 @@ import './Link.css'
  * @props {() => void} onCLick
  * @props {string} to
  * @props {string} underline
- * @props {string} color
+ * @props {string} style
  */
 
 export interface ILinkProps {
