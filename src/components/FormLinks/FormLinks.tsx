@@ -16,10 +16,10 @@ const FormLinks = ({
 }: IFormLinksProps): JSX.Element => {
   return (
     <div className={className + '-links'}>
-      <Link className={className + '-link'} to='/sign-up'>
+      <Link className={className + '-link'} to='/forgot-password'>
         Forgot Password
       </Link>
-      <Link className={className + '-link'} to='/forgot-password'>
+      <Link className={className + '-link'} to='/sign-up'>
         Sign Up
       </Link>
     </div>
