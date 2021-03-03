@@ -2,31 +2,49 @@ import React, { useState } from 'react'
 import { Button, Input } from '../UI'
 
 /**
- * @typedef ISignUpData
- * @props {string} email
- * @props {string} password
+ * @typedef ISignInData
+ * @props {string} email - email input state
+ * @props {string} password - password input state
  */
 
-export interface ISignUpData {
+export interface ISignInData {
   email: string
   password: string
 }
 
 /**
- * @typedef Props
- * @props {string} classname
- * @props {() => void} onClick
+ * @typedef IEmailPasswordFormProps
+ * @props {string} [className] - the CSS classes
+ * @props {() => void} [onClick] - onClick handler launching after submit form
+ * @props {string} [submitLabel] - submit button text
  */
 
-export interface Props {
+export interface IEmailPasswordFormProps {
   className?: string
   onClick?: () => void
+  submitLabel?: string
 }
 
+/**
+ * Renders form component with email and password
+ *
+ * @param  {string} [className] - the CSS classes
+ * @param  {() => void} [onClick] - onClick handler launching after submit form
+ * @param  {string} [submitLabel] - submit button text
+ *
+ * @example
+ * <EmailPasswordForm
+ *  className='a6y-react-auth-form'
+ *  onClick={onClick}
+ *  submitLabel='Submit'
+ * />
+ */
+
 function EmailPasswordForm({
-  className = 'a6y-react-auth-form',
+  className = 'a6y-react-auth__form',
   onClick,
-}: Props): JSX.Element {
+  submitLabel = 'Submit',
+}: IEmailPasswordFormProps): JSX.Element {
   const [signUpData, setSignUpData] = useState({
     email: '',
     password: '',
@@ -62,7 +80,9 @@ function EmailPasswordForm({
           value={signUpData.password}
         />
       </div>
-      <Button typeRole='submit' label='Sign In' style='primary' />
+      <Button role='submit' style='primary'>
+        {submitLabel}
+      </Button>
     </form>
   )
 }

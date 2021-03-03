@@ -2,36 +2,60 @@ import React from 'react'
 import './Button.css'
 
 /**
- * @typedef Props
- * @props {string} label
- * @props {string} typeRole
- * @props {function} onclick
- * @props {string} classname
- * @props {enum} style
+ * @typedef IButtonProps
+ * @props {React.ReactNode} children - the button's text
+ * @props {string} role - the html role for button 'button' | 'submit'
+ * @props {React.MouseEventHandler<HTMLButtonElement>} [onclick] - onClick handler.
+ * @props {string} [classname] - the CSS classes.
+ * @props {string} [style] - the CSS default style 'primary' | 'secondary'
  */
 
-export interface Props {
-  label: string
-  typeRole: 'button' | 'submit'
+export interface IButtonProps {
+  children: React.ReactNode
+  role: 'button' | 'submit'
   className?: string
   onClick?: React.MouseEventHandler<HTMLButtonElement>
   style?: 'primary' | 'secondary'
 }
 
+/**
+ * Renders the Button component.
+ *
+ * @param {React.ReactNode} children - the button's text.
+ * @param {string} [className] - the CSS classes.
+ * @param {React.MouseEventHandler<HTMLButtonElement>} [onClick] - onClick handler.
+ * @param {string} [style] - the CSS default style 'primary' | 'secondary'
+ * @param {string} role - the html role for button 'button' | 'submit'
+ *
+ * @example
+ * <Button
+ *  onClick={e => e}
+ *  className='a6y-react-auth-button'
+ *  style='primary'
+ *  role='button'
+ * >
+ *  Click me
+ * </Button
+ */
+
 const Button = ({
-  typeRole = 'button',
-  label,
-  className = 'a6y-react-auth-button',
+  role = 'button',
+  children,
+  className = 'a6y-react-auth__button',
   onClick,
   style = 'primary',
-}: Props): JSX.Element => {
+}: IButtonProps): JSX.Element => {
+  const classNames = require('classnames')
+  const btnClass = classNames({
+    [`${className}--${style}`]: style ? true : false,
+  })
   return (
     <button
       onClick={onClick}
-      className={style ? className + ' ' + style : className}
-      type={typeRole}
+      className={className + ' ' + btnClass}
+      type={role}
     >
-      {label}
+      {children}
     </button>
   )
 }

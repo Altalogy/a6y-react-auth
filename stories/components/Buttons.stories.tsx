@@ -4,13 +4,14 @@ import Button from '../../src/components/UI/Button/Button'
 
 export const ButtonComponent: React.VFC<unknown> = args => (
   <Button
-    typeRole='button'
+    role='button'
     onClick={e => e}
     style='primary'
     className='primary'
-    label='button'
     {...args}
-  />
+  >
+    Click me
+  </Button>
 )
 
 export default {

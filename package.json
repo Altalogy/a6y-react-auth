@@ -14,7 +14,7 @@
   "scripts": {
     "start": "tsdx watch",
     "build": "rollup -c",
-    "test": "tsdx test --passWithNoTests",
+    "test": "tsdx test --passWithNoTests --coverage",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --quiet",
     "lint-fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "prepare": "tsdx build",
@@ -91,6 +91,7 @@
     "@typescript-eslint/eslint-plugin": "^4.15.2",
     "@typescript-eslint/parser": "^4.15.2",
     "babel-loader": "^8.2.2",
+    "classnames": "^2.2.6",
     "eslint": "^7.20.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-jest": "^24.1.5",

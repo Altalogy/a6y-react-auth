@@ -1,22 +1,22 @@
-a.primary {
+a.a6y-react-auth__form__link--primary {
   color: #2f5ef7;
 }
-a.secondary {
+a.a6y-react-auth__form__link--secondary {
   color: #172232;
 }
-a.underline-none {
+a.a6y-react-auth__form__link--underline-none {
   text-decoration: none !important;
 }
-a.underline-hover {
+a.a6y-react-auth__form__link--underline-hover {
   text-decoration: none;
 }
-a.underline-hover:hover {
+a.a6y-react-auth__form__link--underline-hover:hover {
   text-decoration: underline;
 }
-a.underline-always {
+a.a6y-react-auth__form__link--underline-always {
   text-decoration: underline !important;
 }
-a.a6y-react-auth-form-link {
+a.a6y-react-auth__form__link {
   letter-spacing: normal;
   font-size: .9rem;
   margin: 5px 0;

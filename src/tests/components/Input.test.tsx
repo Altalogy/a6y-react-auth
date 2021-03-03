@@ -1,6 +1,6 @@
 import React from 'react'
 import { fireEvent, render } from '@testing-library/react'
-import Input from './Input'
+import { Input } from '../../components/UI'
 
 describe(`input component test`, () => {
   it('input instance rendered properly', () => {
@@ -25,7 +25,7 @@ describe(`input component test`, () => {
     const { getByPlaceholderText } = render(
       <Input
         id='username'
-        className='sign_in'
+        className='a6y-react-auth'
         onChange={e => handleChange(e.target.value)}
         placeholder='user'
         label='username'
