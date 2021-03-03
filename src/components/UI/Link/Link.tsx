@@ -17,14 +17,14 @@ export interface ILinkProps {
   onClick?: () => void
   to: string
   underline?: 'none' | 'hover' | 'always'
-  color?: 'primary' | 'secondary' | 'custom'
+  style?: 'primary' | 'secondary' | 'custom'
 }
 
 const Link = ({
   children,
   className = 'a6y-react-auth-form-link',
   onClick = undefined,
-  color = 'primary',
+  style = 'primary',
   underline = 'none',
   to,
 }: ILinkProps): JSX.Element => {
@@ -38,7 +38,7 @@ const Link = ({
       <a
         href='#'
         onClick={e => handleLinkClick(e)}
-        className={className + ' ' + 'underline-' + underline + ' ' + color}
+        className={className + ' ' + 'underline-' + underline + ' ' + style}
       >
         {children}
       </a>
@@ -47,7 +47,7 @@ const Link = ({
   return (
     <a
       href={to}
-      className={className + ' ' + 'underline-' + underline + ' ' + color}
+      className={className + ' ' + 'underline-' + underline + ' ' + style}
     >
       {children}
     </a>

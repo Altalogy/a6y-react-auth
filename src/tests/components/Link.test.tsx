@@ -5,7 +5,7 @@ import { Link } from '../../components/UI'
 describe(`link element test`, () => {
   it('link href instance rendered properly', () => {
     const rendered = render(
-      <Link to='#' color='custom'>
+      <Link to='#' style='custom'>
         Link
       </Link>,
     )
@@ -13,7 +13,7 @@ describe(`link element test`, () => {
   })
   it('link href with underline instance rendered properly', () => {
     const rendered = render(
-      <Link to='#' underline='hover' color='custom'>
+      <Link to='#' underline='hover' style='custom'>
         Link
       </Link>,
     )
@@ -22,7 +22,7 @@ describe(`link element test`, () => {
   it('link onClick instance rendered properly', () => {
     const handleClick = jest.fn()
     render(
-      <Link to='#' onClick={handleClick} color='primary'>
+      <Link to='#' onClick={handleClick} style='primary'>
         Link
       </Link>,
     )
