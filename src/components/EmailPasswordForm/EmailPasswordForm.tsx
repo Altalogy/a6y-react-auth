@@ -41,7 +41,7 @@ export interface IEmailPasswordFormProps {
  */
 
 function EmailPasswordForm({
-  className = 'a6y-react-auth-form',
+  className = 'a6y-react-auth__form',
   onClick,
   submitLabel = 'Submit',
 }: IEmailPasswordFormProps): JSX.Element {

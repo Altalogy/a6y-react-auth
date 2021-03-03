@@ -1,4 +1,4 @@
-button.a6y-react-auth-button {
+button.a6y-react-auth__button {
   min-height: 30px;
   padding: 5px 20px;
   border: 1px solid white;
@@ -12,23 +12,23 @@ button:hover {
   opacity: .7;
 }
 
-button.primary {
+button.a6y-react-auth__button--primary {
   background-color: #2f5ef7;
   color: white;
 }
 
-button.primary:hover {
+button.a6y-react-auth__button--primary:hover {
   background-color: #1f3a92;
   opacity: 1;
 }
 
-button.secondary {
+button.a6y-react-auth__button--secondary {
   border-color: #2f5ef7;
   background-color: white;
   color: #2f5ef7;
 }
 
-button.secondary:hover {
+button.a6y-react-auth__button--secondary:hover {
   border-color: #1f3a92;
   opacity: 1;
   color: #1f3a92;

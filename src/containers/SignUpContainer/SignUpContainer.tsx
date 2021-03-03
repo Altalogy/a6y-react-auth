@@ -31,7 +31,7 @@ const SignUpContainer = ({ className }: ISignUpContainerProps): JSX.Element => {
     }
   }
   return (
-    <div className={className ? className : 'a6y-react-auth-sign-in-cmp'}>
+    <div className={className ? className : 'a6y-react-auth__sign-up'}>
       <SignUp onClick={signUp} apiError={apiError} />
     </div>
   )

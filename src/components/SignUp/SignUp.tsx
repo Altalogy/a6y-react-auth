@@ -31,7 +31,7 @@ export interface ISignUpProps {
  */
 
 const SignUp = ({
-  className = 'a6y-react-auth-sign-up-cmp',
+  className = 'a6y-react-auth__sign-up',
   onClick,
 }: ISignUpProps): JSX.Element => {
   return (

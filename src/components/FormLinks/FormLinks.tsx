@@ -21,14 +21,14 @@ export interface IFormLinksProps {
  */
 
 const FormLinks = ({
-  className = 'a6y-react-auth-form',
+  className = 'a6y-react-auth__form',
 }: IFormLinksProps): JSX.Element => {
   return (
-    <div className={className + '-links'}>
-      <Link className={className + '-link'} to='/forgot-password'>
+    <div className={className + '__links'}>
+      <Link className={className + '__link'} to='/forgot-password'>
         Forgot Password
       </Link>
-      <Link className={className + '-link'} to='/sign-up'>
+      <Link className={className + '__link'} to='/sign-up'>
         Sign Up
       </Link>
     </div>

@@ -43,7 +43,7 @@ export interface ILinkProps {
 
 const Link = ({
   children,
-  className = 'a6y-react-auth-form-link',
+  className = 'a6y-react-auth__form__link',
   onClick = undefined,
   style = 'primary',
   underline = 'none',
@@ -53,8 +53,8 @@ const Link = ({
 
   const LinkClass = classNames({
     [`${className}`]: true,
-    [`${style}`]: style ? true : false,
-    [`underline-${underline}`]: underline ? true : false,
+    [`${className}--${style}`]: style ? true : false,
+    [`${className}--underline-${underline}`]: underline ? true : false,
   })
 
   function handleLinkClick(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {

@@ -53,20 +53,24 @@ const Input = ({
   value,
   typeInput,
 }: IInputProps): JSX.Element => {
+  const classNames = require('classnames')
+  const LabelClass = classNames({
+    [`${className}__label`]: true,
+    [`${className}__label--${id}`]: id ? true : false,
+  })
+  const InputClass = classNames({
+    [`${className}__label__input`]: true,
+    [`${className}__label__input--${id}`]: id ? true : false,
+  })
   return (
-    <label
-      htmlFor={id}
-      className={`${className}-label ${className}-label${id && '--' + id}`}
-    >
+    <label htmlFor={id} className={LabelClass}>
       {label && label}
       <input
         id={id}
         name={id}
         type={typeInput}
         onChange={onChange}
-        className={`${className}-label-input ${className}-label-input${
-          id && '--' + id
-        }`}
+        className={InputClass}
         placeholder={placeholder}
         value={value ? value : ''}
       />
