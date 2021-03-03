@@ -1,6 +1,7 @@
 import React from 'react'
 import EmailPasswordForm from '../EmailPasswordForm'
 import FormLinks from '../FormLinks'
+import { ErrorBoundary } from '../UI'
 import './SignIn.css'
 
 /**
@@ -25,7 +26,7 @@ export interface ISignInProps {
  *
  * @example
  * <SignIn
- *  className='a6y-react-auth-sign-in-cmp'
+ *  className='a6y-react-auth__sign-in'
  *  onClick={onClick}
  * />
  */
@@ -33,10 +34,14 @@ export interface ISignInProps {
 const SignIn = ({
   className = 'a6y-react-auth__sign-in',
   onClick,
-}: ISignInProps): JSX.Element => {
+  apiError,
+}: Props): JSX.Element => {
   return (
     <div className={className}>
-      <EmailPasswordForm onClick={onClick} submitLabel='Sign In' />
+      <ErrorBoundary showError={apiError ? true : false}>
+        {apiError}
+      </ErrorBoundary>
+      <EmailPasswordForm onClick={onClick} />
       <FormLinks />
     </div>
   )

@@ -1,0 +1,34 @@
+.a6y-react-auth__error-boundary, .a6y-react-auth__error-boundary * {
+  font-size: 12px;
+  letter-spacing: normal;
+  line-height: 16px;
+  font-weight: normal;
+}
+
+.a6y-react-auth__error-boundary--primary {
+  padding: 10px 15px;
+}
+
+.a6y-react-auth__error-boundary--primary.a6y-react-auth__error-boundary--warning,
+.a6y-react-auth__error-boundary--primary.a6y-react-auth__error-boundary--warning * {
+  color: #D97706;
+  background-color: #FEF3C7;
+  border: 1px solid #D97706;
+}
+
+.a6y-react-auth__error-boundary--primary.a6y-react-auth__error-boundary--error,
+.a6y-react-auth__error-boundary--primary.a6y-react-auth__error-boundary--error * {
+  color: #DC2626;
+  background-color: #FEE2E2;
+  border: 1px solid #DC2626;
+}
+
+.a6y-react-auth__error-boundary--secondary.a6y-react-auth__error-boundary--warning,
+.a6y-react-auth__error-boundary--secondary.a6y-react-auth__error-boundary--warning * {
+  color: #D97706;
+}
+
+.a6y-react-auth__error-boundary--secondary.a6y-react-auth__error-boundary--error,
+.a6y-react-auth__error-boundary--secondary.a6y-react-auth__error-boundary--error * {
+  color: #DC2626;
+}
