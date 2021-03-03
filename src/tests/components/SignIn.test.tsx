@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from '@testing-library/react'
-import SignIn from './SignIn'
+import SignIn from '../../components/SignIn'
 
 describe(`signIn component test`, () => {
   it('component rendered properly', () => {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { fireEvent, render } from '@testing-library/react'
-import Input from './Input'
+import { Input } from '../../components/UI'
 
 describe(`input component test`, () => {
   it('input instance rendered properly', () => {
