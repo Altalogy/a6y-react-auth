@@ -1,12 +1,27 @@
 import React, { useState } from 'react'
 import SignIn from '../../components/SignIn'
 
-export interface ISignInProps {
+/**
+ * @typedef ISignInContainerProps
+ * @props {string} [className] - the CSS classes
+ */
+export interface ISignInContainerProps {
   className?: string
 }
 
-const SignInContainer = ({ className }: ISignInProps): JSX.Element => {
-  const [apiError, setApiError] = useState(null)
+/**
+ * Renders the sign-in component with API call
+ *
+ * @param  {string} [className] - the CSS classes
+ *
+ * @example
+ * <SignInContainer
+ *  className='a6y-react-auth-sign-in-cmp'
+ * />
+ */
+
+const SignInContainer = ({ className }: ISignInContainerProps): JSX.Element => {
+  const [apiError, setApiError] = useState(undefined)
   async function signIn() {
     try {
       // sign in service
@@ -15,7 +30,7 @@ const SignInContainer = ({ className }: ISignInProps): JSX.Element => {
     }
   }
   return (
-    <div className={className ? className : 'a6y-react-auth-sign-in-cmp'}>
+    <div className={className ? className : 'a6y-react-auth__sign-in'}>
       <SignIn onClick={signIn} apiError={apiError} />
     </div>
   )
