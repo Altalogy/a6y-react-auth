@@ -1,0 +1,68 @@
+.a6y-react-auth-error-boundary, .a6y-react-auth-error-boundary * {
+  font-size: 12px;
+  letter-spacing: normal;
+  line-height: 16px;
+  font-weight: normal;
+}
+
+.a6y-react-auth-error-boundary-primary {
+  padding: 10px 15px;
+}
+
+.a6y-react-auth-error-boundary-primary.a6y-react-auth-error-boundary-info,
+.a6y-react-auth-error-boundary-primary.a6y-react-auth-error-boundary-info * {
+  color: #2563EB;
+  background-color: #93C5FD;
+  border: 1px solid #2563EB;
+}
+
+.a6y-react-auth-error-boundary-primary.a6y-react-auth-error-boundary-success,
+.a6y-react-auth-error-boundary-primary.a6y-react-auth-error-boundary-success * {
+  color: #059669;
+  background-color: #D1FAE5;
+  border: 1px solid #059669;
+}
+
+.a6y-react-auth-error-boundary-primary.a6y-react-auth-error-boundary-warning,
+.a6y-react-auth-error-boundary-primary.a6y-react-auth-error-boundary-warning * {
+  color: #D97706;
+  background-color: #FEF3C7;
+  border: 1px solid #D97706;
+}
+
+.a6y-react-auth-error-boundary-primary.a6y-react-auth-error-boundary-error,
+.a6y-react-auth-error-boundary-primary.a6y-react-auth-error-boundary-error * {
+  color: #DC2626;
+  background-color: #FEE2E2;
+  border: 1px solid #DC2626;
+}
+.a6y-react-auth-error-boundary-primary.a6y-react-auth-error-boundary-validation,
+.a6y-react-auth-error-boundary-primary.a6y-react-auth-error-boundary-validation * {
+  color: #D63301;
+  background-color: #FFCCBA;
+  border: 1px solid #D63301;
+}
+
+.a6y-react-auth-error-boundary-secondary.a6y-react-auth-error-boundary-info,
+.a6y-react-auth-error-boundary-secondary.a6y-react-auth-error-boundary-info * {
+  color: #2563EB;
+}
+
+.a6y-react-auth-error-boundary-secondary.a6y-react-auth-error-boundary-success,
+.a6y-react-auth-error-boundary-secondary.a6y-react-auth-error-boundary-success * {
+  color: #059669;
+}
+
+.a6y-react-auth-error-boundary-secondary.a6y-react-auth-error-boundary-warning,
+.a6y-react-auth-error-boundary-secondary.a6y-react-auth-error-boundary-warning * {
+  color: #D97706;
+}
+
+.a6y-react-auth-error-boundary-secondary.a6y-react-auth-error-boundary-error,
+.a6y-react-auth-error-boundary-secondary.a6y-react-auth-error-boundary-error * {
+  color: #DC2626;
+}
+.a6y-react-auth-error-boundary-secondary.a6y-react-auth-error-boundary-validation,
+.a6y-react-auth-error-boundary-secondary.a6y-react-auth-error-boundary-validation * {
+  color: #D63301;
+}
