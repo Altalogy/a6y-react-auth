@@ -7,13 +7,13 @@ import './SignUp.css'
  * @typedef ISignUpProps
  * @props {string} [className] - the CSS classes
  * @props {() => void} [onClick] - onClick handler launching after submit form
- * @props {unknown} [apiError] - api error messages
+ * @props {string} [apiError] - api error messages
  */
 
 export interface ISignUpProps {
   className?: string
   onClick?: () => void
-  apiError?: unknown
+  apiError?: string
 }
 
 /**
@@ -21,7 +21,7 @@ export interface ISignUpProps {
  *
  * @param  {string} [classname] - the CSS classes
  * @param  {() => void} [onClick] - onClick handler launching after submit form
- * @param  {unknown} [apiError] - api error messages
+ * @param  {string} [apiError] - api error messages
  *
  * @example
  * <SignUp

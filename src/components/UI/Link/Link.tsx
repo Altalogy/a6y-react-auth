@@ -49,6 +49,14 @@ const Link = ({
   underline = 'none',
   to,
 }: ILinkProps): JSX.Element => {
+  const classNames = require('classnames')
+
+  const LinkClass = classNames({
+    [`${className}`]: true,
+    [`${style}`]: style ? true : false,
+    [`underline-${underline}`]: underline ? true : false,
+  })
+
   function handleLinkClick(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
     e.preventDefault()
     e.stopPropagation()
@@ -56,20 +64,13 @@ const Link = ({
   }
   if (onClick) {
     return (
-      <a
-        href='#'
-        onClick={e => handleLinkClick(e)}
-        className={className + ' ' + 'underline-' + underline + ' ' + style}
-      >
+      <a href='#' onClick={e => handleLinkClick(e)} className={LinkClass}>
         {children}
       </a>
     )
   }
   return (
-    <a
-      href={to}
-      className={className + ' ' + 'underline-' + underline + ' ' + style}
-    >
+    <a href={to} className={LinkClass}>
       {children}
     </a>
   )
