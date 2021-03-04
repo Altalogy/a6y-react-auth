@@ -41,8 +41,8 @@ const SignIn = ({
       <ErrorBoundary showError={apiError ? true : false}>
         {apiError}
       </ErrorBoundary>
-      <EmailPasswordForm onClick={onClick} />
-      <FormLinks path='sign-up' />
+      <EmailPasswordForm submitLabel='sign in' onClick={onClick} />
+      <FormLinks path='sign-in' />
     </div>
   )
 }

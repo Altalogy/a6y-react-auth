@@ -33,6 +33,7 @@ export interface ISignUpProps {
 
 const SignUp = ({
   className = 'a6y-react-auth__sign-up',
+  onClick,
   apiError,
 }: ISignUpProps): JSX.Element => {
   return (
@@ -40,7 +41,7 @@ const SignUp = ({
       <ErrorBoundary showError={apiError ? true : false}>
         {apiError}
       </ErrorBoundary>
-      <EmailPasswordForm />
+      <EmailPasswordForm submitLabel='sign up' onClick={onClick} />
       <FormLinks path='sign-up' />
     </div>
   )
