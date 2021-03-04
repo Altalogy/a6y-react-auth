@@ -11,14 +11,6 @@ describe(`Component:Link test`, () => {
     )
     expect(rendered).toBeDefined
   })
-  it('renders with underline prop', () => {
-    const rendered = render(
-      <Link to='#' underline='hover' style='custom'>
-        Link
-      </Link>,
-    )
-    expect(rendered).toBeDefined
-  })
   it('renders with click event', () => {
     const handleClick = jest.fn()
     render(
