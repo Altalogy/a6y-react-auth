@@ -27,14 +27,12 @@ export interface ILinkProps {
  * @param {string} [className] - the CSS classes.
  * @param {() => void} [onClick] - onClick handler.
  * @param {string} to - the href attribute of the link.
- * @param {string} [underline] - the CSS style with underlines 'none' | 'hover' | 'always'
  * @param {string} [style] - the CSS default style 'primary' | 'secondary' | 'custom'
  *
  * @example
  * <Link
  *  to={"https://xyz.com"}
  *  className='a6y-react-auth-form-link
- *  underline='none'
  *  style='custom'
  * >
  *  My Link
@@ -46,14 +44,12 @@ const Link = ({
   className = 'a6y-react-auth__form__link',
   onClick = undefined,
   style = 'primary',
-  underline = 'none',
   to,
 }: ILinkProps): JSX.Element => {
   const classNames = require('classnames')
 
   const LinkClass = classNames({
     [`${className}--${style}`]: style ? true : false,
-    [`${className}--underline-${underline}`]: underline ? true : false,
   })
 
   function handleLinkClick(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
