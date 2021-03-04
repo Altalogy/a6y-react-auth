@@ -10,15 +10,17 @@ export interface IAuthProps {
 const AuthComponent = ({
   className = 'a6y-react-auth',
 }: IAuthProps): JSX.Element => {
-  const [currentForm] = useState('sign-in')
+  const [currentForm, setCurrentForm] = useState('/sign-in')
   const getAuthForm = (): JSX.Element => {
     switch (currentForm) {
-      case 'sign-up':
-        return <SignUp />
-      case 'forgot-password':
-        return <ForgotPassword />
+      case '/sign-up':
+        return <SignUp onLinkHandler={(to: string) => setCurrentForm(to)} />
+      case '/forgot-password':
+        return (
+          <ForgotPassword onLinkHandler={(to: string) => setCurrentForm(to)} />
+        )
       default:
-        return <SignIn />
+        return <SignIn onLinkHandler={(to: string) => setCurrentForm(to)} />
     }
   }
   return <div className={className}>{getAuthForm()}</div>
