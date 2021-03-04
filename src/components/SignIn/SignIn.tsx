@@ -2,7 +2,7 @@ import React from 'react'
 import EmailPasswordForm from '../EmailPasswordForm'
 import FormLinks from '../FormLinks'
 import { ErrorBoundary } from '../UI'
-import './SignIn.css'
+import '../../index.css'
 
 /**
  * @typedef ISignInProps

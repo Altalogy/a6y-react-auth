@@ -17,7 +17,7 @@ export interface ISignUpContainerProps {
  *
  * @example
  * <SignUpContainer
- *  className='a6y-react-auth-sign-in-cmp'
+ *  className='a6y-react-auth__sign-in'
  * />
  */
 
