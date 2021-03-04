@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import FormLinks from '../FormLinks'
 import { ErrorBoundary, Input, Button } from '../UI'
-import './ForgotPassword.css'
+import '../../index.css'
 
 /**
  * @typedef IForgotPasswordProps

@@ -1,4 +1,4 @@
-.a6y-react-auth__sign-in {
+.a6y-react-auth__sign-in,.a6y-react-auth__forgot-password,.a6y-react-auth__sign-up {
   padding: 2rem 1rem;
   max-width: 320px;
   margin: auto;
