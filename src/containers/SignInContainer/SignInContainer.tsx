@@ -30,7 +30,7 @@ const SignInContainer = ({ className }: ISignInContainerProps): JSX.Element => {
     }
   }
   return (
-    <div className={className ? className : 'a6y-react-auth__sign-in'}>
+    <div className={className ? className : 'a6y-react-auth__sign-in-cnt'}>
       <SignIn onClick={signIn} apiError={apiError} />
     </div>
   )
