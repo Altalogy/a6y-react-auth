@@ -13,20 +13,17 @@
   },
   "scripts": {
     "start": "tsdx watch",
-    "build": "rollup -c",
+    "build": "npm run clean && npm run prepare && tsc",
     "test": "tsdx test --passWithNoTests --coverage",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --quiet",
     "lint-fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
-    "prepare": "tsdx build",
+    "prepare": "copyfiles -u 1 src/**/*.html src/**/*.css lib/",
     "prepublishOnly": "npm test && npm run lint-fix",
     "size": "size-limit",
     "analyze": "size-limit --why",
+    "clean": "rimraf lib/",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
-  },
-  "peerDependencies": {
-    "react": ">=16",
-    "react-dom": "16.13.1"
   },
   "husky": {
     "hooks": {
@@ -70,10 +67,12 @@
     "url": "https://github.com/Altalogy/a6y-react-auth/issues"
   },
   "homepage": "https://github.com/Altalogy/a6y-react-auth#readme",
+  "peerDependencies": {
+    "react": ">=16",
+    "react-dom": "16.13.1"
+  },
   "devDependencies": {
     "@babel/core": "^7.13.1",
-    "@rollup/plugin-commonjs": "^17.1.0",
-    "@rollup/plugin-node-resolve": "^11.2.0",
     "@size-limit/preset-small-lib": "^4.9.1",
     "@storybook/addon-actions": "^6.1.20",
     "@storybook/addon-controls": "^6.1.20",
@@ -93,6 +92,7 @@
     "aws-amplify": "^3.3.22",
     "babel-loader": "^8.2.2",
     "classnames": "^2.2.6",
+    "copyfiles": "^2.4.1",
     "eslint": "^7.20.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-jest": "^24.1.5",
@@ -104,13 +104,7 @@
     "jest-css-modules": "^2.1.0",
     "node-sass": "^5.0.0",
     "prettier": "^2.2.1",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-is": "^17.0.1",
-    "rollup": "^2.40.0",
-    "rollup-plugin-peer-deps-external": "^2.2.4",
-    "rollup-plugin-scss": "^2.6.1",
-    "rollup-plugin-typescript2": "^0.30.0",
+    "rimraf": "^3.0.2",
     "sass-loader": "^11.0.1",
     "size-limit": "^4.9.1",
     "ts-jest": "^26.5.2",

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import ForgotPassword from '../../components/ForgotPassword'
+import AuthService from '../../services/AuthService'
 
 /**
  * @typedef IForgotPasswordContainerProps
@@ -24,16 +25,20 @@ const ForgotPasswordContainer = ({
   className,
 }: IForgotPasswordContainerProps): JSX.Element => {
   const [apiError, setApiError] = useState(undefined)
-  async function signIn() {
+  async function forgotPassword(email: string) {
     try {
-      // sign in service
+      // eslint-disable-next-line
+      const response: any = await AuthService.forgotPassword(email)
+      if (response && response.code) {
+        setApiError(response.message)
+      }
     } catch (error) {
       return setApiError(error)
     }
   }
   return (
     <div className={className ? className : 'a6y-react-auth__forgot-password'}>
-      <ForgotPassword onClick={signIn} apiError={apiError} />
+      <ForgotPassword onClick={forgotPassword} apiError={apiError} />
     </div>
   )
 }

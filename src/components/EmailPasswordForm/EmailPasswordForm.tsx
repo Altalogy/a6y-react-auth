@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Input } from '../UI'
+import validate from '../../utilities/validation'
 
 /**
  * @typedef ISignInData
@@ -15,13 +16,13 @@ export interface ISignInData {
 /**
  * @typedef IEmailPasswordFormProps
  * @props {string} [className] - the CSS classes
- * @props {() => void} [onClick] - onClick handler launching after submit form
+ * @props {(email: string, password: string) => void} [onClick] - onClick handler launching after submit form
  * @props {string} [submitLabel] - submit button text
  */
 
 export interface IEmailPasswordFormProps {
   className?: string
-  onClick?: () => void
+  onClick?: (email: string, password: string) => void
   submitLabel?: string
 }
 
@@ -29,7 +30,7 @@ export interface IEmailPasswordFormProps {
  * Renders form component with email and password
  *
  * @param  {string} [className] - the CSS classes
- * @param  {() => void} [onClick] - onClick handler launching after submit form
+ * @param  {(email: string, password: string) => void} [onClick] - onClick handler launching after submit form
  * @param  {string} [submitLabel] - submit button text
  *
  * @example
@@ -50,12 +51,25 @@ function EmailPasswordForm({
     password: '',
   })
 
-  const onSubmit = () => {
-    if (onClick) onClick()
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.stopPropagation()
+    e.preventDefault()
+    const data = [
+      {
+        value: signUpData.email,
+        rules: ['CANNOT_BE_BLANK'],
+      },
+      {
+        value: signUpData.password,
+        rules: ['CANNOT_BE_BLANK'],
+      },
+    ]
+    if (onClick && validate(data))
+      onClick(signUpData.email, signUpData.password)
   }
 
   return (
-    <form className={`${className}`} onSubmit={onSubmit}>
+    <form className={`${className}`} onSubmit={e => onSubmit(e)}>
       <div className={`${className}-group`}>
         <Input
           id='email'

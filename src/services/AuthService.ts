@@ -1,37 +1,32 @@
 import Amplify from 'aws-amplify'
 import CognitoService from './CognitoService'
 
-let activeService: typeof CognitoService
-
 class AuthService {
-  initialize(config: {
-    provider: {
-      type: string
-      userPoolId: string
-      userPoolWebClientId: string
-      region: string
-    }
-  }): typeof CognitoService {
-    switch (config.provider.type) {
-      default: {
+  constructor() {
+    const provider = globalThis.A6YReactAuthConfig.provider.type
+    switch (provider) {
+      default:
         Amplify.configure({
-          region: config.provider.region,
-          userPoolId: config.provider.userPoolId,
-          userPoolWebClientId: config.provider.userPoolWebClientId,
+          Auth: {
+            region: globalThis.A6YReactAuthConfig.provider.region,
+            userPoolId: globalThis.A6YReactAuthConfig.provider.userPoolId,
+            userPoolWebClientId:
+              globalThis.A6YReactAuthConfig.provider.userPoolWebClientId,
+          },
         })
-        return (activeService = CognitoService)
-      }
     }
   }
 
   static signIn(email: string, password: string): Promise<unknown> {
-    return activeService.signIn(email, password)
+    return CognitoService.signIn(email, password)
   }
+
   static signUp(email: string, password: string): Promise<unknown> {
-    return activeService.signUp(email, password)
+    return CognitoService.signUp(email, password)
   }
+
   static forgotPassword(email: string): Promise<unknown> {
-    return activeService.forgotPassword(email)
+    return CognitoService.forgotPassword(email)
   }
 }
 

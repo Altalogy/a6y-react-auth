@@ -6,15 +6,27 @@ import ForgotPasswordCnt from './containers/ForgotPasswordContainer'
 import SignIn from './components/SignIn'
 import SignUp from './components/SignUp'
 import ForgotPassword from './components/ForgotPassword'
+import AuthService from './services/AuthService'
 
-const A6YReactAuth = {
-  // configure: {
-  //   provider: {
-  //     type: 'cognito',
-  //     userPoolId: '',
-  //     region: 'eu-central-1',
-  //   },
-  // },
+interface IA6YReactAuth {
+  provider: {
+    type: string
+    userPoolId: string
+    userPoolWebClientId: string
+    region: string
+  }
+}
+
+declare global {
+  // eslint-disable-next-line no-var
+  var A6YReactAuthConfig: IA6YReactAuth
+}
+
+class A6YReactAuth {
+  initialize(config: IA6YReactAuth): void {
+    globalThis.A6YReactAuthConfig = config
+    new AuthService()
+  }
 }
 
 export const Auth = (): JSX.Element => <AuthCnt />

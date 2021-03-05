@@ -7,13 +7,13 @@ import '../../index.css'
 /**
  * @typedef ISignInProps
  * @props {string} [className] - the CSS classes
- * @props {() => void} [onClick] - onClick handler launching after submit form
+ * @props {(email: string, password: string) => void} [onClick] - onClick handler launching after submit form
  * @props {string} [apiError] - api error messages
  */
 
 export interface ISignInProps {
   className?: string
-  onClick?: () => void
+  onClick?: (email: string, password: string) => void
   apiError?: string
 }
 
@@ -21,7 +21,7 @@ export interface ISignInProps {
  * Renders the sign-in component
  *
  * @param  {string} [className] - the CSS classes
- * @param  {() => void} [onClick] - onClick handler launching after submit form
+ * @param  {(email: string, password: string) => void} [onClick] - onClick handler launching after submit form
  * @param  {string} [apiError] - api error messages
  *
  * @example
