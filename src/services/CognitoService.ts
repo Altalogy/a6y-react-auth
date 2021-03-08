@@ -26,9 +26,9 @@ class CognitoService {
     }
   }
 
-  static async forgotPassword(): Promise<unknown> {
+  static async signOut(): Promise<unknown> {
     try {
-      await Auth.signOut()
+      return await Auth.signOut()
     } catch (error) {
       return error
     }

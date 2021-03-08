@@ -29,7 +29,7 @@ class AuthService {
     return CognitoService.forgotPassword(email)
   }
 
-  static async signOut() {
+  static async signOut(): Promise<unknown> {
     return CognitoService.signOut()
   }
 }

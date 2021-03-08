@@ -3,9 +3,25 @@ import SignIn from '../../containers/SignInContainer'
 import SignUp from '../../containers/SignUpContainer'
 import ForgotPassword from '../../containers/ForgotPasswordContainer'
 
+/**
+ * @typedef IAuthProps
+ * @props {string} [className] - the CSS classes
+ */
+
 export interface IAuthProps {
   className?: string
 }
+
+/**
+ * Renders all login component with default from config
+ *
+ * @param  {string} [className] - the CSS classes
+ *
+ * @example
+ * <AuthComponent
+ *  className='a6y-react-auth'
+ * />
+ */
 
 const AuthComponent = ({
   className = 'a6y-react-auth',
