@@ -8,12 +8,14 @@ import '../../index.css'
  * @props {string} [className] - the CSS classes
  * @props {(email: string) => void} [onClick] - onClick handler launching after submit form
  * @props {string} [apiError] - api error messages
+ * @props  {(to: string) => void} [onLinkHandler] - links onClick handler
  */
 
 export interface IForgotPasswordProps {
   className?: string
   onClick?: (email: string) => void
   apiError?: string
+  onLinkHandler?: (to: string) => void
 }
 
 /**
@@ -22,6 +24,7 @@ export interface IForgotPasswordProps {
  * @param  {string} [className] - the CSS classes
  * @param  {(email: string) => void} [onClick] - onClick handler launching after submit form
  * @param  {string} [apiError] - api error messages
+ * @param  {(to: string) => void} [onLinkHandler] - links onClick handler
  *
  * @example
  * <ForgotPassword
@@ -34,6 +37,7 @@ const ForgotPassword = ({
   className = 'a6y-react-auth__forgot-password',
   onClick,
   apiError,
+  onLinkHandler,
 }: IForgotPasswordProps): JSX.Element => {
   const [forgotPasswordData, setForgotPasswordData] = useState({
     email: '',
@@ -66,7 +70,7 @@ const ForgotPassword = ({
           Reset password
         </Button>
       </form>
-      <FormLinks />
+      <FormLinks onLinkHandler={onLinkHandler} />
     </div>
   )
 }

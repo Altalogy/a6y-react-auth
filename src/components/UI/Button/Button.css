@@ -8,7 +8,7 @@ button.a6y-react-auth__button {
   margin: 1rem auto;
 }
 
-button:hover {
+button.a6y-react-auth__button:hover {
   opacity: .7;
 }
 

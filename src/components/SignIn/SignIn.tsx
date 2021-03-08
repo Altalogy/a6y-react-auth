@@ -9,12 +9,14 @@ import '../../index.css'
  * @props {string} [className] - the CSS classes
  * @props {(email: string, password: string) => void} [onClick] - onClick handler launching after submit form
  * @props {string} [apiError] - api error messages
+ * @props  {(to: string) => void} [onLinkHandler] - links onClick handler
  */
 
 export interface ISignInProps {
   className?: string
   onClick?: (email: string, password: string) => void
   apiError?: string
+  onLinkHandler?: (to: string) => void
 }
 
 /**
@@ -23,11 +25,13 @@ export interface ISignInProps {
  * @param  {string} [className] - the CSS classes
  * @param  {(email: string, password: string) => void} [onClick] - onClick handler launching after submit form
  * @param  {string} [apiError] - api error messages
+ * @param  {(to: string) => void} [onLinkHandler] - links onClick handler
  *
  * @example
  * <SignIn
  *  className='a6y-react-auth__sign-in'
  *  onClick={onClick}
+ *  onLinkHandler={onLinkHandler}
  * />
  */
 
@@ -35,6 +39,7 @@ const SignIn = ({
   className = 'a6y-react-auth__sign-in',
   onClick,
   apiError,
+  onLinkHandler = undefined,
 }: ISignInProps): JSX.Element => {
   return (
     <div className={className}>
@@ -42,7 +47,7 @@ const SignIn = ({
         {apiError}
       </ErrorBoundary>
       <EmailPasswordForm submitLabel='sign in' onClick={onClick} />
-      <FormLinks path='sign-in' />
+      <FormLinks onLinkHandler={onLinkHandler} path='sign-in' />
     </div>
   )
 }

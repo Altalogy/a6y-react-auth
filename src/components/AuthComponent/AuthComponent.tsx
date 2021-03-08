@@ -31,15 +31,30 @@ const AuthComponent = ({
   className = 'a6y-react-auth',
   onSuccess,
 }: IAuthProps): JSX.Element => {
-  const [currentForm] = useState('sign-in')
+  const [currentForm, setCurrentForm] = useState('/sign-in')
   const getAuthForm = (): JSX.Element => {
     switch (currentForm) {
       case 'sign-up':
-        return <SignUp onSuccess={onSuccess ? onSuccess : undefined} />
+        return (
+          <SignUp
+            onSuccess={onSuccess ? onSuccess : undefined}
+            onLinkHandler={(to: string) => setCurrentForm(to)}
+          />
+        )
       case 'forgot-password':
-        return <ForgotPassword onSuccess={onSuccess ? onSuccess : undefined} />
+        return (
+          <ForgotPassword
+            onSuccess={onSuccess ? onSuccess : undefined}
+            onLinkHandler={(to: string) => setCurrentForm(to)}
+          />
+        )
       default:
-        return <SignIn onSuccess={onSuccess ? onSuccess : undefined} />
+        return (
+          <SignIn
+            onSuccess={onSuccess ? onSuccess : undefined}
+            onLinkHandler={(to: string) => setCurrentForm(to)}
+          />
+        )
     }
   }
   return <div className={className}>{getAuthForm()}</div>

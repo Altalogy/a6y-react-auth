@@ -14,7 +14,7 @@ import './Link.css'
 export interface ILinkProps {
   children: React.ReactNode
   className?: string
-  onClick?: () => void
+  onClick?: (to: string) => void
   to: string
   underline?: 'none' | 'hover' | 'always'
   style?: 'primary' | 'secondary' | 'custom'
@@ -52,16 +52,19 @@ const Link = ({
     [`${className}--${style}`]: style ? true : false,
   })
 
-  function handleLinkClick(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
+  function handleLinkClick(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault()
     e.stopPropagation()
-    if (onClick) onClick()
+    if (onClick) onClick(to)
   }
   if (onClick) {
     return (
-      <a href='#' onClick={e => handleLinkClick(e)} className={LinkClass}>
+      <button
+        onClick={e => handleLinkClick(e)}
+        className={className + ' ' + LinkClass}
+      >
         {children}
-      </a>
+      </button>
     )
   }
   return (
