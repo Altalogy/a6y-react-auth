@@ -5,23 +5,23 @@ import AuthService from '../../services/AuthService'
 /**
  * @typedef IForgotPasswordContainerProps
  * @props {string} [className] - the CSS classes
- * @props {() => void} [onSuccess] - onSuccess call function
+ * @props {(response: unknown) => void} [onSuccess] - onSuccess call function
  */
 export interface IForgotPasswordContainerProps {
   className?: string
-  onSuccess?: () => void
+  onSuccess?: (response: unknown) => void
 }
 
 /**
  * Renders the sign-in component with API call
  *
  * @param  {string} [className] - the CSS classes
- * @param  {() => void} [onSuccess] - onSuccess call function
+ * @param  {(response: unknown) => void} [onSuccess] - onSuccess call function
  *
  * @example
  * <ForgotPasswordContainer
  *  className='a6y-react-auth__forgot-password'
- *  onSuccess={() => void}
+ *  onSuccess={(response: unknown) => void}
  * />
  */
 
@@ -37,7 +37,7 @@ const ForgotPasswordContainer = ({
       if (response && response.code) {
         setApiError(response.message)
       } else if (response) {
-        if (onSuccess) onSuccess()
+        if (onSuccess) onSuccess(response)
       }
     } catch (error) {
       return setApiError(error)

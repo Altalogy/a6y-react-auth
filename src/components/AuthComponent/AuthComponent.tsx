@@ -6,24 +6,24 @@ import ForgotPassword from '../../containers/ForgotPasswordContainer'
 /**
  * @typedef IAuthProps
  * @props {string} [className] - the CSS classes
- * @props {() => void} [onSuccess] - onSuccess call function
+ * @props {(response: unknown) => void} [onSuccess] - onSuccess call function
  */
 
 export interface IAuthProps {
   className?: string
-  onSuccess?: () => void
+  onSuccess?: (response: unknown) => void
 }
 
 /**
  * Renders all login component with default from config
  *
  * @param  {string} [className] - the CSS classes
- * @param  {() => void} [onSuccess] - onSuccess call function
+ * @param  {(response: unknown) => void} [onSuccess] - onSuccess call function
  *
  * @example
  * <AuthComponent
  *  className='a6y-react-auth'
- *  onSuccess={() => void}
+ *  onSuccess={(response: unknown) => void}
  * />
  */
 

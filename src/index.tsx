@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
 import AuthCnt from './components/AuthComponent'
 import SignInCnt from './containers/SignInContainer'
@@ -23,7 +24,7 @@ declare global {
 }
 
 interface Ia6yReactAuthParam {
-  onSuccess?: () => void
+  onSuccess?: (response: unknown) => void
   className?: string
 }
 

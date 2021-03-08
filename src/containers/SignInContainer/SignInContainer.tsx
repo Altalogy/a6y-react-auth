@@ -5,23 +5,23 @@ import AuthService from '../../services/AuthService'
 /**
  * @typedef ISignInContainerProps
  * @props {string} [className] - the CSS classes
- * @props {() => void} [onSuccess] - onSuccess call function
+ * @props {(response: unknown) => void} [onSuccess] - onSuccess call function
  */
 export interface ISignInContainerProps {
   className?: string
-  onSuccess?: () => void
+  onSuccess?: (response: unknown) => void
 }
 
 /**
  * Renders the sign-in component with API call
  *
  * @param  {string} [className] - the CSS classes
- * @param  {() => void} [onSuccess] - onSuccess call function
+ * @param  {(response: unknown) => void} [onSuccess] - onSuccess call function
  *
  * @example
  * <SignInContainer
  *  className='a6y-react-auth__sign-in'
- *  onSuccess={() => void}
+ *  onSuccess={(response: unknown) => void}
  * />
  */
 
@@ -37,7 +37,7 @@ const SignInContainer = ({
       if (response && response.code) {
         setApiError(response.message)
       } else if (response) {
-        if (onSuccess) onSuccess()
+        if (onSuccess) onSuccess(response)
       }
     } catch (error) {
       return setApiError(error.message)
