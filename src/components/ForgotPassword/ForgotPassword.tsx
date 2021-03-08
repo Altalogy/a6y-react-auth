@@ -6,14 +6,14 @@ import '../../index.css'
 /**
  * @typedef IForgotPasswordProps
  * @props {string} [className] - the CSS classes
- * @props {() => void} [onClick] - onClick handler launching after submit form
+ * @props {(email: string) => void} [onClick] - onClick handler launching after submit form
  * @props {string} [apiError] - api error messages
  * @props  {(to: string) => void} [onLinkHandler] - links onClick handler
  */
 
 export interface IForgotPasswordProps {
   className?: string
-  onClick?: () => void
+  onClick?: (email: string) => void
   apiError?: string
   onLinkHandler?: (to: string) => void
 }
@@ -22,7 +22,7 @@ export interface IForgotPasswordProps {
  * Renders the sign-in component
  *
  * @param  {string} [className] - the CSS classes
- * @param  {() => void} [onClick] - onClick handler launching after submit form
+ * @param  {(email: string) => void} [onClick] - onClick handler launching after submit form
  * @param  {string} [apiError] - api error messages
  * @param  {(to: string) => void} [onLinkHandler] - links onClick handler
  *
@@ -43,7 +43,7 @@ const ForgotPassword = ({
     email: '',
   })
   const onSubmit = () => {
-    if (onClick) onClick()
+    if (onClick) onClick(forgotPasswordData.email)
   }
   return (
     <div className={className}>

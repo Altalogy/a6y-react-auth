@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import ForgotPassword from '../../components/ForgotPassword'
+import AuthService from '../../services/AuthService'
 
 /**
  * @typedef IForgotPasswordContainerProps
@@ -28,9 +29,13 @@ const ForgotPasswordContainer = ({
   onLinkHandler = undefined,
 }: IForgotPasswordContainerProps): JSX.Element => {
   const [apiError, setApiError] = useState(undefined)
-  async function signIn() {
+  async function forgotPassword(email: string) {
     try {
-      // sign in service
+      // eslint-disable-next-line
+      const response: any = await AuthService.forgotPassword(email)
+      if (response && response.code) {
+        setApiError(response.message)
+      }
     } catch (error) {
       return setApiError(error)
     }
@@ -41,7 +46,7 @@ const ForgotPasswordContainer = ({
     >
       <ForgotPassword
         onLinkHandler={onLinkHandler}
-        onClick={signIn}
+        onClick={forgotPassword}
         apiError={apiError}
       />
     </div>

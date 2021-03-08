@@ -2,6 +2,7 @@ import commonjs from '@rollup/plugin-commonjs'
 import resolve from '@rollup/plugin-node-resolve'
 import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 import typescript from 'rollup-plugin-typescript2'
+import json from '@rollup/plugin-json'
 import scss from 'rollup-plugin-scss'
 
 import packageJson from './package.json'
@@ -20,5 +21,16 @@ export default {
       sourcemap: true,
     },
   ],
-  plugins: [peerDepsExternal(), resolve(), commonjs(), typescript(), scss()],
+  plugins: [
+    peerDepsExternal(),
+    resolve({
+      browser: true,
+      dedupe: ['svelte'],
+      preferBuiltins: false,
+    }),
+    json(),
+    commonjs(),
+    typescript(),
+    scss(),
+  ],
 }

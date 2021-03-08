@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import SignIn from '../../components/SignIn'
+import AuthService from '../../services/AuthService'
 
 /**
  * @typedef ISignInContainerProps
@@ -29,11 +30,15 @@ const SignInContainer = ({
   onLinkHandler = undefined,
 }: ISignInContainerProps): JSX.Element => {
   const [apiError, setApiError] = useState(undefined)
-  async function signIn() {
+  async function signIn(email: string, password: string) {
     try {
-      // sign in service
+      // eslint-disable-next-line
+      const response: any = await AuthService.signIn(email, password)
+      if (response && response.code) {
+        setApiError(response.message)
+      }
     } catch (error) {
-      return setApiError(error)
+      return setApiError(error.message)
     }
   }
   return (

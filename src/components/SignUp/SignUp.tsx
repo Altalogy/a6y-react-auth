@@ -7,14 +7,14 @@ import '../../index.css'
 /**
  * @typedef ISignUpProps
  * @props {string} [className] - the CSS classes
- * @props {() => void} [onClick] - onClick handler launching after submit form
+ * @props {(email: string, password: string) => void} [onClick] - onClick handler launching after submit form
  * @props {string} [apiError] - api error messages
  * @props {(to: string) => void} [onLinkHandler] - links onClick handler
  */
 
 export interface ISignUpProps {
   className?: string
-  onClick?: () => void
+  onClick?: (email: string, password: string) => void
   apiError?: string
   onLinkHandler?: (to: string) => void
 }
@@ -23,7 +23,7 @@ export interface ISignUpProps {
  * Renders the sign-up component
  *
  * @param  {string} [className] - the CSS classes
- * @param  {() => void} [onClick] - onClick handler launching after submit form
+ * @param  {(email: string, password: string) => void} [onClick] - onClick handler launching after submit form
  * @param  {string} [apiError] - api error messages
  * @param  {(to: string) => void} [onLinkHandler] - links onClick handler
  *

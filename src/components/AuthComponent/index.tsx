@@ -1,2 +1,2 @@
-import Auth from './Auth'
-export default Auth
+import AuthComponent from './AuthComponent'
+export default AuthComponent
