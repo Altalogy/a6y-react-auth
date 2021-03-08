@@ -6,11 +6,13 @@ import './FormLinks.css'
  * @typedef IFormLinksProps
  * @props {string} [className] - the CSS classes
  * @props {string} [path] - the name of route path
+ * @props  {(to: string) => void} [onLinkHandler] - links onClick handler
  */
 
 export interface IFormLinksProps {
   className?: string
   path?: string
+  onLinkHandler?: (to: string) => void
 }
 
 /**
@@ -18,18 +20,24 @@ export interface IFormLinksProps {
  *
  * @param  {string} [className] - the CSS classes
  * @param {string} [path] - the name of route path
+ * @param  {(to: string) => void} [onLinkHandler] - links onClick handler
  *
  * @example
- * <FormLinks path='sign-in' className='a6y-react-auth-form' />
+ * <FormLinks onLinkHandler={() => void} path='sign-in' className='a6y-react-auth-form' />
  */
 
 const FormLinks = ({
   className = 'a6y-react-auth__form',
   path,
+  onLinkHandler,
 }: IFormLinksProps): JSX.Element => {
   function renderLinks(): JSX.Element {
-    const ForgotPassword = (): JSX.Element => (
-      <Link className={className + '__link'} to='/forgot-password'>
+    const ForgotPassword = (
+      <Link
+        onClick={onLinkHandler}
+        className={className + '__link'}
+        to='/forgot-password'
+      >
         Forgot Password
       </Link>
     )
@@ -38,7 +46,11 @@ const FormLinks = ({
         return (
           <>
             {ForgotPassword}
-            <Link className={className + '__link'} to='/sign-up'>
+            <Link
+              onClick={onLinkHandler}
+              className={className + '__link'}
+              to='/sign-up'
+            >
               Sign Up
             </Link>
           </>
@@ -47,13 +59,34 @@ const FormLinks = ({
         return (
           <>
             {ForgotPassword}
-            <Link className={className + '__link'} to='/sign-in'>
+            <Link
+              onClick={onLinkHandler}
+              className={className + '__link'}
+              to='/sign-in'
+            >
               Sign In
             </Link>
           </>
         )
       default:
-        return <>{ForgotPassword}</>
+        return (
+          <>
+            <Link
+              onClick={onLinkHandler}
+              className={className + '__link'}
+              to='/sign-in'
+            >
+              Sign In
+            </Link>
+            <Link
+              onClick={onLinkHandler}
+              className={className + '__link'}
+              to='/sign-up'
+            >
+              Sign Up
+            </Link>
+          </>
+        )
     }
   }
   return <div className={className + '__links'}>{renderLinks()}</div>

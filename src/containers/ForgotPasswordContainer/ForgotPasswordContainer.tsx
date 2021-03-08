@@ -4,15 +4,18 @@ import ForgotPassword from '../../components/ForgotPassword'
 /**
  * @typedef IForgotPasswordContainerProps
  * @props {string} [className] - the CSS classes
+ * @props  {(to: string) => void} [onLinkHandler] - links onClick handler
  */
 export interface IForgotPasswordContainerProps {
   className?: string
+  onLinkHandler?: (to: string) => void
 }
 
 /**
  * Renders the sign-in component with API call
  *
  * @param  {string} [className] - the CSS classes
+ * @param  {(to: string) => void} [onLinkHandler] - links onClick handler
  *
  * @example
  * <ForgotPasswordContainer
@@ -22,6 +25,7 @@ export interface IForgotPasswordContainerProps {
 
 const ForgotPasswordContainer = ({
   className,
+  onLinkHandler = undefined,
 }: IForgotPasswordContainerProps): JSX.Element => {
   const [apiError, setApiError] = useState(undefined)
   async function signIn() {
@@ -32,8 +36,14 @@ const ForgotPasswordContainer = ({
     }
   }
   return (
-    <div className={className ? className : 'a6y-react-auth__forgot-password'}>
-      <ForgotPassword onClick={signIn} apiError={apiError} />
+    <div
+      className={className ? className : 'a6y-react-auth__forgot-password-cnt'}
+    >
+      <ForgotPassword
+        onLinkHandler={onLinkHandler}
+        onClick={signIn}
+        apiError={apiError}
+      />
     </div>
   )
 }
