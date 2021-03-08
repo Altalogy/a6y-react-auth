@@ -25,6 +25,14 @@ class CognitoService {
       return error
     }
   }
+
+  static async forgotPassword(): Promise<unknown> {
+    try {
+      await Auth.signOut()
+    } catch (error) {
+      return error
+    }
+  }
 }
 
 export default CognitoService
