@@ -28,6 +28,10 @@ class AuthService {
   static forgotPassword(email: string): Promise<unknown> {
     return CognitoService.forgotPassword(email)
   }
+
+  static async signOut(): Promise<unknown> {
+    return CognitoService.signOut()
+  }
 }
 
 export default AuthService
