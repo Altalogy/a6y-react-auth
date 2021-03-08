@@ -5,11 +5,13 @@ import AuthService from '../../services/AuthService'
 /**
  * @typedef ISignUpContainerProps
  * @props {string} [className] - the CSS classes
- * @props  {(to: string) => void} [onLinkHandler] - links onClick handler
+ * @props {(response: unknown) => void} [onSuccess] - onSuccess call function
+ * @props {(to: string) => void} [onLinkHandler] - links onClick handler
  */
 
 export interface ISignUpContainerProps {
   className?: string
+  onSuccess?: (response: unknown) => void
   onLinkHandler?: (to: string) => void
 }
 
@@ -17,17 +19,20 @@ export interface ISignUpContainerProps {
  * Renders the sign-up component with API call
  *
  * @param  {string} [className] - the CSS classes
+ * @param  {(response: unknown) => void} [onSuccess] - onSuccess call function
  * @param  {(to: string) => void} [onLinkHandler] - links onClick handler
  *
  * @example
  * <SignUpContainer
  *  className='a6y-react-auth__sign-in'
+ *  onSuccess={(response: unknown) => void}
  *  onLinkHandler={onLinkHandler}
  * />
  */
 
 const SignUpContainer = ({
   className,
+  onSuccess,
   onLinkHandler = undefined,
 }: ISignUpContainerProps): JSX.Element => {
   const [apiError, setApiError] = useState(undefined)
@@ -37,6 +42,8 @@ const SignUpContainer = ({
       const response: any = await AuthService.signUp(email, password)
       if (response && response.code) {
         setApiError(response.message)
+      } else if (response) {
+        if (onSuccess) onSuccess(response)
       }
     } catch (error) {
       return setApiError(error.message)

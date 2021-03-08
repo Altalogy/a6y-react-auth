@@ -6,37 +6,55 @@ import ForgotPassword from '../../containers/ForgotPasswordContainer'
 /**
  * @typedef IAuthProps
  * @props {string} [className] - the CSS classes
+ * @props {(response: unknown) => void} [onSuccess] - onSuccess call function
  */
 
 export interface IAuthProps {
   className?: string
+  onSuccess?: (response: unknown) => void
 }
 
 /**
  * Renders all login component with default from config
  *
  * @param  {string} [className] - the CSS classes
+ * @param  {(response: unknown) => void} [onSuccess] - onSuccess call function
  *
  * @example
  * <AuthComponent
  *  className='a6y-react-auth'
+ *  onSuccess={(response: unknown) => void}
  * />
  */
 
 const AuthComponent = ({
   className = 'a6y-react-auth',
+  onSuccess,
 }: IAuthProps): JSX.Element => {
   const [currentForm, setCurrentForm] = useState('/sign-in')
   const getAuthForm = (): JSX.Element => {
     switch (currentForm) {
-      case '/sign-up':
-        return <SignUp onLinkHandler={(to: string) => setCurrentForm(to)} />
-      case '/forgot-password':
+      case 'sign-up':
         return (
-          <ForgotPassword onLinkHandler={(to: string) => setCurrentForm(to)} />
+          <SignUp
+            onSuccess={onSuccess ? onSuccess : undefined}
+            onLinkHandler={(to: string) => setCurrentForm(to)}
+          />
+        )
+      case 'forgot-password':
+        return (
+          <ForgotPassword
+            onSuccess={onSuccess ? onSuccess : undefined}
+            onLinkHandler={(to: string) => setCurrentForm(to)}
+          />
         )
       default:
-        return <SignIn onLinkHandler={(to: string) => setCurrentForm(to)} />
+        return (
+          <SignIn
+            onSuccess={onSuccess ? onSuccess : undefined}
+            onLinkHandler={(to: string) => setCurrentForm(to)}
+          />
+        )
     }
   }
   return <div className={className}>{getAuthForm()}</div>

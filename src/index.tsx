@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
 import AuthCnt from './components/AuthComponent'
 import SignInCnt from './containers/SignInContainer'
@@ -22,6 +23,11 @@ declare global {
   var A6YReactAuthConfig: IA6YReactAuth
 }
 
+interface Ia6yReactAuthParam {
+  onSuccess?: (response: unknown) => void
+  className?: string
+}
+
 class A6YReactAuth {
   initialize(config: IA6YReactAuth): void {
     globalThis.A6YReactAuthConfig = config
@@ -29,10 +35,42 @@ class A6YReactAuth {
   }
 }
 
-export const Auth = (): JSX.Element => <AuthCnt />
-export const SignInContainer = (): JSX.Element => <SignInCnt />
-export const SignUpContainer = (): JSX.Element => <SignUpCnt />
-export const ForgotPasswordContainer = (): JSX.Element => <ForgotPasswordCnt />
+export const Auth = ({
+  onSuccess,
+  className,
+}: Ia6yReactAuthParam): JSX.Element => (
+  <AuthCnt
+    className={className ? className : undefined}
+    onSuccess={onSuccess ? onSuccess : undefined}
+  />
+)
+export const SignInContainer = ({
+  onSuccess,
+  className,
+}: Ia6yReactAuthParam): JSX.Element => (
+  <SignInCnt
+    className={className ? className : undefined}
+    onSuccess={onSuccess ? onSuccess : undefined}
+  />
+)
+export const SignUpContainer = ({
+  onSuccess,
+  className,
+}: Ia6yReactAuthParam): JSX.Element => (
+  <SignUpCnt
+    className={className ? className : undefined}
+    onSuccess={onSuccess ? onSuccess : undefined}
+  />
+)
+export const ForgotPasswordContainer = ({
+  onSuccess,
+  className,
+}: Ia6yReactAuthParam): JSX.Element => (
+  <ForgotPasswordCnt
+    className={className ? className : undefined}
+    onSuccess={onSuccess ? onSuccess : undefined}
+  />
+)
 
 export { SignIn, SignUp, ForgotPassword }
 
