@@ -1,9 +1,9 @@
-#a6y-react-auth
+# a6y-react-auth
 ==============
 
 Authentication forms for React.
 
-##**Getting Started**
+## **Getting Started**
 -------------------
 
 **1) Install:**
@@ -40,7 +40,7 @@ import {Auth} from "a6y-react-auth"
 
 <Auth />
 ```
-###**Advanced options**
+### **Advanced options**
 
 A6YReactAuth default export is a function with initializing. Other exported components are described below:
 
@@ -53,11 +53,11 @@ ForgotPassword | Renders only forgot-password container with component form.
 
 ##### `Auth`
 
-**props**
 param | type | description
 --- | --- | ---
 className[optional] | string | the CSS classes
 onSuccess[optional]] | (response: unknown) => void | onSuccess callback function
+
 
 **example**
 ```typescript
@@ -68,12 +68,13 @@ onSuccess[optional]] | (response: unknown) => void | onSuccess callback function
 ```
 
 ##### `SignIn`
-**props**
+
 param | type | description
 --- | --- | ---
 className[optional] | string | the CSS classes
 onSuccess[optional]] | (response: unknown) => void | onSuccess callback function
 onLinkHandler[optional] | it's a link callback function to redirect the app. If not declared it's using by pathname `/sign-in`
+
 
 **example**
 ```typescript
@@ -85,14 +86,16 @@ onLinkHandler[optional] | it's a link callback function to redirect the app. If 
 ```
 
 ##### `SignUp`
-**props**
+
 param | type | description
 --- | --- | ---
 className[optional] | string | the CSS classes
 onSuccess[optional]] | (response: unknown) => void | onSuccess callback function
 onLinkHandler[optional] | it's a link callback function to redirect the app. If not declared it's using by pathname `/sign-up`
 
+
 **example**
+
 ```typescript
   <SignUp
     className='a6y-react-auth__sign-up'
@@ -103,11 +106,12 @@ onLinkHandler[optional] | it's a link callback function to redirect the app. If 
 
 ##### `ForgotPassword`
 **props**
-param | type | description
+
 --- | --- | ---
 className[optional] | string | the CSS classes
 onSuccess[optional]] | (response: unknown) => void | onSuccess callback function
 onLinkHandler[optional] | (to: string) => void | it's a link callback function to redirect the app. If not declared it's using by pathname `/forgot-password`
+
 
 **example**
 ```typescript
