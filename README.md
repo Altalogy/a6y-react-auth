@@ -136,7 +136,7 @@ $ npm install
 ```
 $ npm link
 ```
-Full docs here: [https://docs.npmjs.com/cli/v7/commands/npm-link](npm-link)
+Full docs here: [npm-link](https://docs.npmjs.com/cli/v7/commands/npm-link)
 
 
 ### Storybook
