@@ -1,0 +1,58 @@
+.main-layout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 100vw;
+  min-height: 100vh;
+  .main-layout-body {
+    display: flex;
+    flex-direction: column;
+    h1 {
+      width: 100%;
+      text-align: center;
+    }
+  }
+  .a6y-react-auth,.a6y-react-auth__sign-in,.a6y-react-auth__sign-up,.a6y-react-auth__forgot-password {
+    min-width: 300px;
+  }
+  header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 1rem;
+    a {
+      padding-left: 1rem;text-decoration: none;
+      color: black;
+      letter-spacing: 1px;
+      &:hover {
+        color: gray;
+      }
+    }
+  }
+  .dashboard {
+    min-width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      li {
+        margin: 1rem 0;
+      }
+      a {
+        text-decoration: none;
+        color: #2f5ef7;
+        font-size: 1rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        &:hover {
+          color: black;
+        }
+      }
+    }
+  }
+}
