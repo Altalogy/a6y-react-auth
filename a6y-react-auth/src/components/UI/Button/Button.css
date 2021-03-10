@@ -2,10 +2,11 @@ button.a6y-react-auth__button {
   min-height: 30px;
   padding: 5px 20px;
   border: 1px solid white;
-  border-radius: 30px;
+  border-radius: 4px;
   text-transform: uppercase;
   cursor: pointer;
   margin: 1rem auto;
+  width: 100%;
 }
 
 button.a6y-react-auth__button:hover {
