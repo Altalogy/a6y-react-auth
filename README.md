@@ -1,10 +1,8 @@
 # a6y-react-auth
-==============
 
 Authentication forms for React.
 
 ## **Getting Started**
--------------------
 
 **1) Install:**
 
@@ -106,7 +104,7 @@ onLinkHandler[optional] | it's a link callback function to redirect the app. If 
 
 ##### `ForgotPassword`
 **props**
-
+param | type | description
 --- | --- | ---
 className[optional] | string | the CSS classes
 onSuccess[optional]] | (response: unknown) => void | onSuccess callback function
@@ -124,7 +122,6 @@ onLinkHandler[optional] | (to: string) => void | it's a link callback function t
 
 
 #Development
------------
 
 ### Getting started
 
@@ -229,6 +226,5 @@ The `develop` is used to sync works of developers and start working on new featu
 * `add/<what-is-added>` - for small changes
 
 #License
--------
 
 This code is released under the MIT License.
