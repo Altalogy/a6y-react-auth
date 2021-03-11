@@ -32,13 +32,16 @@ const AuthComponent = ({
   onSuccess,
 }: IAuthProps): JSX.Element => {
   const [currentForm, setCurrentForm] = useState('/sign-in')
+  const formhandler = (to: string) => {
+    setCurrentForm(to)
+  }
   const getAuthForm = (): JSX.Element => {
     switch (currentForm) {
       case 'sign-up':
         return (
           <SignUp
             onSuccess={onSuccess ? onSuccess : undefined}
-            onLinkHandler={(to: string) => setCurrentForm(to)}
+            onLinkHandler={(to: string) => formhandler(to)}
           />
         )
       case 'forgot-password':
