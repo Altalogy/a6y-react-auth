@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "./static/css/main.fe1868ec.chunk.css",
-    "main.js": "./static/js/main.7a8a7f91.chunk.js",
-    "main.js.map": "./static/js/main.7a8a7f91.chunk.js.map",
-    "runtime-main.js": "./static/js/runtime-main.5d23e4b0.js",
-    "runtime-main.js.map": "./static/js/runtime-main.5d23e4b0.js.map",
-    "static/css/2.b4b42e8f.chunk.css": "./static/css/2.b4b42e8f.chunk.css",
-    "static/js/2.0776e1a1.chunk.js": "./static/js/2.0776e1a1.chunk.js",
-    "static/js/2.0776e1a1.chunk.js.map": "./static/js/2.0776e1a1.chunk.js.map",
-    "static/js/3.200e63fc.chunk.js": "./static/js/3.200e63fc.chunk.js",
-    "static/js/3.200e63fc.chunk.js.map": "./static/js/3.200e63fc.chunk.js.map",
-    "index.html": "./index.html",
-    "static/css/2.b4b42e8f.chunk.css.map": "./static/css/2.b4b42e8f.chunk.css.map",
-    "static/css/main.fe1868ec.chunk.css.map": "./static/css/main.fe1868ec.chunk.css.map",
-    "static/js/2.0776e1a1.chunk.js.LICENSE.txt": "./static/js/2.0776e1a1.chunk.js.LICENSE.txt"
+    "main.css": "/a6y-react-auth/static/css/main.fe1868ec.chunk.css",
+    "main.js": "/a6y-react-auth/static/js/main.3b12c2e9.chunk.js",
+    "main.js.map": "/a6y-react-auth/static/js/main.3b12c2e9.chunk.js.map",
+    "runtime-main.js": "/a6y-react-auth/static/js/runtime-main.3b2badbd.js",
+    "runtime-main.js.map": "/a6y-react-auth/static/js/runtime-main.3b2badbd.js.map",
+    "static/css/2.b4b42e8f.chunk.css": "/a6y-react-auth/static/css/2.b4b42e8f.chunk.css",
+    "static/js/2.0776e1a1.chunk.js": "/a6y-react-auth/static/js/2.0776e1a1.chunk.js",
+    "static/js/2.0776e1a1.chunk.js.map": "/a6y-react-auth/static/js/2.0776e1a1.chunk.js.map",
+    "static/js/3.200e63fc.chunk.js": "/a6y-react-auth/static/js/3.200e63fc.chunk.js",
+    "static/js/3.200e63fc.chunk.js.map": "/a6y-react-auth/static/js/3.200e63fc.chunk.js.map",
+    "index.html": "/a6y-react-auth/index.html",
+    "static/css/2.b4b42e8f.chunk.css.map": "/a6y-react-auth/static/css/2.b4b42e8f.chunk.css.map",
+    "static/css/main.fe1868ec.chunk.css.map": "/a6y-react-auth/static/css/main.fe1868ec.chunk.css.map",
+    "static/js/2.0776e1a1.chunk.js.LICENSE.txt": "/a6y-react-auth/static/js/2.0776e1a1.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.5d23e4b0.js",
+    "static/js/runtime-main.3b2badbd.js",
     "static/css/2.b4b42e8f.chunk.css",
     "static/js/2.0776e1a1.chunk.js",
     "static/css/main.fe1868ec.chunk.css",
-    "static/js/main.7a8a7f91.chunk.js"
+    "static/js/main.3b12c2e9.chunk.js"
   ]
 }
