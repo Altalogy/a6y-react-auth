@@ -36,7 +36,7 @@ const FormLinks = ({
       <Link
         onClick={onLinkHandler}
         className={className + '__link'}
-        to='/forgot-password'
+        to='forgot-password'
       >
         Forgot Password
       </Link>
@@ -49,7 +49,7 @@ const FormLinks = ({
             <Link
               onClick={onLinkHandler}
               className={className + '__link'}
-              to='/sign-up'
+              to='sign-up'
             >
               Sign Up
             </Link>
@@ -62,7 +62,7 @@ const FormLinks = ({
             <Link
               onClick={onLinkHandler}
               className={className + '__link'}
-              to='/sign-in'
+              to='sign-in'
             >
               Sign In
             </Link>
@@ -74,14 +74,14 @@ const FormLinks = ({
             <Link
               onClick={onLinkHandler}
               className={className + '__link'}
-              to='/sign-in'
+              to='sign-in'
             >
               Sign In
             </Link>
             <Link
               onClick={onLinkHandler}
               className={className + '__link'}
-              to='/sign-up'
+              to='sign-up'
             >
               Sign Up
             </Link>

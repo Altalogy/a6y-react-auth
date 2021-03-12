@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import FormLinks from '../FormLinks'
 import { ErrorBoundary, Input, Button } from '../UI'
+import validate from '../../utilities/validation'
 import '../../index.css'
 
 /**
@@ -42,8 +43,35 @@ const ForgotPassword = ({
   const [forgotPasswordData, setForgotPasswordData] = useState({
     email: '',
   })
-  const onSubmit = () => {
-    if (onClick) onClick(forgotPasswordData.email)
+  const [errorData, setErrorData] = useState({
+    email: false,
+  })
+  const classNames = require('classnames')
+
+  const FormClass = classNames({
+    [`${className}--error`]: errorData.email ? true : false,
+  })
+  const onInputChange = (e: { target: { value: string } }, target: string) => {
+    setErrorData({ ...errorData, [target]: e.target.value.length !== 0 })
+    setForgotPasswordData({
+      ...forgotPasswordData,
+      [target]: e.target.value,
+    })
+  }
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    e.stopPropagation()
+    const data = [
+      {
+        value: forgotPasswordData.email,
+        rules: ['CANNOT_BE_BLANK'],
+      },
+    ]
+    if (onClick && validate(data)) {
+      onClick(forgotPasswordData.email)
+    } else {
+      if (!errorData.email) setErrorData({ email: true })
+    }
   }
   return (
     <div className={className}>
@@ -51,18 +79,13 @@ const ForgotPassword = ({
         {apiError}
       </ErrorBoundary>
       <form className={`${className}__form`} onSubmit={onSubmit}>
-        <div className={`${className}-group`}>
+        <div className={`${className}-group ${FormClass}`}>
           <Input
             id='email'
             placeholder='Email'
             typeInput='email'
             label=''
-            onChange={(e: { target: { value: string } }) =>
-              setForgotPasswordData({
-                ...forgotPasswordData,
-                email: e.target.value,
-              })
-            }
+            onChange={e => onInputChange(e, 'email')}
             value={forgotPasswordData.email}
           />
         </div>

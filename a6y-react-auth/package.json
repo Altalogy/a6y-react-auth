@@ -1,6 +1,7 @@
 {
   "name": "a6y-react-auth",
-  "version": "0.0.1",
+  "version": "0.0.6",
+  "homepage": "https://altalogy.github.io/a6y-react-auth/",
   "description": "Authentication forms for React.",
   "main": "./lib/index.js",
   "module": "./lib/index.es.js",
@@ -69,7 +70,6 @@
   "bugs": {
     "url": "https://github.com/Altalogy/a6y-react-auth/issues"
   },
-  "homepage": "https://github.com/Altalogy/a6y-react-auth#readme",
   "peerDependencies": {
     "react": ">=16",
     "react-dom": "16.13.1"
@@ -78,7 +78,6 @@
     "react": ">=16",
     "react-dom": "16.13.1",
     "babel-loader": "^8.2.2",
-    "classnames": "^2.2.6",
     "copyfiles": "^2.4.1",
     "eslint": "^7.20.0",
     "eslint-config-prettier": "^8.1.0",
@@ -117,6 +116,7 @@
     "@typescript-eslint/parser": "^4.15.2"
   },
   "dependencies": {
+    "classnames": "^2.2.6",
     "aws-amplify": "^3.3.22"
   }
 }
