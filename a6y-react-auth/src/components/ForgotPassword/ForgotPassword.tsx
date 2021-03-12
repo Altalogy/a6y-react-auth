@@ -75,6 +75,12 @@ const ForgotPassword = ({
   }
   return (
     <div className={className}>
+      <h1>
+        {globalThis.A6YReactAuthConfig &&
+        globalThis.A6YReactAuthConfig.components?.forgotPassword?.title
+          ? globalThis.A6YReactAuthConfig.components?.forgotPassword?.title
+          : 'Forgot Password'}
+      </h1>
       <ErrorBoundary showError={apiError ? true : false}>
         {apiError}
       </ErrorBoundary>
