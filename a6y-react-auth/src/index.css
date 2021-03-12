@@ -8,3 +8,6 @@
 .a6y-react-auth__sign-in h1,.a6y-react-auth__forgot-password h1,.a6y-react-auth__sign-up h1 {
   text-align: center;
 }
+.a6y-react-auth__form--error label.a6y-react-auth__label input.a6y-react-auth__label__input {
+  border: 1px solid #DC2626;
+}

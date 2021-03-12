@@ -1,12 +1,12 @@
-import React from 'react'
-import { Router } from 'react-router'
+import { HashRouter } from 'react-router-dom'
 import routes from './routes/routes'
-import history from './history'
 import './App.scss'
 
-function App() {
+const App = (): JSX.Element => {
   return (
-    <Router history={history}>{routes}</Router>
+    <div className='app'>
+      <HashRouter basename={process.env.PUBLIC_URL}>{routes}</HashRouter>
+    </div>
   )
 }
 

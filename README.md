@@ -2,6 +2,8 @@
 
 Authentication forms for React.
 
+[Demo](https://altalogy.github.io/a6y-react-auth/#/)
+
 ## **Getting Started**
 
 **1) Install:**
@@ -71,7 +73,7 @@ param | type | description
 --- | --- | ---
 className[optional] | string | the CSS classes
 onSuccess[optional]] | (response: unknown) => void | onSuccess callback function
-onLinkHandler[optional] | it's a link callback function to redirect the app. If not declared it's using by pathname `/sign-in`
+onLinkHandler[optional] | it's a link callback function to redirect the app. If not declared it's using by pathname `sign-in`
 
 
 **example**
@@ -89,7 +91,7 @@ param | type | description
 --- | --- | ---
 className[optional] | string | the CSS classes
 onSuccess[optional]] | (response: unknown) => void | onSuccess callback function
-onLinkHandler[optional] | it's a link callback function to redirect the app. If not declared it's using by pathname `/sign-up`
+onLinkHandler[optional] | it's a link callback function to redirect the app. If not declared it's using by pathname `sign-up`
 
 
 **example**
@@ -108,7 +110,7 @@ param | type | description
 --- | --- | ---
 className[optional] | string | the CSS classes
 onSuccess[optional]] | (response: unknown) => void | onSuccess callback function
-onLinkHandler[optional] | (to: string) => void | it's a link callback function to redirect the app. If not declared it's using by pathname `/forgot-password`
+onLinkHandler[optional] | (to: string) => void | it's a link callback function to redirect the app. If not declared it's using by pathname `forgot-password`
 
 
 **example**
@@ -125,7 +127,7 @@ onLinkHandler[optional] | (to: string) => void | it's a link callback function t
 
 ### Getting started
 
-1. Clone repository with `git clone`
+1. Clone repository with `git clone` and go to `cd a6y-react-auth`
 
 2. Install:
 ```
@@ -138,6 +140,10 @@ $ npm install
 $ npm link
 ```
 Full docs here: [npm-link](https://docs.npmjs.com/cli/v7/commands/npm-link)
+
+4. Then go to `/demo` and run `npm install && npm start`
+
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 
 ### Storybook
