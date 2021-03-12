@@ -11,7 +11,7 @@ const MainLayout = ({children, backNav = false}: ILayoutProps) => {
     <div className='main-layout'>
       { backNav && 
         <header>
-          <a href='a6y-react-auth/#/'>back to home</a>
+          <a href='#/'>back to home</a>
         </header>
       }
       <div className='main-layout-body'>
