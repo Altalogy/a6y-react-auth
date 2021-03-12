@@ -65,11 +65,7 @@ function EmailPasswordForm({
   })
 
   const onInputChange = (e: { target: { value: string } }, target: string) => {
-    if (e.target.value.length !== 0) {
-      setErrorData({ ...errorData, [target]: false })
-    } else {
-      setErrorData({ ...errorData, [target]: true })
-    }
+    setErrorData({ ...errorData, [target]: e.target.value.length !== 0 })
     setSignUpData({ ...signUpData, [target]: e.target.value })
   }
 
