@@ -1,0 +1,66 @@
+label.a6y-react-auth__checkbox-label {
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+  position: relative;
+  padding-left: 25px;
+  font-size: 12px;
+  max-height: 17px;
+  min-height: 17px;
+  letter-spacing: normal;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  margin: 5px 5px 10px;
+}
+
+label.a6y-react-auth__checkbox-label input.a6y-react-auth__checkbox-label__input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.a6y-react-auth__checkbox-label__input--checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 13px;
+  width: 13px;
+  background-color: white;
+  border: 2px solid #2f5ef7;
+  border-radius: 4px;
+}
+
+label.a6y-react-auth__checkbox-label:hover ~ .a6y-react-auth__checkbox-label__input--checkmark {
+  border-color: #ccc;
+}
+
+label.a6y-react-auth__checkbox-label input:checked ~ .a6y-react-auth__checkbox-label__input--checkmark {
+  background-color: white;
+  border: 2px solid #2f5ef7;
+  border-radius: 4px;
+}
+
+.a6y-react-auth__checkbox-label__input--checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+label.a6y-react-auth__checkbox-label input:checked ~ .a6y-react-auth__checkbox-label__input--checkmark:after {
+  display: block;
+}
+
+label.a6y-react-auth__checkbox-label .a6y-react-auth__checkbox-label__input--checkmark:after {
+  left: 5px;
+  top: 2px;
+  width: 3px;
+  height: 6px;
+  border: solid #2f5ef7;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}

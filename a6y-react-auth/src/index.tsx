@@ -16,6 +16,21 @@ interface IA6YReactAuth {
     userPoolWebClientId: string
     region: string
   }
+  components?: {
+    signUp?: {
+      title?: string
+      privacy?: boolean
+      privacyUrl?: string
+      terms?: boolean
+      termsUrl?: string
+    }
+    signIn?: {
+      title?: string
+    }
+    forgotPassword?: {
+      title?: string
+    }
+  }
 }
 
 declare global {

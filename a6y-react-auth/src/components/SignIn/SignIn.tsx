@@ -43,6 +43,12 @@ const SignIn = ({
 }: ISignInProps): JSX.Element => {
   return (
     <div className={className}>
+      <h1>
+        {globalThis.A6YReactAuthConfig &&
+        globalThis.A6YReactAuthConfig.components?.signIn?.title
+          ? globalThis.A6YReactAuthConfig.components?.signIn?.title
+          : 'Sign In'}
+      </h1>
       <ErrorBoundary showError={apiError ? true : false}>
         {apiError}
       </ErrorBoundary>

@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import EmailPasswordForm from '../EmailPasswordForm'
 import FormLinks from '../FormLinks'
 import { ErrorBoundary } from '../UI'
 import '../../index.css'
+import SignUpAgreements from '../SignUpAgreements'
 
 /**
  * @typedef ISignUpProps
@@ -41,12 +42,34 @@ const SignUp = ({
   apiError,
   onLinkHandler = undefined,
 }: ISignUpProps): JSX.Element => {
+  const [conditions, setConditions] = useState(false)
+  const [conditionsError, setConditionsError] = useState(false)
+  const onSubmit = (email: string, password: string) => {
+    if (onClick && conditions) {
+      onClick(email, password)
+    } else {
+      setConditionsError(true)
+    }
+  }
   return (
     <div className={className}>
+      <h1>
+        {globalThis.A6YReactAuthConfig &&
+        globalThis.A6YReactAuthConfig.components?.signUp?.title
+          ? globalThis.A6YReactAuthConfig.components?.signUp?.title
+          : 'Sign Up'}
+      </h1>
       <ErrorBoundary showError={apiError ? true : false}>
         {apiError}
       </ErrorBoundary>
-      <EmailPasswordForm submitLabel='sign up' onClick={onClick} />
+      <ErrorBoundary showError={conditionsError ? true : false}>
+        You must accept the terms and conditions to register an account
+      </ErrorBoundary>
+      <EmailPasswordForm submitLabel='sign up' onClick={onSubmit} />
+      <SignUpAgreements
+        onChange={() => setConditions(!conditions)}
+        value={`${conditions}`}
+      />
       <FormLinks onLinkHandler={onLinkHandler} path='sign-up' />
     </div>
   )
