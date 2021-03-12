@@ -2,6 +2,8 @@
 
 Authentication forms for React.
 
+[Demo](https://altalogy.github.io/a6y-react-auth/#/)
+
 ## **Getting Started**
 
 **1) Install:**
@@ -71,7 +73,7 @@ param | type | description
 --- | --- | ---
 className[optional] | string | the CSS classes
 onSuccess[optional]] | (response: unknown) => void | onSuccess callback function
-onLinkHandler[optional] | it's a link callback function to redirect the app. If not declared it's using by pathname `/sign-in`
+onLinkHandler[optional] | it's a link callback function to redirect the app. If not declared it's using by pathname `sign-in`
 
 
 **example**
@@ -89,7 +91,7 @@ param | type | description
 --- | --- | ---
 className[optional] | string | the CSS classes
 onSuccess[optional]] | (response: unknown) => void | onSuccess callback function
-onLinkHandler[optional] | it's a link callback function to redirect the app. If not declared it's using by pathname `/sign-up`
+onLinkHandler[optional] | it's a link callback function to redirect the app. If not declared it's using by pathname `sign-up`
 
 
 **example**
@@ -108,7 +110,7 @@ param | type | description
 --- | --- | ---
 className[optional] | string | the CSS classes
 onSuccess[optional]] | (response: unknown) => void | onSuccess callback function
-onLinkHandler[optional] | (to: string) => void | it's a link callback function to redirect the app. If not declared it's using by pathname `/forgot-password`
+onLinkHandler[optional] | (to: string) => void | it's a link callback function to redirect the app. If not declared it's using by pathname `forgot-password`
 
 
 **example**

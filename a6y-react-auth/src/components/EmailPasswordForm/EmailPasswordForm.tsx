@@ -50,6 +50,28 @@ function EmailPasswordForm({
     email: '',
     password: '',
   })
+  const [errorData, setErrorData] = useState({
+    email: false,
+    password: false,
+  })
+
+  const classNames = require('classnames')
+
+  const FormClassEmail = classNames({
+    [`${className}--error`]: errorData.email ? true : false,
+  })
+  const FormClassPassword = classNames({
+    [`${className}--error`]: errorData.password ? true : false,
+  })
+
+  const onInputChange = (e: { target: { value: string } }, target: string) => {
+    if (e.target.value.length !== 0) {
+      setErrorData({ ...errorData, [target]: false })
+    } else {
+      setErrorData({ ...errorData, [target]: true })
+    }
+    setSignUpData({ ...signUpData, [target]: e.target.value })
+  }
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.stopPropagation()
@@ -64,33 +86,33 @@ function EmailPasswordForm({
         rules: ['CANNOT_BE_BLANK'],
       },
     ]
-    if (onClick && validate(data))
+    if (onClick && validate(data)) {
       onClick(signUpData.email, signUpData.password)
+    } else {
+      if (!errorData.email && !errorData.password)
+        setErrorData({ email: true, password: true })
+    }
   }
 
   return (
     <form className={`${className}`} onSubmit={e => onSubmit(e)}>
-      <div className={`${className}-group`}>
+      <div className={`${className}-group ${FormClassEmail}`}>
         <Input
           id='email'
           placeholder='Email'
           typeInput='email'
           label=''
-          onChange={(e: { target: { value: string } }) =>
-            setSignUpData({ ...signUpData, email: e.target.value })
-          }
+          onChange={e => onInputChange(e, 'email')}
           value={signUpData.email}
         />
       </div>
-      <div className={`${className}-group`}>
+      <div className={`${className}-group ${FormClassPassword}`}>
         <Input
           id='password'
           typeInput='password'
           placeholder='Password'
           label=''
-          onChange={(e: { target: { value: string } }) =>
-            setSignUpData({ ...signUpData, password: e.target.value })
-          }
+          onChange={e => onInputChange(e, 'password')}
           value={signUpData.password}
         />
       </div>
