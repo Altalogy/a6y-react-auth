@@ -125,7 +125,7 @@ onLinkHandler[optional] | (to: string) => void | it's a link callback function t
 
 ### Getting started
 
-1. Clone repository with `git clone`
+1. Clone repository with `git clone` and go to `cd a6y-react-auth`
 
 2. Install:
 ```
@@ -138,6 +138,10 @@ $ npm install
 $ npm link
 ```
 Full docs here: [npm-link](https://docs.npmjs.com/cli/v7/commands/npm-link)
+
+4. Then go to `/demo` and run `npm install && npm start`
+
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 
 ### Storybook

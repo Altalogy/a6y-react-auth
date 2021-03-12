@@ -1,8 +1,8 @@
 {
   "name": "a6y-react-auth-test",
   "version": "0.1.0",
-  "homepage": "https://altalogy.github.io/a6y-react-auth/",
-  "private": true,
+  "homepage": "https://altalogy.github.io/a6y-react-auth/#/",
+  "private": false,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -11,7 +11,7 @@
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
-    "a6y-react-auth": "^0.0.2",
+    "a6y-react-auth": "0.0.6",
     "history": "^5.0.0",
     "node-sass": "^5.0.0",
     "react": "^17.0.1",
@@ -19,7 +19,7 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
-    "typescript": "^4.1.2",
+    "typescript": "^4.2.2",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
@@ -28,7 +28,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "npm run build && gh-pages -d build"
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
