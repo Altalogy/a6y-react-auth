@@ -14,6 +14,12 @@ ReactAuth.initialize({
     userPoolWebClientId: 'xyz',
     region: 'us-east-1',
   },
+  components: {
+    signUp: {
+      privacy: true,
+      terms: true,
+    }
+  }
 })
 
 ReactDOM.render(
