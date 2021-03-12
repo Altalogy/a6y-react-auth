@@ -52,7 +52,7 @@ const ForgotPassword = ({
     [`${className}--error`]: errorData.email ? true : false,
   })
   const onInputChange = (e: { target: { value: string } }, target: string) => {
-    setErrorData({ ...errorData, [target]: e.target.value.length !== 0 })
+    setErrorData({ ...errorData, [target]: e.target.value.length === 0 })
     setForgotPasswordData({
       ...forgotPasswordData,
       [target]: e.target.value,

@@ -1,7 +1,7 @@
 {
   "name": "a6y-react-auth",
-  "version": "0.0.6",
-  "homepage": "https://altalogy.github.io/a6y-react-auth/",
+  "version": "0.0.7",
+  "homepage": "https://altalogy.github.io/a6y-react-auth/#/",
   "description": "Authentication forms for React.",
   "main": "./lib/index.js",
   "module": "./lib/index.es.js",

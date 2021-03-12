@@ -45,10 +45,9 @@ const SignUp = ({
   const [conditions, setConditions] = useState(false)
   const [conditionsError, setConditionsError] = useState(false)
   const onSubmit = (email: string, password: string) => {
+    setConditionsError(!conditions)
     if (onClick && conditions) {
       onClick(email, password)
-    } else {
-      setConditionsError(true)
     }
   }
   return (
