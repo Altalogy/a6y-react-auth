@@ -29,6 +29,14 @@ class AuthService {
     return CognitoService.forgotPassword(email)
   }
 
+  static forgotPasswordSubmit(
+    user: string,
+    code: string,
+    password: string,
+  ): Promise<unknown> {
+    return CognitoService.forgotPasswordSubmit(user, code, password)
+  }
+
   static async signOut(): Promise<unknown> {
     return CognitoService.signOut()
   }

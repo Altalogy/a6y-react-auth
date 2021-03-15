@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-import ForgotPassword from '../../components/ForgotPassword'
+import ForgotPassword, {
+  ForgotPasswordSubmit,
+} from '../../components/ForgotPassword'
 import AuthService from '../../services/AuthService'
 
 /**
@@ -34,11 +36,27 @@ const ForgotPasswordContainer = ({
   onSuccess,
   onLinkHandler = undefined,
 }: IForgotPasswordContainerProps): JSX.Element => {
+  const [user, setUser] = useState('')
+  const [step, setStep] = useState(1)
   const [apiError, setApiError] = useState(undefined)
   async function forgotPassword(email: string) {
     try {
+      setUser(email)
       // eslint-disable-next-line
       const response: any = await AuthService.forgotPassword(email)
+      if (response && response.code) {
+        setApiError(response.message)
+      } else if (response) {
+        setStep(2)
+      }
+    } catch (error) {
+      return setApiError(error)
+    }
+  }
+  async function forgotPasswordSubmit(code: string, password: string) {
+    try {
+      // eslint-disable-next-line
+      const response: any = await AuthService.forgotPasswordSubmit(user, code, password)
       if (response && response.code) {
         setApiError(response.message)
       } else if (response) {
@@ -52,11 +70,18 @@ const ForgotPasswordContainer = ({
     <div
       className={className ? className : 'a6y-react-auth__forgot-password-cnt'}
     >
-      <ForgotPassword
-        onLinkHandler={onLinkHandler}
-        onClick={forgotPassword}
-        apiError={apiError}
-      />
+      {step === 1 ? (
+        <ForgotPassword
+          onLinkHandler={onLinkHandler}
+          onClick={forgotPassword}
+          apiError={apiError}
+        />
+      ) : (
+        <ForgotPasswordSubmit
+          onClick={forgotPasswordSubmit}
+          apiError={apiError}
+        />
+      )}
     </div>
   )
 }

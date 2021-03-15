@@ -30,6 +30,9 @@ interface IA6YReactAuth {
     forgotPassword?: {
       title?: string
     }
+    forgotPasswordSubmit?: {
+      title?: string
+    }
   }
 }
 
