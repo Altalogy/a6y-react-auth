@@ -16,7 +16,6 @@ export interface ICheckboxProps {
   children?: React.ReactChild
   className?: string
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-  placeholder?: string
   value: string
 }
 
@@ -27,7 +26,6 @@ export interface ICheckboxProps {
  * @param {React.ReactChild} [children] - the label text
  * @param {string} [className] - the CSS classes prefix -label and -input
  * @param {e => handleChange(e.target.value)} onChange - onChange handler
- * @param {string} [placeholder] - the placeholder text for input element
  * @param {string} value - value for input
  *
  * @example
@@ -35,7 +33,6 @@ export interface ICheckboxProps {
  *  id='username'
  *  className='a6y-react-auth'
  *  onChange={e => handleChange(e.target.value)}
- *  placeholder='user'
  *  value={value}
  * >
  *  checkbox text or <p></p>
@@ -46,7 +43,6 @@ const Checkbox = ({
   children,
   className = 'a6y-react-auth',
   onChange,
-  placeholder = id,
   value,
 }: ICheckboxProps): JSX.Element => {
   const classNames = require('classnames')
@@ -68,7 +64,6 @@ const Checkbox = ({
         type='checkbox'
         onChange={onChange}
         className={`${className}__checkbox-label__input ` + InputClass}
-        placeholder={placeholder}
         value={value ? value : ''}
       />
       <span className={`${className}__checkbox-label__input--checkmark`} />

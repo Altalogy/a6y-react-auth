@@ -3,7 +3,7 @@ import EmailPasswordForm from '../EmailPasswordForm'
 import FormLinks from '../FormLinks'
 import { ErrorBoundary } from '../UI'
 import '../../index.css'
-import SignUpAgreements from '../SignUpAgreements'
+import Consents from '../Consents'
 
 /**
  * @typedef ISignUpProps
@@ -62,13 +62,10 @@ const SignUp = ({
         {apiError}
       </ErrorBoundary>
       <ErrorBoundary showError={conditionsError ? true : false}>
-        You must accept the terms and conditions to register an account
+        All required consents must be selected
       </ErrorBoundary>
       <EmailPasswordForm submitLabel='sign up' onClick={onSubmit} />
-      <SignUpAgreements
-        onChange={() => setConditions(!conditions)}
-        value={`${conditions}`}
-      />
+      <Consents isValid={(value: boolean) => setConditions(value)} />
       <FormLinks onLinkHandler={onLinkHandler} path='sign-up' />
     </div>
   )
