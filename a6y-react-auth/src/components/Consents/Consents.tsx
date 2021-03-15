@@ -45,7 +45,10 @@ const Consents = ({ isValid }: IConsents): JSX.Element => {
   const [required] = useState<string[]>([])
   const [values, setValues] = useState<IValues>({})
   useEffect(() => {
-    const consentsData = globalThis.A6YReactAuthConfig.components?.consents
+    const consentsData =
+      globalThis.A6YReactAuthConfig &&
+      globalThis.A6YReactAuthConfig.components &&
+      globalThis.A6YReactAuthConfig.components.consents
     if (Array.isArray(consentsData)) {
       setConsents(consentsData)
     }
@@ -75,7 +78,7 @@ const Consents = ({ isValid }: IConsents): JSX.Element => {
             const match = el.match(matchRgx)
             return <a href={match ? match[2] : ''}>{match && match[1]}</a>
           } else {
-            return el
+            return el + ' '
           }
         })}
       </>
@@ -102,7 +105,7 @@ const Consents = ({ isValid }: IConsents): JSX.Element => {
         )
       } else {
         rendersElements.push(
-          <label className={`a6y-react-auth__checkbox-label`}>
+          <label className={`a6y-react-auth__checkbox-label--without-input`}>
             {getLabel(consent.content)}
           </label>,
         )
