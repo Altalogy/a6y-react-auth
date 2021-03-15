@@ -64,7 +64,11 @@ const SignUp = ({
       <ErrorBoundary showError={conditionsError ? true : false}>
         You must accept the terms and conditions to register an account
       </ErrorBoundary>
-      <EmailPasswordForm submitLabel='sign up' onClick={onSubmit} />
+      <EmailPasswordForm
+        signUp={true}
+        submitLabel='sign up'
+        onClick={onSubmit}
+      />
       <SignUpAgreements
         onChange={() => setConditions(!conditions)}
         value={`${conditions}`}
