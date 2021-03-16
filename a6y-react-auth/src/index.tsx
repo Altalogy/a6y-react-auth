@@ -16,6 +16,12 @@ interface IA6YReactAuth {
     userPoolWebClientId: string
     region: string
   }
+  auth?: [
+    key: {
+      appId: string
+      provider: string
+    },
+  ]
   components?: {
     signUp?: {
       title?: string

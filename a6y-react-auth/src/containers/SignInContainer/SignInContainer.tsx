@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from 'react'
 import SignIn from '../../components/SignIn'
 import AuthService from '../../services/AuthService'
@@ -48,11 +49,25 @@ const SignInContainer = ({
       return setApiError(error.message)
     }
   }
+  async function socialSignIn(data: any) {
+    try {
+      // eslint-disable-next-line
+      const response: any = await AuthService.socialSignIn(data)
+      if (response && response.code) {
+        setApiError(response.message)
+      } else if (response) {
+        if (onSuccess) onSuccess(response)
+      }
+    } catch (error) {
+      return setApiError(error.message)
+    }
+  }
   return (
     <div className={className ? className : 'a6y-react-auth__sign-in-cnt'}>
       <SignIn
         onLinkHandler={onLinkHandler}
         onClick={signIn}
+        onSocialClick={socialSignIn}
         apiError={apiError}
       />
     </div>

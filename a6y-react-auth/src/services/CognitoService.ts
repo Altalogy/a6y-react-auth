@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Auth } from 'aws-amplify'
 
 class CognitoService {
@@ -12,6 +14,18 @@ class CognitoService {
   static async signUp(email: string, password: string): Promise<unknown> {
     try {
       return await Auth.signUp(email, password)
+    } catch (error) {
+      return error
+    }
+  }
+
+  static async socialLogin(data: any): Promise<unknown> {
+    try {
+      return await Auth.federatedSignIn(
+        data.user.provider,
+        { token: data.token, expires_at: data.expiresAt },
+        data.user.email,
+      )
     } catch (error) {
       return error
     }

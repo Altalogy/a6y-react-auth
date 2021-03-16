@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Amplify from 'aws-amplify'
 import CognitoService from './CognitoService'
 
@@ -21,8 +23,16 @@ class AuthService {
     return CognitoService.signIn(email, password)
   }
 
+  static socialSignIn(data: any): Promise<unknown> {
+    return CognitoService.socialLogin(data)
+  }
+
   static signUp(email: string, password: string): Promise<unknown> {
     return CognitoService.signUp(email, password)
+  }
+
+  static socialSignUp(data: any): Promise<unknown> {
+    return CognitoService.socialLogin(data)
   }
 
   static forgotPassword(email: string): Promise<unknown> {

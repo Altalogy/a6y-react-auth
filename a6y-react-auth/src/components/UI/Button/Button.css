@@ -34,3 +34,54 @@ button.a6y-react-auth__button--secondary:hover {
   opacity: 1;
   color: #1f3a92;
 }
+
+button.a6y-react-auth__google-btn {
+  min-height: 30px;
+  padding: 5px 20px;
+  border: 1px solid #dbe5ec;
+  color: #4e4e4e;
+  border-radius: 4px;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin: 1rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: white;
+  font-size: 12px;
+}
+
+button.a6y-react-auth__google-btn:hover {
+  background-color: #dbe5ec;
+}
+
+button.a6y-react-auth__google-btn img{
+  margin-right: 15px;
+}
+
+button.a6y-react-auth__facebook-btn {
+  min-height: 30px;
+  padding: 5px 20px;
+  border: 1px solid white;
+  color: white;
+  border-radius: 4px;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin: 1rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: #3b5998;
+  font-size: 12px;
+}
+
+button.a6y-react-auth__facebook-btn:hover {
+  background-color: #344e86;
+}
+
+button.a6y-react-auth__facebook-btn img{
+  margin-right: 15px;
+  max-height: 18px;
+}

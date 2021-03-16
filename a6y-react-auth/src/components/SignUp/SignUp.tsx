@@ -1,14 +1,17 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from 'react'
 import EmailPasswordForm from '../EmailPasswordForm'
 import FormLinks from '../FormLinks'
 import { ErrorBoundary } from '../UI'
 import '../../index.css'
 import SignUpAgreements from '../SignUpAgreements'
+import SocialLogin from '../SocialLogin'
 
 /**
  * @typedef ISignUpProps
  * @props {string} [className] - the CSS classes
  * @props {(email: string, password: string) => void} [onClick] - onClick handler launching after submit form
+ * @props {(response: any) => void} [onSocialClick] - onClick handler launching after submit on social providers
  * @props {string} [apiError] - api error messages
  * @props {(to: string) => void} [onLinkHandler] - links onClick handler
  */
@@ -16,6 +19,7 @@ import SignUpAgreements from '../SignUpAgreements'
 export interface ISignUpProps {
   className?: string
   onClick?: (email: string, password: string) => void
+  onSocialClick?: (response: any) => void
   apiError?: string
   onLinkHandler?: (to: string) => void
 }
@@ -25,6 +29,7 @@ export interface ISignUpProps {
  *
  * @param  {string} [className] - the CSS classes
  * @param  {(email: string, password: string) => void} [onClick] - onClick handler launching after submit form
+ * @param  {(response: any) => void} [onSocialClick] - onClick handler launching after submit on social providers
  * @param  {string} [apiError] - api error messages
  * @param  {(to: string) => void} [onLinkHandler] - links onClick handler
  *
@@ -39,6 +44,7 @@ export interface ISignUpProps {
 const SignUp = ({
   className = 'a6y-react-auth__sign-up',
   onClick,
+  onSocialClick,
   apiError,
   onLinkHandler = undefined,
 }: ISignUpProps): JSX.Element => {
@@ -65,6 +71,7 @@ const SignUp = ({
         You must accept the terms and conditions to register an account
       </ErrorBoundary>
       <EmailPasswordForm submitLabel='sign up' onClick={onSubmit} />
+      {onSocialClick && <SocialLogin callback={onSocialClick} />}
       <SignUpAgreements
         onChange={() => setConditions(!conditions)}
         value={`${conditions}`}
