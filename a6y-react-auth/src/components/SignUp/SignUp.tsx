@@ -62,7 +62,7 @@ const SignUp = ({
         {apiError}
       </ErrorBoundary>
       <ErrorBoundary showError={conditionsError ? true : false}>
-        All required consents must be selected
+        All required consents must be accepted.
       </ErrorBoundary>
       <EmailPasswordForm submitLabel='sign up' onClick={onSubmit} />
       <Consents isValid={(value: boolean) => setConditions(value)} />
