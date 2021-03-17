@@ -32,17 +32,12 @@ export interface ISocialLogin {
  * />
  */
 const SocialLogin = ({ callback }: ISocialLogin): JSX.Element => {
-  const testconf = [
-    { appId: '09090', provider: 'facebook' },
-    { appId: '0909', provider: 'google' },
-  ]
   const callbackFromSocialProviders = (response: any) => {
     callback(response)
   }
-  const renderLoginProviders = (): JSX.Element[] => {
+  const renderLoginProviders = (config: any[]): JSX.Element[] => {
     const render: JSX.Element[] = []
-    // globalThis.A6YReactAuthConfig.auth
-    testconf.map(el => {
+    config.map(el => {
       switch (el.provider) {
         case 'facebook':
           return render.push(
@@ -66,8 +61,8 @@ const SocialLogin = ({ callback }: ISocialLogin): JSX.Element => {
   }
   return (
     <div className='a6y-react-auth__social-login'>
-      {testconf && renderLoginProviders()}
-      {/* {globalThis.A6YReactAuthConfig.auth && renderLoginProviders()} */}
+      {globalThis.A6YReactAuthConfig.auth &&
+        renderLoginProviders(globalThis.A6YReactAuthConfig.auth)}
     </div>
   )
 }
