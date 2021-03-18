@@ -5,7 +5,11 @@ import { Auth } from 'aws-amplify'
 class CognitoService {
   static async signIn(email: string, password: string): Promise<unknown> {
     try {
-      return await Auth.signIn(email, password)
+      return await Auth.signIn(email, password).then(() => {
+        localStorage.setItem('a6y_provider', 'cognito')
+        localStorage.setItem('a6y_token', '')
+        localStorage.setItem('a6y_token_exp', '')
+      })
     } catch (error) {
       return error
     }
@@ -21,11 +25,16 @@ class CognitoService {
 
   static async socialLogin(data: any): Promise<unknown> {
     try {
-      return await Auth.federatedSignIn(
-        data.user.provider,
+      const response = await Auth.federatedSignIn(
+        data.provider,
         { token: data.token, expires_at: data.expiresAt },
         data.user.email,
-      )
+      ).then(() => {
+        localStorage.setItem('a6y_provider', data.provider)
+        localStorage.setItem('a6y_token', data.token)
+        localStorage.setItem('a6y_token_exp', data.expiresAt)
+      })
+      return response
     } catch (error) {
       return error
     }

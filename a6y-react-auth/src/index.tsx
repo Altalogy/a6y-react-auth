@@ -8,6 +8,7 @@ import SignIn from './components/SignIn'
 import SignUp from './components/SignUp'
 import ForgotPassword from './components/ForgotPassword'
 import AuthService from './services/AuthService'
+import { IProviderConfig } from './components/SocialLogin/SocialLogin'
 
 interface IA6YReactAuth {
   provider: {
@@ -16,12 +17,7 @@ interface IA6YReactAuth {
     userPoolWebClientId: string
     region: string
   }
-  auth?: [
-    key: {
-      appId: string
-      provider: string
-    },
-  ]
+  auth?: IProviderConfig[]
   components?: {
     signUp?: {
       title?: string

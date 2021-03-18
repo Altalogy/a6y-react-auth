@@ -3,6 +3,7 @@ import React from 'react'
 import Facebook from 'react-facebook-login'
 import { Button } from '../../UI'
 import { IProvider } from '../SocialLogin'
+import facebookIcon from '../../../assets/icons/facebook.svg'
 
 /**
  * Renders the facebook login button
@@ -17,11 +18,18 @@ import { IProvider } from '../SocialLogin'
  * />
  */
 const FacebookLogin = ({ callback, appId }: IProvider): JSX.Element => {
-  const facebookIcon = require('../../../assets/icons/facebook.svg') as string
   const responseFacebook = (response: any) => {
+    const expiresAt = response.expiresIn * 1000 + new Date().getTime()
+    const token = response.accessToken
     callback({
-      provider: 'facebook',
-      response,
+      ...response,
+      user: {
+        email: response.email,
+        providerId: response.id,
+        provider: 'facebook',
+      },
+      token,
+      expiresAt,
     })
   }
   return (
@@ -29,6 +37,7 @@ const FacebookLogin = ({ callback, appId }: IProvider): JSX.Element => {
       <Facebook
         appId={appId}
         callback={responseFacebook}
+        fields='name,email'
         render={(renderProps: {
           onClick: React.MouseEventHandler<HTMLButtonElement>
         }) => (

@@ -3,6 +3,7 @@ import React from 'react'
 import Google from 'react-google-login'
 import { Button } from '../../UI'
 import { IProvider } from '../SocialLogin'
+import googleIcon from '../../../assets/icons/google.svg'
 
 /**
  * Renders the google login button
@@ -18,12 +19,19 @@ import { IProvider } from '../SocialLogin'
  */
 const GoogleLogin = ({ callback, appId }: IProvider): JSX.Element => {
   const responseGoogle = (response: any) => {
+    const profile = response.profileObj
+    const { id_token, expires_at } = response.getAuthResponse()
     callback({
-      provider: 'google',
-      response,
+      ...response,
+      user: {
+        email: profile.email,
+        providerId: profile.googleId,
+        provider: 'google',
+      },
+      token: id_token,
+      expiresAt: expires_at,
     })
   }
-  const googleIcon = require('../../../assets/icons/google.svg') as string
   return (
     <div className='a6y-react-auth__google-login'>
       <Google

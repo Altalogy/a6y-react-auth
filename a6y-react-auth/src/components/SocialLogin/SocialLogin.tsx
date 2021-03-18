@@ -14,6 +14,16 @@ export interface IProvider {
 }
 
 /**
+ * @typedef IProviderConfig
+ * @props {string} [apiId] - the app id or client id required by provider
+ * @props {string} [provider] - the name of provider
+ */
+export interface IProviderConfig {
+  appId: string
+  provider: string
+}
+
+/**
  * @typedef ISocialLogin
  * @props {(response: any) => void} [callback] - callback with response from social provider
  */

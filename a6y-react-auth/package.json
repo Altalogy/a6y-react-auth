@@ -1,6 +1,6 @@
 {
   "name": "a6y-react-auth",
-  "version": "0.0.7",
+  "version": "0.0.10",
   "homepage": "https://altalogy.github.io/a6y-react-auth/#/",
   "description": "Authentication forms for React.",
   "main": "./lib/index.js",
@@ -18,7 +18,7 @@
     "test": "tsdx test --passWithNoTests --coverage",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --quiet",
     "lint-fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
-    "prepare": "copyfiles -u 1 src/**/*.html src/**/*.css lib/",
+    "prepare": "copyfiles -u 1 src/**/*.html src/**/*.css src/**/*.svg lib/",
     "prepublishOnly": "npm test && npm run lint-fix && npm run build",
     "size": "size-limit",
     "analyze": "size-limit --why",
@@ -108,7 +108,6 @@
     "prettier": "^2.2.1",
     "react": ">=16",
     "react-dom": "16.13.1",
-    "react-facebook-login": "github:vViktorPL/react-facebook-login#typed-render-prop",
     "rimraf": "^3.0.2",
     "sass-loader": "^11.0.1",
     "size-limit": "^4.9.1",
@@ -120,6 +119,7 @@
   "dependencies": {
     "aws-amplify": "^3.3.22",
     "classnames": "^2.2.6",
+    "react-facebook-login": "github:vViktorPL/react-facebook-login#typed-render-prop",
     "react-google-login": "^5.2.2"
   }
 }
