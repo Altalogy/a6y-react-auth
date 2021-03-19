@@ -17,7 +17,7 @@ export interface IForgotPasswordProps {
 }
 
 /**
- * Renders the sign-in component
+ * Renders the forgot password submit component
  *
  * @param  {string} [className] - the CSS classes
  * @param  {(code: string, password: string) => void} [onClick] - onClick handler launching after submit form

@@ -31,6 +31,10 @@ class AuthService {
     return CognitoService.signUp(email, password)
   }
 
+  static confirmSignUp(email: string, code: string): Promise<unknown> {
+    return CognitoService.signUp(email, code)
+  }
+
   static socialSignUp(data: any): Promise<unknown> {
     return CognitoService.socialLogin(data)
   }

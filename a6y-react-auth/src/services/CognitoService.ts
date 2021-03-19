@@ -23,6 +23,14 @@ class CognitoService {
     }
   }
 
+  static async confirmSignUp(email: string, code: string): Promise<unknown> {
+    try {
+      return await Auth.confirmSignUp(email, code)
+    } catch (error) {
+      return error
+    }
+  }
+
   static async socialLogin(data: any): Promise<unknown> {
     try {
       const response = await Auth.federatedSignIn(

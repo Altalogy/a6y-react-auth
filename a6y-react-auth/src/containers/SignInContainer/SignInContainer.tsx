@@ -41,9 +41,9 @@ const SignInContainer = ({
       // eslint-disable-next-line
       const response: any = await AuthService.signIn(email, password)
       if (response && response.code) {
-        setApiError(response.message)
+        return setApiError(response.message)
       } else if (response) {
-        if (onSuccess) onSuccess(response)
+        if (onSuccess) return onSuccess(response)
       }
     } catch (error) {
       return setApiError(error.message)
@@ -54,9 +54,9 @@ const SignInContainer = ({
       // eslint-disable-next-line
       const response: any = await AuthService.socialSignIn(data)
       if (response && response.code) {
-        setApiError(response.message)
+        return setApiError(response.message)
       } else if (response) {
-        if (onSuccess) onSuccess(response)
+        if (onSuccess) return onSuccess(response)
       }
     } catch (error) {
       return setApiError(error.message)
