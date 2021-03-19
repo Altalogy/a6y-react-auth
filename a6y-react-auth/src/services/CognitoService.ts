@@ -49,12 +49,81 @@ class CognitoService {
     }
   }
 
-  static async signOut(): Promise<unknown> {
+  static async signOut() {
     try {
-      return await Auth.signOut()
-    } catch (error) {
-      return error
+      await this._signOutCognito()
+      this._signOutFacebook()
+      this._signOutGoogle()
+      localStorage.removeItem('a6y_provider')
+      localStorage.removeItem('a6y_token')
+      localStorage.removeItem('a6y_token_exp')
+    } catch (e) {
+      console.log('catch: ', e) // eslint-disable-line no-console
     }
+  }
+  static async _signOutCognito() {
+    await Auth.signOut()
+  }
+
+  static async _signOutFacebook() {
+    try {
+      if (localStorage.getItem('atc_provider') === 'facebook') {
+        await this.waitForFb()
+        await window.FB.logout()
+      }
+    } catch (e) {
+      console.log('LOGOUT FB error', e) // eslint-disable-line no-console
+    }
+  }
+
+  static async _signOutGoogle() {
+    try {
+      await this.waitForGapi()
+      if (window.gapi.auth2) {
+        const auth2 = window.gapi.auth2.getAuthInstance()
+        await auth2.signOut()
+      }
+    } catch (e) {
+      console.log('LOGOUT G error', e) // eslint-disable-line no-console
+    }
+  }
+
+  static async waitForGapi() {
+    return new Promise<void>((resolve, reject) => {
+      let waited = 0
+      function wait(interval: number) {
+        setTimeout(() => {
+          waited += interval
+          if (window.gapi !== undefined) {
+            return resolve()
+          }
+          if (waited >= 20 * 1000) {
+            return reject({ message: 'Timeout' })
+          }
+          wait(interval * 2)
+        }, interval)
+      }
+      wait(30)
+    })
+  }
+
+  static waitForFb() {
+    return new Promise<void>((resolve, reject) => {
+      let waited = 0
+      function wait(interval: number) {
+        setTimeout(() => {
+          waited += interval
+          if (window.FB && window.FB !== undefined) {
+            return resolve()
+          }
+          if (waited >= 20 * 1000) {
+            return reject({ message: 'Timeout' })
+          }
+          wait(interval * 2)
+        }, interval)
+      }
+      wait(30)
+    })
   }
 }
 

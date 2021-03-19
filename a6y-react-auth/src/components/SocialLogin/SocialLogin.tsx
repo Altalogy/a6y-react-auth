@@ -71,7 +71,8 @@ const SocialLogin = ({ callback }: ISocialLogin): JSX.Element => {
   }
   return (
     <div className='a6y-react-auth__social-login'>
-      {globalThis.A6YReactAuthConfig.auth &&
+      {globalThis.A6YReactAuthConfig &&
+        globalThis.A6YReactAuthConfig.auth &&
         renderLoginProviders(globalThis.A6YReactAuthConfig.auth)}
     </div>
   )

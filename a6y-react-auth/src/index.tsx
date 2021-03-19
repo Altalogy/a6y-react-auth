@@ -36,6 +36,10 @@ interface IA6YReactAuth {
 }
 
 declare global {
+  interface Window {
+    FB: any
+    gapi: any
+  }
   // eslint-disable-next-line no-var
   var A6YReactAuthConfig: IA6YReactAuth
 }
@@ -88,6 +92,10 @@ export const ForgotPasswordContainer = ({
     onSuccess={onSuccess ? onSuccess : undefined}
   />
 )
+
+export const SignOut = async (): Promise<unknown> => {
+  return await AuthService.signOut()
+}
 
 export { SignIn, SignUp, ForgotPassword }
 
