@@ -16,6 +16,7 @@ interface IA6YReactAuth {
     type: string
     userPoolId: string
     userPoolWebClientId: string
+    identityPoolId: string
     region: string
   }
   auth?: IProviderConfig[]

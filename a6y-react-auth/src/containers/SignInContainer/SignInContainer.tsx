@@ -42,8 +42,8 @@ const SignInContainer = ({
       const response: any = await AuthService.signIn(email, password)
       if (response && response.code) {
         return setApiError(response.message)
-      } else if (response) {
-        if (onSuccess) return onSuccess(response)
+      } else {
+        if (onSuccess) return onSuccess('SUCCESS')
       }
     } catch (error) {
       return setApiError(error.message)
@@ -55,8 +55,8 @@ const SignInContainer = ({
       const response: any = await AuthService.socialSignIn(data)
       if (response && response.code) {
         return setApiError(response.message)
-      } else if (response) {
-        if (onSuccess) return onSuccess(response)
+      } else {
+        if (onSuccess) return onSuccess('SUCCESS')
       }
     } catch (error) {
       return setApiError(error.message)
