@@ -70,8 +70,12 @@ const SignUp = ({
       <ErrorBoundary showError={conditionsError ? true : false}>
         All required consents must be accepted.
       </ErrorBoundary>
-      <EmailPasswordForm submitLabel='sign up' onClick={onSubmit} />
       {onSocialClick && <SocialLogin callback={onSocialClick} />}
+      <EmailPasswordForm
+        signUp={true}
+        submitLabel='sign up'
+        onClick={onSubmit}
+      />
       <Consents isValid={(value: boolean) => setConditions(value)} />
       <FormLinks onLinkHandler={onLinkHandler} path='sign-up' />
     </div>
