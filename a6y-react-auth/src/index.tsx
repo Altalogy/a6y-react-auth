@@ -8,6 +8,7 @@ import SignIn from './components/SignIn'
 import SignUp from './components/SignUp'
 import ForgotPassword from './components/ForgotPassword'
 import AuthService from './services/AuthService'
+import { IConsent } from './components/Consents/Consents'
 
 interface IA6YReactAuth {
   provider: {
@@ -19,10 +20,6 @@ interface IA6YReactAuth {
   components?: {
     signUp?: {
       title?: string
-      privacy?: boolean
-      privacyUrl?: string
-      terms?: boolean
-      termsUrl?: string
     }
     signIn?: {
       title?: string
@@ -30,6 +27,7 @@ interface IA6YReactAuth {
     forgotPassword?: {
       title?: string
     }
+    consents?: [key: IConsent]
   }
 }
 

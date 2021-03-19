@@ -31,6 +31,8 @@ A6YAuth .initialize({
 })
 ```
 
+(check more configurable options)[#config]
+
 **3) Usage**
 
 ```typescript
@@ -118,6 +120,88 @@ onLinkHandler[optional] | (to: string) => void | it's a link callback function t
     onSuccess={(response: unknown) => void}
     onLinkHandler={(to: string) => void}
   />
+```
+
+### **Config**
+
+Here is the full configurable options from initialize:
+
+```
+  provider: {
+    type: string
+    userPoolId: string
+    userPoolWebClientId: string
+    region: string
+  }
+  components?: {
+    signUp?: {
+      title?: string
+    }
+    signIn?: {
+      title?: string
+    }
+    forgotPassword?: {
+      title?: string
+    }
+    consents?: [
+      {
+        type?: string
+        required?: boolean
+        content: string
+      },
+    ]
+  }
+```
+
+**provider**
+param | type | description
+--- | --- | ---
+type|string|Type of authorization service. Default is 'cognito'.
+userPoolId|string|UserPoolId from aws cognito
+userPoolWebClientId|string|UserPoolWebClientId from aws cognito
+region|string|region settings from aws cognito
+
+
+**components**
+`consents`
+param | type | description
+--- | --- | ---
+[type]|string|It determines type of consents. Available `checkbox` or `other`
+[required]|boolean|It determines if a field must be selected before submitting
+content|string|Here is the label message with consent. Message can be used with links: `[title](url)`
+
+**example of usage**
+
+```typescript
+  import A6YReactAuth from "a6y-react-auth"
+
+  const A6YAuth = new A6YReactAuth()
+
+  A6YAuth.initialize({
+    provider: {
+      type: 'cognito',
+      userPoolId: 'us-east-1_xyz',
+      userPoolWebClientId: 'xyz',
+      region: 'us-east-1',
+    },
+    components: {
+      signIn: {
+        title: 'Welcome back!' 
+      },
+      consents: [
+        {
+          type: 'checkbox',
+          required: true,
+          content: 'example1 (example1-link-title)[example1-url]'
+        },
+        {
+          type: 'other',
+          required: false,
+          content: 'example2 (example2-link-title)[example2-url]'
+        },
+      ]
+    }
+  })
 ```
 
 
