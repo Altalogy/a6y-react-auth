@@ -14,6 +14,28 @@ label.a6y-react-auth__checkbox-label {
   -ms-user-select: none;
   user-select: none;
   margin: 5px 5px 10px;
+  white-space: pre-wrap;
+}
+
+label.a6y-react-auth__checkbox-label--without-input a, label.a6y-react-auth__checkbox-label a {
+  margin: 0 2px;
+}
+
+label.a6y-react-auth__checkbox-label--without-input {
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+  position: relative;
+  font-size: 12px;
+  max-height: 17px;
+  min-height: 17px;
+  white-space: pre-wrap;
+  letter-spacing: normal;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  margin: 5px 5px 10px;
 }
 
 label.a6y-react-auth__checkbox-label input.a6y-react-auth__checkbox-label__input {
