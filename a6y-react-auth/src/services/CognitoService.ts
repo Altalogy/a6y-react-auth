@@ -40,6 +40,19 @@ class CognitoService {
     }
   }
 
+  static async forgotPasswordSubmit(
+    user: string,
+    code: string,
+    password: string,
+  ): Promise<unknown> {
+    try {
+      const response = await Auth.forgotPasswordSubmit(user, code, password)
+      return response
+    } catch (error) {
+      return error
+    }
+  }
+
   static async forgotPassword(email: string): Promise<unknown> {
     try {
       const response = await Auth.forgotPassword(email)

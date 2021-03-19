@@ -30,6 +30,9 @@ interface IA6YReactAuth {
       title?: string
     }
     consents?: [key: IConsent]
+    forgotPasswordSubmit?: {
+      title?: string
+    }
   }
 }
 

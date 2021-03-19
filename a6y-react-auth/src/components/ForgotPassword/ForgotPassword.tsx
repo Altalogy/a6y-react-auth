@@ -35,7 +35,7 @@ export interface IForgotPasswordProps {
  */
 
 const ForgotPassword = ({
-  className = 'a6y-react-auth__forgot-password',
+  className = 'a6y-react-auth',
   onClick,
   apiError,
   onLinkHandler,
@@ -49,7 +49,7 @@ const ForgotPassword = ({
   const classNames = require('classnames')
 
   const FormClass = classNames({
-    [`${className}--error`]: errorData.email ? true : false,
+    [`${className + '__form'}--error`]: errorData.email ? true : false,
   })
   const onInputChange = (e: { target: { value: string } }, target: string) => {
     setErrorData({ ...errorData, [target]: e.target.value.length === 0 })
@@ -59,8 +59,8 @@ const ForgotPassword = ({
     })
   }
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
     e.stopPropagation()
+    e.preventDefault()
     const data = [
       {
         value: forgotPasswordData.email,
@@ -74,7 +74,7 @@ const ForgotPassword = ({
     }
   }
   return (
-    <div className={className}>
+    <div className={className + '__forgot-password'}>
       <h1>
         {globalThis.A6YReactAuthConfig &&
         globalThis.A6YReactAuthConfig.components?.forgotPassword?.title
@@ -84,7 +84,7 @@ const ForgotPassword = ({
       <ErrorBoundary showError={apiError ? true : false}>
         {apiError}
       </ErrorBoundary>
-      <form className={`${className}__form`} onSubmit={onSubmit}>
+      <form className={`${className}__form`} onSubmit={e => onSubmit(e)}>
         <div className={`${className}-group ${FormClass}`}>
           <Input
             id='email'
