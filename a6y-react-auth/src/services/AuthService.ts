@@ -19,40 +19,40 @@ class AuthService {
     }
   }
 
-  static signIn(email: string, password: string): Promise<unknown> {
-    return CognitoService.signIn(email, password)
+  static async signIn(email: string, password: string): Promise<unknown> {
+    return await CognitoService.signIn(email, password)
   }
 
-  static socialSignIn(data: any): Promise<unknown> {
-    return CognitoService.socialLogin(data)
+  static async socialSignIn(data: any): Promise<unknown> {
+    return await CognitoService.socialLogin(data)
   }
 
-  static signUp(email: string, password: string): Promise<unknown> {
-    return CognitoService.signUp(email, password)
+  static async signUp(email: string, password: string): Promise<unknown> {
+    return await CognitoService.signUp(email, password)
   }
 
-  static confirmSignUp(email: string, code: string): Promise<unknown> {
-    return CognitoService.signUp(email, code)
+  static async confirmSignUp(email: string, code: string): Promise<unknown> {
+    return await CognitoService.confirmSignUp(email, code)
   }
 
-  static socialSignUp(data: any): Promise<unknown> {
-    return CognitoService.socialLogin(data)
+  static async socialSignUp(data: any): Promise<unknown> {
+    return await CognitoService.socialLogin(data)
   }
 
-  static forgotPassword(email: string): Promise<unknown> {
-    return CognitoService.forgotPassword(email)
+  static async forgotPassword(email: string): Promise<unknown> {
+    return await CognitoService.forgotPassword(email)
   }
 
-  static forgotPasswordSubmit(
+  static async forgotPasswordSubmit(
     user: string,
     code: string,
     password: string,
   ): Promise<unknown> {
-    return CognitoService.forgotPasswordSubmit(user, code, password)
+    return await CognitoService.forgotPasswordSubmit(user, code, password)
   }
 
   static async signOut(): Promise<unknown> {
-    return CognitoService.signOut()
+    return await CognitoService.signOut()
   }
 }
 

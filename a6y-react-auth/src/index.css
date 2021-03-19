@@ -1,11 +1,11 @@
-.a6y-react-auth__sign-in,.a6y-react-auth__forgot-password,.a6y-react-auth__sign-up {
+.a6y-react-auth__sign-in,.a6y-react-auth__forgot-password,.a6y-react-auth__sign-up,.a6y-react-auth__confirmation-code {
   padding: 2rem 1rem;
   max-width: 320px;
   margin: auto;
   box-shadow: 0 1px 10px 1px rgb(0 0 0 / 8%), 0 1px 2px -1px rgb(0 0 0 / 6%);
 }
 
-.a6y-react-auth__sign-in h1,.a6y-react-auth__forgot-password h1,.a6y-react-auth__sign-up h1 {
+.a6y-react-auth__sign-in h1,.a6y-react-auth__forgot-password h1,.a6y-react-auth__sign-up h1,.a6y-react-auth__confirmation-code h1 {
   text-align: center;
 }
 .a6y-react-auth__form--error label.a6y-react-auth__label input.a6y-react-auth__label__input {

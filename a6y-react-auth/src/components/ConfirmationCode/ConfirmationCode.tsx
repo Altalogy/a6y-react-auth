@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import validate from '../../utilities/validation'
-import { ErrorBoundary, Input } from '../UI'
+import { Button, ErrorBoundary, Input } from '../UI'
 
 /**
  * @typedef IConfirmationCodeProps
@@ -30,7 +30,7 @@ export interface IConfirmationCodeProps {
  */
 
 const ConfirmationCode = ({
-  className = 'a6y-react-auth__sign-up',
+  className = 'a6y-react-auth',
   onClick,
   apiError,
 }: IConfirmationCodeProps): JSX.Element => {
@@ -78,14 +78,17 @@ const ConfirmationCode = ({
       <form className={`${className}`} onSubmit={e => onSubmit(e)}>
         <div className={`${className}-group ${FormClassCode}`}>
           <Input
-            id='confirm-password'
-            typeInput='password'
-            placeholder='Confirm password'
+            id='confirm-code'
+            typeInput='text'
+            placeholder='Confirm code'
             label=''
             onChange={e => onInputChange(e)}
             value={code}
           />
         </div>
+        <Button role='submit' style='primary'>
+          Submit
+        </Button>
       </form>
     </div>
   )
