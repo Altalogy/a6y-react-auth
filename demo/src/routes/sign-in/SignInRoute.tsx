@@ -1,11 +1,11 @@
 import React from 'react'
 import MainLayout from '../../layouts/MainLayout'
-import { SignIn } from 'a6y-react-auth'
+import { SignInContainer } from 'a6y-react-auth'
 
 const SignInRoute = () => {
   return (
     <MainLayout backNav={true}>
-      <SignIn />
+      <SignInContainer onSuccess={(resp) => console.log('sign-in', resp)} />
     </MainLayout>
   )
 }
