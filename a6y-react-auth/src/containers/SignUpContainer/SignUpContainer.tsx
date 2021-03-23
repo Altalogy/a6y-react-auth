@@ -51,7 +51,7 @@ export interface ISignUpContainerProps {
  */
 
 const SignUpContainer = ({
-  className,
+  className = '',
   onSuccess,
   onLinkHandler = undefined,
   inputStyles = '',

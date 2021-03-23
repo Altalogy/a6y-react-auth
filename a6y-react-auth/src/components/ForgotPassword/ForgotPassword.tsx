@@ -138,7 +138,7 @@ const ForgotPassword = ({
           Reset password
         </Button>
       </form>
-      <FormLinks className={linkStyles} onLinkHandler={onLinkHandler} />
+      <FormLinks linkStyles={linkStyles} onLinkHandler={onLinkHandler} />
     </div>
   )
 }

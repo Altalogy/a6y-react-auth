@@ -50,7 +50,7 @@ export interface IForgotPasswordContainerProps {
  */
 
 const ForgotPasswordContainer = ({
-  className,
+  className = '',
   onSuccess,
   onLinkHandler = undefined,
   inputStyles = '',
@@ -96,6 +96,7 @@ const ForgotPasswordContainer = ({
     >
       {step === 1 ? (
         <ForgotPassword
+          className={className}
           onLinkHandler={onLinkHandler}
           onClick={forgotPassword}
           apiError={apiError}
@@ -108,6 +109,7 @@ const ForgotPasswordContainer = ({
         />
       ) : (
         <ForgotPasswordSubmit
+          className={className}
           onClick={forgotPasswordSubmit}
           apiError={apiError}
           inputStyles={inputStyles}
