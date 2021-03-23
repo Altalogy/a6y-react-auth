@@ -8,11 +8,23 @@ import AuthService from '../../services/AuthService'
  * @props {string} [className] - the CSS classes
  * @props {(response: unknown) => void} [onSuccess] - onSuccess call function
  * @props {(to: string) => void} [onLinkHandler] - links onClick handler
+ * @props {string} [inputStyles] - input CSS classes
+ * @props {string} [buttonStyles] - btn CSS classes
+ * @props {string} [labelStyles] - label CSS classes
+ * @props {string} [linkStyles] - link CSS classes
+ * @props {string} [formStyles] - form CSS classes
+ * @props {string} [formGroupStyles] - form group CSS classes
  */
 export interface ISignInContainerProps {
   className?: string
   onSuccess?: (response: unknown) => void
   onLinkHandler?: (to: string) => void
+  inputStyles?: string
+  buttonStyles?: string
+  labelStyles?: string
+  linkStyles?: string
+  formStyles?: string
+  formGroupStyles?: string
 }
 
 /**
@@ -21,6 +33,12 @@ export interface ISignInContainerProps {
  * @param  {string} [className] - the CSS classes
  * @param  {(response: unknown) => void} [onSuccess] - onSuccess call function
  * @param  {(to: string) => void} [onLinkHandler] - links onClick handler
+ * @param  {string} [inputStyles] - input CSS classes
+ * @param  {string} [buttonStyles] - btn CSS classes
+ * @param  {string} [labelStyles] - label CSS classes
+ * @param  {string} [linkStyles] - link CSS classes
+ * @param  {string} [formStyles] - form CSS classes
+ * @param  {string} [formGroupStyles] - form group CSS classes
  *
  * @example
  * <SignInContainer
@@ -31,9 +49,15 @@ export interface ISignInContainerProps {
  */
 
 const SignInContainer = ({
-  className,
+  className = '',
   onSuccess,
   onLinkHandler = undefined,
+  inputStyles = '',
+  buttonStyles = '',
+  labelStyles = '',
+  linkStyles = '',
+  formStyles = '',
+  formGroupStyles = '',
 }: ISignInContainerProps): JSX.Element => {
   const [apiError, setApiError] = useState(undefined)
   async function signIn(email: string, password: string) {
@@ -65,10 +89,17 @@ const SignInContainer = ({
   return (
     <div className={className ? className : 'a6y-react-auth__sign-in-cnt'}>
       <SignIn
+        className={className}
         onLinkHandler={onLinkHandler}
         onClick={signIn}
         onSocialClick={socialSignIn}
         apiError={apiError}
+        inputStyles={inputStyles}
+        labelStyles={labelStyles}
+        buttonStyles={buttonStyles}
+        linkStyles={linkStyles}
+        formStyles={formStyles}
+        formGroupStyles={formGroupStyles}
       />
     </div>
   )

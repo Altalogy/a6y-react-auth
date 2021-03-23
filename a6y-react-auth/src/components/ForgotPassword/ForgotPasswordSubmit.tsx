@@ -8,12 +8,22 @@ import '../../index.css'
  * @props {string} [className] - the CSS classes
  * @props {(code: string, password: string) => void} [onClick] - onClick handler launching after submit form
  * @props {string} [apiError] - api error messages
+ * @props {string} [inputStyles] - input CSS classes
+ * @props {string} [buttonStyles] - btn CSS classes
+ * @props {string} [labelStyles] - label CSS classes
+ * @props {string} [formStyles] - form CSS classes
+ * @props {string} [formGroupStyles] - form group CSS classes
  */
 
 export interface IForgotPasswordProps {
   className?: string
   onClick?: (code: string, password: string) => void
   apiError?: string
+  inputStyles?: string
+  buttonStyles?: string
+  labelStyles?: string
+  formStyles?: string
+  formGroupStyles?: string
 }
 
 /**
@@ -22,6 +32,11 @@ export interface IForgotPasswordProps {
  * @param  {string} [className] - the CSS classes
  * @param  {(code: string, password: string) => void} [onClick] - onClick handler launching after submit form
  * @param  {string} [apiError] - api error messages
+ * @param  {string} [inputStyles] - input CSS classes
+ * @param  {string} [buttonStyles] - btn CSS classes
+ * @param  {string} [labelStyles] - label CSS classes
+ * @param  {string} [formStyles] - form CSS classes
+ * @param  {string} [formGroupStyles] - form group CSS classes
  *
  * @example
  * <ForgotPassword
@@ -34,6 +49,11 @@ const ForgotPassword = ({
   className = 'a6y-react-auth',
   onClick,
   apiError,
+  inputStyles = '',
+  buttonStyles = '',
+  labelStyles = '',
+  formStyles = '',
+  formGroupStyles = '',
 }: IForgotPasswordProps): JSX.Element => {
   const [forgotPasswordData, setForgotPasswordData] = useState({
     code: '',
@@ -105,8 +125,21 @@ const ForgotPassword = ({
       <ErrorBoundary showError={apiError ? true : false}>
         {apiError}
       </ErrorBoundary>
-      <form className={`${className}__form`} onSubmit={e => onSubmit(e)}>
-        <div className={`${className}-group ${FormClassCode}`}>
+      <form
+        className={
+          formStyles && formStyles.length > 0
+            ? formStyles
+            : `${className}__form`
+        }
+        onSubmit={e => onSubmit(e)}
+      >
+        <div
+          className={
+            formGroupStyles && formGroupStyles.length > 0
+              ? `${formGroupStyles} `
+              : `${className}-group ${FormClassCode}`
+          }
+        >
           <Input
             id='code'
             placeholder='Confirmation code'
@@ -114,9 +147,17 @@ const ForgotPassword = ({
             label=''
             onChange={e => onInputChange(e, 'code')}
             value={forgotPasswordData.code}
+            labelStyles={labelStyles}
+            inputStyles={inputStyles}
           />
         </div>
-        <div className={`${className}-group ${FormClassPassword}`}>
+        <div
+          className={
+            formGroupStyles && formGroupStyles.length > 0
+              ? `${formGroupStyles} `
+              : `${className}-group ${FormClassPassword}`
+          }
+        >
           <Input
             id='new-password'
             typeInput='password'
@@ -124,9 +165,17 @@ const ForgotPassword = ({
             label=''
             onChange={e => onInputChange(e, 'password')}
             value={forgotPasswordData.password}
+            labelStyles={labelStyles}
+            inputStyles={inputStyles}
           />
         </div>
-        <div className={`${className}-group ${FormClassConfirmPassword}`}>
+        <div
+          className={
+            formGroupStyles && formGroupStyles.length > 0
+              ? `${formGroupStyles} `
+              : `${className}-group ${FormClassConfirmPassword}`
+          }
+        >
           <Input
             id='confirm-password'
             typeInput='password'
@@ -134,9 +183,11 @@ const ForgotPassword = ({
             label=''
             onChange={e => onInputChange(e, 'confirmPassword')}
             value={forgotPasswordData.confirmPassword}
+            labelStyles={labelStyles}
+            inputStyles={inputStyles}
           />
         </div>
-        <Button role='submit' style='primary'>
+        <Button className={buttonStyles} role='submit' style='primary'>
           Reset password
         </Button>
       </form>

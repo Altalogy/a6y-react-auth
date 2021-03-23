@@ -41,7 +41,7 @@ export interface ILinkProps {
 
 const Link = ({
   children,
-  className = 'a6y-react-auth__form__link',
+  className,
   onClick = undefined,
   style = 'primary',
   to,
@@ -49,7 +49,9 @@ const Link = ({
   const classNames = require('classnames')
 
   const LinkClass = classNames({
-    [`${className}--${style}`]: style ? true : false,
+    [`a6y-react-auth__form__link a6y-react-auth__form__link--${style}`]: style
+      ? true
+      : false,
   })
 
   function handleLinkClick(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
@@ -61,14 +63,17 @@ const Link = ({
     return (
       <button
         onClick={e => handleLinkClick(e)}
-        className={className + ' ' + LinkClass}
+        className={className && className.length > 0 ? className : LinkClass}
       >
         {children}
       </button>
     )
   }
   return (
-    <a href={to} className={className + ' ' + LinkClass}>
+    <a
+      href={to}
+      className={className && className.length > 0 ? className : LinkClass}
+    >
       {children}
     </a>
   )

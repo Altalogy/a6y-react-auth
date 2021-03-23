@@ -10,6 +10,8 @@ import './Input.css'
  * @props {string} [placeholder] - the placeholder text for input element
  * @props {string} value - value for input
  * @props {string} typeInput - the HTML input type
+ * @props {string} [labelStyles] - the CSS classes for label
+ * @props {string} [inputStyles] - the CSS classes for input
  */
 
 export interface IInputProps {
@@ -20,6 +22,8 @@ export interface IInputProps {
   placeholder?: string
   value: string
   typeInput: string
+  labelStyles?: string
+  inputStyles?: string
 }
 
 /**
@@ -28,6 +32,8 @@ export interface IInputProps {
  * @param {string} id - the ID's of input element
  * @param {string} [label] - the label text
  * @param {string} [className] - the CSS classes prefix -label and -input
+ * @param {string} [labelStyles] - the CSS classes for label
+ * @param {string} [inputStyles] - the CSS classes for input
  * @param {e => handleChange(e.target.value)} onChange - onChange handler
  * @param {string} [placeholder] - the placeholder text for input element
  * @param {string} value - value for input
@@ -47,6 +53,8 @@ export interface IInputProps {
 const Input = ({
   id,
   label = '',
+  labelStyles,
+  inputStyles,
   className = 'a6y-react-auth',
   onChange,
   placeholder = id,
@@ -61,14 +69,25 @@ const Input = ({
     [`${className}__label__input--${id}`]: id ? true : false,
   })
   return (
-    <label htmlFor={id} className={`${className}__label ` + LabelClass}>
+    <label
+      htmlFor={id}
+      className={
+        labelStyles && labelStyles.length > 0
+          ? `${labelStyles} `
+          : `${className}__label ` + LabelClass
+      }
+    >
       {label && label}
       <input
         id={id}
         name={id}
         type={typeInput}
         onChange={onChange}
-        className={`${className}__label__input ` + InputClass}
+        className={
+          inputStyles && inputStyles.length > 0
+            ? `${inputStyles} `
+            : `${className}__label__input ` + InputClass
+        }
         placeholder={placeholder}
         value={value ? value : ''}
       />

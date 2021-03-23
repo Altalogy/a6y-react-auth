@@ -41,18 +41,20 @@ export interface IButtonProps {
 const Button = ({
   role = 'button',
   children,
-  className = 'a6y-react-auth__button',
+  className,
   onClick,
   style = 'primary',
 }: IButtonProps): JSX.Element => {
   const classNames = require('classnames')
   const btnClass = classNames({
-    [`${className}--${style}`]: style ? true : false,
+    [`a6y-react-auth__button a6y-react-auth__button--${style}`]: style
+      ? true
+      : false,
   })
   return (
     <button
       onClick={onClick}
-      className={className + ' ' + btnClass}
+      className={className && className.length > 0 ? className : btnClass}
       type={role}
     >
       {children}
