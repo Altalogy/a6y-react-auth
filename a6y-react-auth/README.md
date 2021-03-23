@@ -62,7 +62,13 @@ ForgotPassword | Renders only forgot-password component form.
 param | type | description
 --- | --- | ---
 className[optional] | string | the CSS classes
-onSuccess[optional]] | (response: unknown) => void | onSuccess callback function
+onSuccess[optional] | (response: unknown) => void | onSuccess callback function
+inputStyles[optional] | string | input CSS classes
+buttonStyles[optional] | string | btn CSS classes
+labelStyles[optional] | string | label CSS classes
+linkStyles[optional] | string | link CSS classes
+formStyles[optional] | string | form CSS classes
+formGroupStyles[optional] | string | form group CSS classes
 
 
 **example**
@@ -73,13 +79,19 @@ onSuccess[optional]] | (response: unknown) => void | onSuccess callback function
   />
 ```
 
-##### `SignIn`
+##### `SignInContainer`
 
 param | type | description
 --- | --- | ---
 className[optional] | string | the CSS classes
 onSuccess[optional]] | (response: unknown) => void | onSuccess callback function
 onLinkHandler[optional] | it's a link callback function to redirect the app. If not declared it's using by pathname `sign-in`
+inputStyles[optional] | string | input CSS classes
+buttonStyles[optional] | string | btn CSS classes
+labelStyles[optional] | string | label CSS classes
+linkStyles[optional] | string | link CSS classes
+formStyles[optional] | string | form CSS classes
+formGroupStyles[optional] | string | form group CSS classes
 
 
 **example**
@@ -91,13 +103,19 @@ onLinkHandler[optional] | it's a link callback function to redirect the app. If 
   />
 ```
 
-##### `SignUp`
+##### `SignUpContainer`
 
 param | type | description
 --- | --- | ---
 className[optional] | string | the CSS classes
 onSuccess[optional]] | (response: unknown) => void | onSuccess callback function
 onLinkHandler[optional] | it's a link callback function to redirect the app. If not declared it's using by pathname `sign-up`
+inputStyles[optional] | string | input CSS classes
+buttonStyles[optional] | string | btn CSS classes
+labelStyles[optional] | string | label CSS classes
+linkStyles[optional] | string | link CSS classes
+formStyles[optional] | string | form CSS classes
+formGroupStyles[optional] | string | form group CSS classes
 
 
 **example**
@@ -110,13 +128,19 @@ onLinkHandler[optional] | it's a link callback function to redirect the app. If 
   />
 ```
 
-##### `ForgotPassword`
+##### `ForgotPasswordContainer`
 **props**
 param | type | description
 --- | --- | ---
 className[optional] | string | the CSS classes
 onSuccess[optional]] | (response: unknown) => void | onSuccess callback function
 onLinkHandler[optional] | (to: string) => void | it's a link callback function to redirect the app. If not declared it's using by pathname `forgot-password`
+inputStyles[optional] | string | input CSS classes
+buttonStyles[optional] | string | btn CSS classes
+labelStyles[optional] | string | label CSS classes
+linkStyles[optional] | string | link CSS classes
+formStyles[optional] | string | form CSS classes
+formGroupStyles[optional] | string | form group CSS classes
 
 
 **example**
