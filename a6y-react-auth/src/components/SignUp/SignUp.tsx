@@ -14,6 +14,12 @@ import Consents from '../Consents'
  * @props {(response: any) => void} [onSocialClick] - onClick handler launching after submit on social providers
  * @props {string} [apiError] - api error messages
  * @props {(to: string) => void} [onLinkHandler] - links onClick handler
+ * @props {string} [inputStyles] - input CSS classes
+ * @props {string} [buttonStyles] - btn CSS classes
+ * @props {string} [labelStyles] - label CSS classes
+ * @props {string} [linkStyles] - link CSS classes
+ * @props {string} [formStyles] - form CSS classes
+ * @props {string} [formGroupStyles] - form group CSS classes
  */
 
 export interface ISignUpProps {
@@ -22,6 +28,12 @@ export interface ISignUpProps {
   onSocialClick?: (response: any) => void
   apiError?: string
   onLinkHandler?: (to: string) => void
+  inputStyles?: string
+  buttonStyles?: string
+  labelStyles?: string
+  linkStyles?: string
+  formGroupStyles?: string
+  formStyles?: string
 }
 
 /**
@@ -32,6 +44,12 @@ export interface ISignUpProps {
  * @param  {(response: any) => void} [onSocialClick] - onClick handler launching after submit on social providers
  * @param  {string} [apiError] - api error messages
  * @param  {(to: string) => void} [onLinkHandler] - links onClick handler
+ * @param  {string} [inputStyles] - input CSS classes
+ * @param  {string} [buttonStyles] - btn CSS classes
+ * @param  {string} [labelStyles] - label CSS classes
+ * @param  {string} [linkStyles] - link CSS classes
+ * @param  {string} [formStyles] - form CSS classes
+ * @param  {string} [formGroupStyles] - form group CSS classes
  *
  * @example
  * <SignUp
@@ -47,6 +65,12 @@ const SignUp = ({
   onSocialClick,
   apiError,
   onLinkHandler = undefined,
+  inputStyles = '',
+  buttonStyles = '',
+  labelStyles = '',
+  linkStyles = '',
+  formStyles = '',
+  formGroupStyles = '',
 }: ISignUpProps): JSX.Element => {
   const [conditions, setConditions] = useState(false)
   const [conditionsError, setConditionsError] = useState(false)
@@ -72,12 +96,21 @@ const SignUp = ({
       </ErrorBoundary>
       {onSocialClick && <SocialLogin callback={onSocialClick} />}
       <EmailPasswordForm
+        inputStyles={inputStyles}
+        labelStyles={labelStyles}
+        buttonStyles={buttonStyles}
+        formStyles={formStyles}
+        formGroupStyles={formGroupStyles}
         signUp={true}
         submitLabel='sign up'
         onClick={onSubmit}
       />
       <Consents isValid={(value: boolean) => setConditions(value)} />
-      <FormLinks onLinkHandler={onLinkHandler} path='sign-up' />
+      <FormLinks
+        linkStyles={linkStyles}
+        onLinkHandler={onLinkHandler}
+        path='sign-up'
+      />
     </div>
   )
 }

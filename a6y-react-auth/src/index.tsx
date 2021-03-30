@@ -23,6 +23,7 @@ interface IA6YReactAuth {
   components?: {
     signUp?: {
       title?: string
+      confirmation?: boolean
     }
     signIn?: {
       title?: string

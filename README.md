@@ -28,6 +28,7 @@ A6YAuth.initialize({
     type: 'cognito',
     userPoolId: 'us-east-1_xyz',
     userPoolWebClientId: 'xyz',
+    identityPoolId: 'xyz',
     region: 'us-east-1',
   },
 })
@@ -49,16 +50,25 @@ A6YReactAuth default export is a function with initializing. Other exported comp
 Component | Description
 --- | ---
 Auth | Renders all components forms to one. The default view is set from config.
-SignIn | Renders only sign-in container with component form.
-SignUp | Renders only sign-up container with component form.
-ForgotPassword | Renders only forgot-password container with component form.
+SignInContainer | Renders only sign-in container with component form.
+SignUpContainer | Renders only sign-up container with component form.
+ForgotPasswordContainer | Renders only forgot-password container with component form.
+SignIn | Renders only sign-in component form.
+SignUp | Renders only sign-up component form.
+ForgotPassword | Renders only forgot-password component form.
 
 ##### `Auth`
 
 param | type | description
 --- | --- | ---
 className[optional] | string | the CSS classes
-onSuccess[optional]] | (response: unknown) => void | onSuccess callback function
+onSuccess[optional] | (response: unknown) => void | onSuccess callback function
+inputStyles[optional] | string | input CSS classes
+buttonStyles[optional] | string | btn CSS classes
+labelStyles[optional] | string | label CSS classes
+linkStyles[optional] | string | link CSS classes
+formStyles[optional] | string | form CSS classes
+formGroupStyles[optional] | string | form group CSS classes
 
 
 **example**
@@ -69,13 +79,19 @@ onSuccess[optional]] | (response: unknown) => void | onSuccess callback function
   />
 ```
 
-##### `SignIn`
+##### `SignInContainer`
 
 param | type | description
 --- | --- | ---
 className[optional] | string | the CSS classes
 onSuccess[optional]] | (response: unknown) => void | onSuccess callback function
 onLinkHandler[optional] | it's a link callback function to redirect the app. If not declared it's using by pathname `sign-in`
+inputStyles[optional] | string | input CSS classes
+buttonStyles[optional] | string | btn CSS classes
+labelStyles[optional] | string | label CSS classes
+linkStyles[optional] | string | link CSS classes
+formStyles[optional] | string | form CSS classes
+formGroupStyles[optional] | string | form group CSS classes
 
 
 **example**
@@ -87,13 +103,19 @@ onLinkHandler[optional] | it's a link callback function to redirect the app. If 
   />
 ```
 
-##### `SignUp`
+##### `SignUpContainer`
 
 param | type | description
 --- | --- | ---
 className[optional] | string | the CSS classes
 onSuccess[optional]] | (response: unknown) => void | onSuccess callback function
 onLinkHandler[optional] | it's a link callback function to redirect the app. If not declared it's using by pathname `sign-up`
+inputStyles[optional] | string | input CSS classes
+buttonStyles[optional] | string | btn CSS classes
+labelStyles[optional] | string | label CSS classes
+linkStyles[optional] | string | link CSS classes
+formStyles[optional] | string | form CSS classes
+formGroupStyles[optional] | string | form group CSS classes
 
 
 **example**
@@ -106,13 +128,19 @@ onLinkHandler[optional] | it's a link callback function to redirect the app. If 
   />
 ```
 
-##### `ForgotPassword`
+##### `ForgotPasswordContainer`
 **props**
 param | type | description
 --- | --- | ---
 className[optional] | string | the CSS classes
 onSuccess[optional]] | (response: unknown) => void | onSuccess callback function
 onLinkHandler[optional] | (to: string) => void | it's a link callback function to redirect the app. If not declared it's using by pathname `forgot-password`
+inputStyles[optional] | string | input CSS classes
+buttonStyles[optional] | string | btn CSS classes
+labelStyles[optional] | string | label CSS classes
+linkStyles[optional] | string | link CSS classes
+formStyles[optional] | string | form CSS classes
+formGroupStyles[optional] | string | form group CSS classes
 
 
 **example**
@@ -133,8 +161,13 @@ Here is the full configurable options from initialize:
     type: string
     userPoolId: string
     userPoolWebClientId: string
+    identityPoolId: string
     region: string
   }
+  auth?: [{
+    appId: string
+    provider: string
+  }],
   components?: {
     signUp?: {
       title?: string
@@ -145,13 +178,14 @@ Here is the full configurable options from initialize:
     forgotPassword?: {
       title?: string
     }
-    consents?: [
-      {
-        type?: string
-        required?: boolean
-        content: string
-      },
-    ]
+    forgotPasswordSubmit?: {
+      title?: string
+    }
+    consents?: {
+      type?: string
+      required?: boolean
+      content: string
+    }
   }
 ```
 
@@ -161,11 +195,16 @@ param | type | description
 type|string|Type of authorization service. Default is 'cognito'.
 userPoolId|string|UserPoolId from aws cognito
 userPoolWebClientId|string|UserPoolWebClientId from aws cognito
+identityPoolId|string| identity pool id from aws cognito
 region|string|region settings from aws cognito
 
+**auth**
+param | type | description
+--- | --- | ---
+[provider]|string|It determines type of social auth provider. Available `facebook` or `google`
+[appId]|string|The app id or client id required by provider.
 
-**components**
-`consents`
+**consents**
 param | type | description
 --- | --- | ---
 [type]|string|It determines type of consents. Available `checkbox` or `other`
@@ -184,6 +223,7 @@ content|string|Here is the label message with consent. Message can be used with 
       type: 'cognito',
       userPoolId: 'us-east-1_xyz',
       userPoolWebClientId: 'xyz',
+      identityPoolId: 'xyz',
       region: 'us-east-1',
     },
     components: {
@@ -201,6 +241,10 @@ content|string|Here is the label message with consent. Message can be used with 
           required: false,
           content: 'example2 (example2-link-title)[example2-url]'
         },
+      ],
+      auth: [
+        { appId: 'xyz', provider: 'facebook' },
+        { appId: 'xyz', provider: 'google' }
       ]
     }
   })

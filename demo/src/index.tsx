@@ -10,16 +10,15 @@ const ReactAuth = new A6YReactAuth()
 ReactAuth.initialize({
   provider: {
     type: 'cognito',
-    userPoolId: 'us-east-1_xyz',
+    userPoolId: 'x-xx-1_xyz',
     userPoolWebClientId: 'xyz',
-    region: 'us-east-1',
+    identityPoolId: 'x-xx-1:xyz',
+    region: 'x-xx-1',
   },
-  components: {
-    signUp: {
-      privacy: true,
-      terms: true,
-    }
-  }
+  auth: [
+    { appId: 'xyz', provider: 'facebook' },
+    { appId: 'xyz', provider: 'google' }
+  ]
 })
 
 ReactDOM.render(

@@ -5,7 +5,7 @@ import { Auth } from 'a6y-react-auth'
 const LoginRoute = () => {
   return (
     <MainLayout backNav={true}>
-      <Auth />
+      <Auth onSuccess={response => console.log('resp', response)} />
     </MainLayout>
   )
 }

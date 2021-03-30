@@ -47,11 +47,12 @@ const SocialLogin = ({ callback }: ISocialLogin): JSX.Element => {
   }
   const renderLoginProviders = (config: any[]): JSX.Element[] => {
     const render: JSX.Element[] = []
-    config.map(el => {
+    config.map((el, idx) => {
       switch (el.provider) {
         case 'facebook':
           return render.push(
             <FacebookLogin
+              key={idx}
               appId={el.appId}
               callback={callbackFromSocialProviders}
             />,
@@ -59,6 +60,7 @@ const SocialLogin = ({ callback }: ISocialLogin): JSX.Element => {
         case 'google':
           return render.push(
             <GoogleLogin
+              key={idx}
               appId={el.appId}
               callback={callbackFromSocialProviders}
             />,

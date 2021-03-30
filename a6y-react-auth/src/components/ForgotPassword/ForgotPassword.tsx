@@ -9,7 +9,13 @@ import '../../index.css'
  * @props {string} [className] - the CSS classes
  * @props {(email: string) => void} [onClick] - onClick handler launching after submit form
  * @props {string} [apiError] - api error messages
- * @props  {(to: string) => void} [onLinkHandler] - links onClick handler
+ * @props {(to: string) => void} [onLinkHandler] - links onClick handler
+ * @props {string} [inputStyles] - input CSS classes for input
+ * @props {string} [buttonStyles] - btn CSS classes for button
+ * @props {string} [labelStyles] - label CSS classes for label
+ * @props {string} [linkStyles] - the CSS classes for link
+ * @props {string} [formStyles] - form CSS classes
+ * @props {string} [formGroupStyles] - form group CSS classes
  */
 
 export interface IForgotPasswordProps {
@@ -17,6 +23,12 @@ export interface IForgotPasswordProps {
   onClick?: (email: string) => void
   apiError?: string
   onLinkHandler?: (to: string) => void
+  inputStyles?: string
+  buttonStyles?: string
+  labelStyles?: string
+  linkStyles?: string
+  formStyles?: string
+  formGroupStyles?: string
 }
 
 /**
@@ -26,6 +38,12 @@ export interface IForgotPasswordProps {
  * @param  {(email: string) => void} [onClick] - onClick handler launching after submit form
  * @param  {string} [apiError] - api error messages
  * @param  {(to: string) => void} [onLinkHandler] - links onClick handler
+ * @param  {string} [inputStyles] - input CSS classes for input
+ * @param  {string} [buttonStyles] - btn CSS classes for button
+ * @param  {string} [labelStyles] - the CSS classes for label
+ * @param  {string} [linkStyles] - the CSS classes for link
+ * @param  {string} [formStyles] - form CSS classes
+ * @param  {string} [formGroupStyles] - form group CSS classes
  *
  * @example
  * <ForgotPassword
@@ -39,6 +57,12 @@ const ForgotPassword = ({
   onClick,
   apiError,
   onLinkHandler,
+  inputStyles = '',
+  buttonStyles = '',
+  labelStyles = '',
+  linkStyles = '',
+  formStyles = '',
+  formGroupStyles = '',
 }: IForgotPasswordProps): JSX.Element => {
   const [forgotPasswordData, setForgotPasswordData] = useState({
     email: '',
@@ -84,8 +108,21 @@ const ForgotPassword = ({
       <ErrorBoundary showError={apiError ? true : false}>
         {apiError}
       </ErrorBoundary>
-      <form className={`${className}__form`} onSubmit={e => onSubmit(e)}>
-        <div className={`${className}-group ${FormClass}`}>
+      <form
+        className={
+          formStyles && formStyles.length > 0
+            ? formStyles
+            : `${className}__form`
+        }
+        onSubmit={e => onSubmit(e)}
+      >
+        <div
+          className={
+            formGroupStyles && formGroupStyles.length > 0
+              ? `${formGroupStyles} `
+              : `${className}-group ${FormClass}`
+          }
+        >
           <Input
             id='email'
             placeholder='Email'
@@ -93,13 +130,15 @@ const ForgotPassword = ({
             label=''
             onChange={e => onInputChange(e, 'email')}
             value={forgotPasswordData.email}
+            inputStyles={inputStyles}
+            labelStyles={labelStyles}
           />
         </div>
-        <Button role='submit' style='primary'>
+        <Button className={buttonStyles} role='submit' style='primary'>
           Reset password
         </Button>
       </form>
-      <FormLinks onLinkHandler={onLinkHandler} />
+      <FormLinks linkStyles={linkStyles} onLinkHandler={onLinkHandler} />
     </div>
   )
 }

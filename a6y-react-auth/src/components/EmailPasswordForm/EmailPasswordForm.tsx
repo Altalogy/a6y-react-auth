@@ -21,6 +21,11 @@ export interface ISignInData {
  * @props {(email: string, password: string) => void} [onClick] - onClick handler launching after submit form
  * @props {string} [submitLabel] - submit button text
  * @props {boolean} [signUp] - sign up form build
+ * @props {string} [inputStyles] - input CSS classes
+ * @props {string} [buttonStyles] - btn CSS classes
+ * @props {string} [labelStyles] - label CSS classes
+ * @props {string} [formStyles] - form CSS classes
+ * @props {string} [formGroupStyles] - form group CSS classes
  */
 
 export interface IEmailPasswordFormProps {
@@ -28,6 +33,11 @@ export interface IEmailPasswordFormProps {
   onClick?: (email: string, password: string) => void
   submitLabel?: string
   signUp?: boolean
+  buttonStyles?: string
+  inputStyles?: string
+  labelStyles?: string
+  formStyles?: string
+  formGroupStyles?: string
 }
 
 /**
@@ -36,12 +46,19 @@ export interface IEmailPasswordFormProps {
  * @param  {string} [className] - the CSS classes
  * @param  {(email: string, password: string) => void} [onClick] - onClick handler launching after submit form
  * @param  {string} [submitLabel] - submit button text
+ * @param  {string} [inputStyles] - input CSS classes
+ * @param  {string} [buttonStyles] - btn CSS classes
+ * @param  {string} [labelStyles] - label CSS classes
+ * @param  {string} [formStyles] - form CSS classes
+ * @param  {string} [formGroupStyles] - form group CSS classes
  *
  * @example
  * <EmailPasswordForm
  *  className='a6y-react-auth-form'
  *  onClick={onClick}
  *  submitLabel='Submit'
+ *  inputStyles='',
+ *  buttonStyles='',
  * />
  */
 
@@ -50,6 +67,11 @@ function EmailPasswordForm({
   onClick,
   submitLabel = 'Submit',
   signUp = false,
+  inputStyles = '',
+  buttonStyles = '',
+  labelStyles = '',
+  formStyles = '',
+  formGroupStyles = '',
 }: IEmailPasswordFormProps): JSX.Element {
   const [signUpData, setSignUpData] = useState({
     email: '',
@@ -114,8 +136,19 @@ function EmailPasswordForm({
   }
 
   return (
-    <form className={`${className}`} onSubmit={e => onSubmit(e)}>
-      <div className={`${className}-group ${FormClassEmail}`}>
+    <form
+      className={
+        formStyles && formStyles.length > 0 ? formStyles : `${className}`
+      }
+      onSubmit={e => onSubmit(e)}
+    >
+      <div
+        className={
+          formGroupStyles && formGroupStyles.length > 0
+            ? `${formGroupStyles} `
+            : `${className}-group ${FormClassEmail}`
+        }
+      >
         <Input
           id='email'
           placeholder='Email'
@@ -123,9 +156,17 @@ function EmailPasswordForm({
           label=''
           onChange={e => onInputChange(e, 'email')}
           value={signUpData.email}
+          inputStyles={inputStyles}
+          labelStyles={labelStyles}
         />
       </div>
-      <div className={`${className}-group ${FormClassPassword}`}>
+      <div
+        className={
+          formGroupStyles && formGroupStyles.length > 0
+            ? `${formGroupStyles} ${FormClassPassword}`
+            : `${className}-group ${FormClassPassword}`
+        }
+      >
         <Input
           id='password'
           typeInput='password'
@@ -133,21 +174,31 @@ function EmailPasswordForm({
           label=''
           onChange={e => onInputChange(e, 'password')}
           value={signUpData.password}
+          inputStyles={inputStyles}
+          labelStyles={labelStyles}
         />
       </div>
       {signUp && (
-        <div className={`${className}-group ${FormClassRepeatPassword}`}>
+        <div
+          className={
+            formGroupStyles && formGroupStyles.length > 0
+              ? `${formGroupStyles} `
+              : `${className}-group ${FormClassRepeatPassword}`
+          }
+        >
           <Input
             id='confirm-password'
             typeInput='password'
             placeholder='Confirm password'
+            inputStyles={inputStyles}
+            labelStyles={labelStyles}
             label=''
             onChange={e => onInputChange(e, 'confirmPassword')}
             value={signUpData.confirmPassword}
           />
         </div>
       )}
-      <Button role='submit' style='primary'>
+      <Button className={buttonStyles} role='submit' style='primary'>
         {submitLabel}
       </Button>
     </form>

@@ -6,13 +6,15 @@ import './FormLinks.css'
  * @typedef IFormLinksProps
  * @props {string} [className] - the CSS classes
  * @props {string} [path] - the name of route path
- * @props  {(to: string) => void} [onLinkHandler] - links onClick handler
+ * @props {(to: string) => void} [onLinkHandler] - links onClick handler
+ * @props {string} [linkStyles] - link CSS classes
  */
 
 export interface IFormLinksProps {
   className?: string
   path?: string
   onLinkHandler?: (to: string) => void
+  linkStyles?: string
 }
 
 /**
@@ -21,6 +23,7 @@ export interface IFormLinksProps {
  * @param  {string} [className] - the CSS classes
  * @param {string} [path] - the name of route path
  * @param  {(to: string) => void} [onLinkHandler] - links onClick handler
+ * @param  {string} [linkStyles] - link CSS classes
  *
  * @example
  * <FormLinks onLinkHandler={() => void} path='sign-in' className='a6y-react-auth-form' />
@@ -30,14 +33,11 @@ const FormLinks = ({
   className = 'a6y-react-auth__form',
   path,
   onLinkHandler,
+  linkStyles = '',
 }: IFormLinksProps): JSX.Element => {
   function renderLinks(): JSX.Element {
     const ForgotPassword = (
-      <Link
-        onClick={onLinkHandler}
-        className={className + '__link'}
-        to='forgot-password'
-      >
+      <Link onClick={onLinkHandler} className={linkStyles} to='forgot-password'>
         Forgot Password
       </Link>
     )
@@ -46,11 +46,7 @@ const FormLinks = ({
         return (
           <>
             {ForgotPassword}
-            <Link
-              onClick={onLinkHandler}
-              className={className + '__link'}
-              to='sign-up'
-            >
+            <Link onClick={onLinkHandler} className={linkStyles} to='sign-up'>
               Sign Up
             </Link>
           </>
@@ -59,11 +55,7 @@ const FormLinks = ({
         return (
           <>
             {ForgotPassword}
-            <Link
-              onClick={onLinkHandler}
-              className={className + '__link'}
-              to='sign-in'
-            >
+            <Link onClick={onLinkHandler} className={linkStyles} to='sign-in'>
               Sign In
             </Link>
           </>
@@ -71,18 +63,10 @@ const FormLinks = ({
       default:
         return (
           <>
-            <Link
-              onClick={onLinkHandler}
-              className={className + '__link'}
-              to='sign-in'
-            >
+            <Link onClick={onLinkHandler} className={linkStyles} to='sign-in'>
               Sign In
             </Link>
-            <Link
-              onClick={onLinkHandler}
-              className={className + '__link'}
-              to='sign-up'
-            >
+            <Link onClick={onLinkHandler} className={linkStyles} to='sign-up'>
               Sign Up
             </Link>
           </>
