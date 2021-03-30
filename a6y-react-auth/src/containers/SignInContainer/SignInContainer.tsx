@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from 'react'
 import SignIn from '../../components/SignIn'
 import AuthService from '../../services/AuthService'
@@ -40,9 +41,22 @@ const SignInContainer = ({
       // eslint-disable-next-line
       const response: any = await AuthService.signIn(email, password)
       if (response && response.code) {
-        setApiError(response.message)
-      } else if (response) {
-        if (onSuccess) onSuccess(response)
+        return setApiError(response.message)
+      } else {
+        if (onSuccess) return onSuccess('SUCCESS')
+      }
+    } catch (error) {
+      return setApiError(error.message)
+    }
+  }
+  async function socialSignIn(data: any) {
+    try {
+      // eslint-disable-next-line
+      const response: any = await AuthService.socialSignIn(data)
+      if (response && response.code) {
+        return setApiError(response.message)
+      } else {
+        if (onSuccess) return onSuccess('SUCCESS')
       }
     } catch (error) {
       return setApiError(error.message)
@@ -53,6 +67,7 @@ const SignInContainer = ({
       <SignIn
         onLinkHandler={onLinkHandler}
         onClick={signIn}
+        onSocialClick={socialSignIn}
         apiError={apiError}
       />
     </div>

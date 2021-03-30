@@ -8,6 +8,7 @@ import SignIn from './components/SignIn'
 import SignUp from './components/SignUp'
 import ForgotPassword from './components/ForgotPassword'
 import AuthService from './services/AuthService'
+import { IProviderConfig } from './components/SocialLogin/SocialLogin'
 import { IConsent } from './components/Consents/Consents'
 
 interface IA6YReactAuth {
@@ -15,8 +16,10 @@ interface IA6YReactAuth {
     type: string
     userPoolId: string
     userPoolWebClientId: string
+    identityPoolId: string
     region: string
   }
+  auth?: IProviderConfig[]
   components?: {
     signUp?: {
       title?: string
@@ -27,11 +30,18 @@ interface IA6YReactAuth {
     forgotPassword?: {
       title?: string
     }
-    consents?: [key: IConsent]
+    forgotPasswordSubmit?: {
+      title?: string
+    }
+    consents?: IConsent[]
   }
 }
 
 declare global {
+  interface Window {
+    FB: any
+    gapi: any
+  }
   // eslint-disable-next-line no-var
   var A6YReactAuthConfig: IA6YReactAuth
 }
@@ -84,6 +94,10 @@ export const ForgotPasswordContainer = ({
     onSuccess={onSuccess ? onSuccess : undefined}
   />
 )
+
+export const SignOut = async (): Promise<unknown> => {
+  return await AuthService.signOut()
+}
 
 export { SignIn, SignUp, ForgotPassword }
 
