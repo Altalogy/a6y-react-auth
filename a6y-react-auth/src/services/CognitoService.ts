@@ -37,10 +37,11 @@ class CognitoService {
         data.provider,
         { token: data.token, expires_at: data.expiresAt },
         data.user.email,
-      ).then(() => {
+      ).then(credentials => {
         localStorage.setItem('a6y_provider', data.provider)
         localStorage.setItem('a6y_token', data.token)
         localStorage.setItem('a6y_token_exp', data.expiresAt)
+        return credentials
       })
       return response
     } catch (error) {
