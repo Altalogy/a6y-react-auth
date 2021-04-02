@@ -40,6 +40,7 @@ export interface ISignInProps {
   consentTextStyle?: string
   consentSpanStyle?: string
   consentsStyle?: string
+  formLinkStyle?: string
 }
 
 /**
@@ -83,6 +84,7 @@ const SignIn = ({
   consentTextStyle = '',
   consentSpanStyle = '',
   consentsStyle = '',
+  formLinkStyle,
 }: ISignInProps): JSX.Element => {
   return (
     <div className={className}>
@@ -114,13 +116,35 @@ const SignIn = ({
         consentsStyle={consentsStyle}
       />
       {globalThis.A6YReactAuthConfig &&
-      globalThis.A6YReactAuthConfig.components?.signIn?.linksComponent ? (
+      globalThis.A6YReactAuthConfig.components?.signIn?.linksComponent
+        ?.customLinksComponent ? (
         globalThis.A6YReactAuthConfig.components?.signIn?.linksComponent
+          .customLinksComponent
       ) : (
         <FormLinks
+          className={formLinkStyle}
           linkStyles={linkStyles}
           onLinkHandler={onLinkHandler}
           path='sign-in'
+          beforeLinkText1={
+            globalThis.A6YReactAuthConfig.components?.signIn?.linksComponent
+              ?.linkText01 &&
+            globalThis.A6YReactAuthConfig.components?.signIn?.linksComponent
+              ?.linkText01
+          }
+          beforeLinkText2={
+            globalThis.A6YReactAuthConfig.components?.signIn?.linksComponent
+              ?.linkText02 &&
+            globalThis.A6YReactAuthConfig.components?.signIn?.linksComponent
+              ?.linkText02
+          }
+          displayLinks={
+            globalThis.A6YReactAuthConfig.components?.signIn?.linksComponent
+              ?.display
+              ? globalThis.A6YReactAuthConfig.components?.signIn?.linksComponent
+                  ?.display
+              : 'both'
+          }
         />
       )}
     </div>

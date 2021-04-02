@@ -181,7 +181,7 @@ function EmailPasswordForm({
             id='email'
             placeholder='Email'
             typeInput='email'
-            label=''
+            label='email'
             onChange={e => onInputChange(e, 'email')}
             value={signUpData.email}
             inputStyles={inputStyles}
@@ -199,33 +199,34 @@ function EmailPasswordForm({
             id='password'
             typeInput='password'
             placeholder='Password'
-            label=''
+            label='password'
             onChange={e => onInputChange(e, 'password')}
             value={signUpData.password}
             inputStyles={inputStyles}
             labelStyles={labelStyles}
           />
         </div>
-        {signUp && (
-          <div
-            className={
-              formGroupStyles && formGroupStyles.length > 0
-                ? `${formGroupStyles} `
-                : `${className}-group ${FormClassRepeatPassword}`
-            }
-          >
-            <Input
-              id='confirm-password'
-              typeInput='password'
-              placeholder='Confirm password'
-              inputStyles={inputStyles}
-              labelStyles={labelStyles}
-              label=''
-              onChange={e => onInputChange(e, 'confirmPassword')}
-              value={signUpData.confirmPassword}
-            />
-          </div>
-        )}
+        {signUp &&
+          globalThis.A6YReactAuthConfig.components?.signUp?.confirmation && (
+            <div
+              className={
+                formGroupStyles && formGroupStyles.length > 0
+                  ? `${formGroupStyles} `
+                  : `${className}-group ${FormClassRepeatPassword}`
+              }
+            >
+              <Input
+                id='confirm-password'
+                typeInput='password'
+                placeholder='Confirm password'
+                inputStyles={inputStyles}
+                labelStyles={labelStyles}
+                label='confirm password'
+                onChange={e => onInputChange(e, 'confirmPassword')}
+                value={signUpData.confirmPassword}
+              />
+            </div>
+          )}
         {globalThis.A6YReactAuthConfig &&
           (globalThis.A6YReactAuthConfig.components?.consents?.display ===
             'both' ||

@@ -32,6 +32,7 @@ export interface IAuthProps {
   consentsStyle?: string
   formGroupStyles?: string
   defaultFormState?: string
+  formLinkStyle?: string
 }
 
 /**
@@ -68,6 +69,7 @@ const AuthComponent = ({
   consentTextStyle = '',
   consentSpanStyle = '',
   consentsStyle = '',
+  formLinkStyle = '',
   defaultFormState = 'sign-in',
 }: IAuthProps): JSX.Element => {
   const classNames = require('classnames')
@@ -95,6 +97,7 @@ const AuthComponent = ({
             consentTextStyle={consentTextStyle}
             consentSpanStyle={consentSpanStyle}
             consentsStyle={consentsStyle}
+            formLinkStyle={formLinkStyle}
           />
         )
       case 'forgot-password':
@@ -108,6 +111,7 @@ const AuthComponent = ({
             linkStyles={linkStyles}
             formStyles={formStyles}
             formGroupStyles={formGroupStyles}
+            formLinkStyle={formLinkStyle}
           />
         )
       default:
@@ -127,6 +131,7 @@ const AuthComponent = ({
             consentTextStyle={consentTextStyle}
             consentSpanStyle={consentSpanStyle}
             consentsStyle={consentsStyle}
+            formLinkStyle={formLinkStyle}
           />
         )
     }

@@ -29,6 +29,7 @@ export interface IForgotPasswordProps {
   linkStyles?: string
   formStyles?: string
   formGroupStyles?: string
+  formLinkStyle?: string
 }
 
 /**
@@ -63,6 +64,7 @@ const ForgotPassword = ({
   linkStyles = '',
   formStyles = '',
   formGroupStyles = '',
+  formLinkStyle,
 }: IForgotPasswordProps): JSX.Element => {
   const [forgotPasswordData, setForgotPasswordData] = useState({
     email: '',
@@ -131,7 +133,7 @@ const ForgotPassword = ({
             id='email'
             placeholder='Email'
             typeInput='email'
-            label=''
+            label='email'
             onChange={e => onInputChange(e, 'email')}
             value={forgotPasswordData.email}
             inputStyles={inputStyles}
@@ -143,11 +145,35 @@ const ForgotPassword = ({
         </Button>
       </form>
       {globalThis.A6YReactAuthConfig &&
-      globalThis.A6YReactAuthConfig.components?.forgotPassword
-        ?.linksComponent ? (
+      globalThis.A6YReactAuthConfig.components?.forgotPassword?.linksComponent
+        ?.customLinksComponent ? (
         globalThis.A6YReactAuthConfig.components?.forgotPassword?.linksComponent
+          .customLinksComponent
       ) : (
-        <FormLinks linkStyles={linkStyles} onLinkHandler={onLinkHandler} />
+        <FormLinks
+          className={formLinkStyle}
+          linkStyles={linkStyles}
+          onLinkHandler={onLinkHandler}
+          beforeLinkText1={
+            globalThis.A6YReactAuthConfig.components?.forgotPassword
+              ?.linksComponent?.linkText01 &&
+            globalThis.A6YReactAuthConfig.components?.forgotPassword
+              ?.linksComponent?.linkText01
+          }
+          beforeLinkText2={
+            globalThis.A6YReactAuthConfig.components?.forgotPassword
+              ?.linksComponent?.linkText02 &&
+            globalThis.A6YReactAuthConfig.components?.forgotPassword
+              ?.linksComponent?.linkText02
+          }
+          displayLinks={
+            globalThis.A6YReactAuthConfig.components?.forgotPassword
+              ?.linksComponent?.display
+              ? globalThis.A6YReactAuthConfig.components?.forgotPassword
+                  ?.linksComponent?.display
+              : 'both'
+          }
+        />
       )}
     </div>
   )

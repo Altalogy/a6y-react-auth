@@ -27,6 +27,7 @@ export interface IForgotPasswordContainerProps {
   linkStyles?: string
   formStyles?: string
   formGroupStyles?: string
+  formLinkStyle?: string
 }
 
 /**
@@ -59,6 +60,7 @@ const ForgotPasswordContainer = ({
   linkStyles = '',
   formStyles = '',
   formGroupStyles = '',
+  formLinkStyle,
 }: IForgotPasswordContainerProps): JSX.Element => {
   const [user, setUser] = useState('')
   const [step, setStep] = useState(1)
@@ -106,6 +108,7 @@ const ForgotPasswordContainer = ({
           linkStyles={linkStyles}
           formStyles={formStyles}
           formGroupStyles={formGroupStyles}
+          formLinkStyle={formLinkStyle}
         />
       ) : (
         <ForgotPasswordSubmit

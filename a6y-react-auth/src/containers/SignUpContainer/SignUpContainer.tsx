@@ -34,6 +34,7 @@ export interface ISignUpContainerProps {
   consentTextStyle?: string
   consentSpanStyle?: string
   consentsStyle?: string
+  formLinkStyle?: string
 }
 
 /**
@@ -73,6 +74,7 @@ const SignUpContainer = ({
   consentTextStyle = '',
   consentSpanStyle = '',
   consentsStyle = '',
+  formLinkStyle,
 }: ISignUpContainerProps): JSX.Element => {
   const [apiError, setApiError] = useState(undefined)
   const [confirmation, setConfirmation] = useState(false)
@@ -149,6 +151,7 @@ const SignUpContainer = ({
           consentTextStyle={consentTextStyle}
           consentSpanStyle={consentSpanStyle}
           consentsStyle={consentsStyle}
+          formLinkStyle={formLinkStyle}
         />
       )}
     </div>

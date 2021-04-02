@@ -92,6 +92,7 @@ const Consents = ({
       <>
         {arrayOfContent.map(el => {
           if (linkRgx.test(el)) {
+            el.replace('-', ' ')
             const match = el.match(matchRgx)
             return (
               <a className={consentsHrefStyle} href={match ? match[2] : ''}>

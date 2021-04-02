@@ -40,6 +40,7 @@ export interface ISignUpProps {
   consentTextStyle?: string
   consentSpanStyle?: string
   consentsStyle?: string
+  formLinkStyle?: string
 }
 
 /**
@@ -83,6 +84,7 @@ const SignUp = ({
   consentTextStyle = '',
   consentSpanStyle = '',
   consentsStyle = '',
+  formLinkStyle,
 }: ISignUpProps): JSX.Element => {
   const onSubmit = (email: string, password: string) => {
     if (onClick) onClick(email, password)
@@ -94,7 +96,6 @@ const SignUp = ({
           <h1>{globalThis.A6YReactAuthConfig.components?.signUp?.title}</h1>
         )}
       {globalThis.A6YReactAuthConfig &&
-        globalThis.A6YReactAuthConfig.components?.signUp?.title &&
         globalThis.A6YReactAuthConfig.components?.signUp?.headerComponent}
       <ErrorBoundary showError={apiError ? true : false}>
         {apiError}
@@ -118,13 +119,35 @@ const SignUp = ({
         consentsStyle={consentsStyle}
       />
       {globalThis.A6YReactAuthConfig &&
-      globalThis.A6YReactAuthConfig.components?.signUp?.linksComponent ? (
+      globalThis.A6YReactAuthConfig.components?.signUp?.linksComponent
+        ?.customLinksComponent ? (
         globalThis.A6YReactAuthConfig.components?.signUp?.linksComponent
+          .customLinksComponent
       ) : (
         <FormLinks
+          className={formLinkStyle}
           linkStyles={linkStyles}
           onLinkHandler={onLinkHandler}
           path='sign-up'
+          beforeLinkText1={
+            globalThis.A6YReactAuthConfig.components?.signUp?.linksComponent
+              ?.linkText01 &&
+            globalThis.A6YReactAuthConfig.components?.signUp?.linksComponent
+              ?.linkText01
+          }
+          beforeLinkText2={
+            globalThis.A6YReactAuthConfig.components?.signUp?.linksComponent
+              ?.linkText02 &&
+            globalThis.A6YReactAuthConfig.components?.signUp?.linksComponent
+              ?.linkText02
+          }
+          displayLinks={
+            globalThis.A6YReactAuthConfig.components?.signUp?.linksComponent
+              ?.display
+              ? globalThis.A6YReactAuthConfig.components?.signUp?.linksComponent
+                  ?.display
+              : 'both'
+          }
         />
       )}
     </div>

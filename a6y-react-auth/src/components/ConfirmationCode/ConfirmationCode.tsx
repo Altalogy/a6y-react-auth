@@ -81,7 +81,7 @@ const ConfirmationCode = ({
             id='confirm-code'
             typeInput='text'
             placeholder='Confirm code'
-            label=''
+            label='confirm code'
             onChange={e => onInputChange(e)}
             value={code}
           />

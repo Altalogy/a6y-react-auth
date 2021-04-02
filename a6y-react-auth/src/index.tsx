@@ -24,10 +24,18 @@ interface IA6YReactAuth {
   }
   auth?: IProviderConfig[]
   components?: {
+    Inputs?: {
+      labels?: boolean
+    }
     signUp?: {
       title?: string
       headerComponent?: React.ReactNode
-      linksComponent?: React.ReactNode
+      linksComponent?: {
+        display?: 'forgot-password' | 'sign-in' | 'both'
+        linkText01?: string
+        linkText02?: string
+        customLinksComponent?: React.ReactNode
+      }
       confirmation?: boolean
       consents?: boolean
       consentsPosition?: 'top' | 'bottom'
@@ -35,12 +43,22 @@ interface IA6YReactAuth {
     signIn?: {
       title?: string
       headerComponent?: React.ReactNode
-      linksComponent?: React.ReactNode
+      linksComponent?: {
+        display?: 'forgot-password' | 'sign-up' | 'both'
+        linkText01?: string
+        linkText02?: string
+        customLinksComponent?: React.ReactNode
+      }
     }
     forgotPassword?: {
       title?: string
       headerComponent?: React.ReactNode
-      linksComponent?: React.ReactNode
+      linksComponent?: {
+        display?: 'sign-up' | 'sign-in' | 'both'
+        linkText01?: string
+        linkText02?: string
+        customLinksComponent?: React.ReactNode
+      }
     }
     forgotPasswordSubmit?: {
       title?: string
