@@ -93,7 +93,6 @@ const SignIn = ({
           <h1>{globalThis.A6YReactAuthConfig.components?.signIn?.title}</h1>
         )}
       {globalThis.A6YReactAuthConfig &&
-        globalThis.A6YReactAuthConfig.components?.signIn?.title &&
         globalThis.A6YReactAuthConfig.components?.signIn?.headerComponent}
       <ErrorBoundary showError={apiError ? true : false}>
         {apiError}

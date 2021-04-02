@@ -88,6 +88,7 @@ function EmailPasswordForm({
   consentTextStyle = '',
   consentSpanStyle = '',
   consentsStyle = '',
+  consentsLabelStyle = '',
 }: IEmailPasswordFormProps): JSX.Element {
   const [conditions, setConditions] = useState(false)
   const [conditionsError, setConditionsError] = useState(false)
@@ -240,6 +241,7 @@ function EmailPasswordForm({
               consentInputStyle={consentInputStyle}
               consentTextStyle={consentTextStyle}
               consentSpanStyle={consentSpanStyle}
+              consentsLabelStyle={consentsLabelStyle}
               className={consentsStyle}
               isValid={(value: boolean) => setConditions(value)}
             />
