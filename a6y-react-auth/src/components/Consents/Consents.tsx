@@ -64,7 +64,8 @@ const Consents = ({
     const consentsData =
       globalThis.A6YReactAuthConfig &&
       globalThis.A6YReactAuthConfig.components &&
-      globalThis.A6YReactAuthConfig.components.consents
+      globalThis.A6YReactAuthConfig.components.consents &&
+      globalThis.A6YReactAuthConfig.components.consents.consents
     if (Array.isArray(consentsData)) {
       setConsents(consentsData)
     }
