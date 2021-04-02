@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from 'react'
+import React from 'react'
 import EmailPasswordForm from '../EmailPasswordForm'
 import FormLinks from '../FormLinks'
 import { ErrorBoundary } from '../UI'
 import '../../index.css'
 import SocialLogin from '../SocialLogin'
-import Consents from '../Consents'
 
 /**
  * @typedef ISignUpProps
@@ -34,6 +33,13 @@ export interface ISignUpProps {
   linkStyles?: string
   formGroupStyles?: string
   formStyles?: string
+  consentsLabelStyle?: string
+  consentsHrefStyle?: string
+  consentInputLabelStyle?: string
+  consentInputStyle?: string
+  consentTextStyle?: string
+  consentSpanStyle?: string
+  consentsStyle?: string
 }
 
 /**
@@ -71,28 +77,27 @@ const SignUp = ({
   linkStyles = '',
   formStyles = '',
   formGroupStyles = '',
+  consentsHrefStyle = '',
+  consentInputLabelStyle = '',
+  consentInputStyle = '',
+  consentTextStyle = '',
+  consentSpanStyle = '',
+  consentsStyle = '',
 }: ISignUpProps): JSX.Element => {
-  const [conditions, setConditions] = useState(false)
-  const [conditionsError, setConditionsError] = useState(false)
   const onSubmit = (email: string, password: string) => {
-    setConditionsError(!conditions)
-    if (onClick && conditions) {
-      onClick(email, password)
-    }
+    if (onClick) onClick(email, password)
   }
   return (
     <div className={className}>
-      <h1>
-        {globalThis.A6YReactAuthConfig &&
-        globalThis.A6YReactAuthConfig.components?.signUp?.title
-          ? globalThis.A6YReactAuthConfig.components?.signUp?.title
-          : 'Sign Up'}
-      </h1>
+      {globalThis.A6YReactAuthConfig &&
+        globalThis.A6YReactAuthConfig.components?.signUp?.title && (
+          <h1>{globalThis.A6YReactAuthConfig.components?.signUp?.title}</h1>
+        )}
+      {globalThis.A6YReactAuthConfig &&
+        globalThis.A6YReactAuthConfig.components?.signUp?.title &&
+        globalThis.A6YReactAuthConfig.components?.signUp?.headerComponent}
       <ErrorBoundary showError={apiError ? true : false}>
         {apiError}
-      </ErrorBoundary>
-      <ErrorBoundary showError={conditionsError ? true : false}>
-        All required consents must be accepted.
       </ErrorBoundary>
       {onSocialClick && <SocialLogin callback={onSocialClick} />}
       <EmailPasswordForm
@@ -104,13 +109,24 @@ const SignUp = ({
         signUp={true}
         submitLabel='sign up'
         onClick={onSubmit}
-      />
-      <Consents isValid={(value: boolean) => setConditions(value)} />
-      <FormLinks
-        linkStyles={linkStyles}
-        onLinkHandler={onLinkHandler}
         path='sign-up'
+        consentsHrefStyle={consentsHrefStyle}
+        consentInputLabelStyle={consentInputLabelStyle}
+        consentInputStyle={consentInputStyle}
+        consentTextStyle={consentTextStyle}
+        consentSpanStyle={consentSpanStyle}
+        consentsStyle={consentsStyle}
       />
+      {globalThis.A6YReactAuthConfig &&
+      globalThis.A6YReactAuthConfig.components?.signUp?.linksComponent ? (
+        globalThis.A6YReactAuthConfig.components?.signUp?.linksComponent
+      ) : (
+        <FormLinks
+          linkStyles={linkStyles}
+          onLinkHandler={onLinkHandler}
+          path='sign-up'
+        />
+      )}
     </div>
   )
 }

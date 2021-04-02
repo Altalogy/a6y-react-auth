@@ -99,12 +99,16 @@ const ForgotPassword = ({
   }
   return (
     <div className={className + '__forgot-password'}>
-      <h1>
-        {globalThis.A6YReactAuthConfig &&
-        globalThis.A6YReactAuthConfig.components?.forgotPassword?.title
-          ? globalThis.A6YReactAuthConfig.components?.forgotPassword?.title
-          : 'Forgot Password'}
-      </h1>
+      {globalThis.A6YReactAuthConfig &&
+        globalThis.A6YReactAuthConfig.components?.forgotPassword?.title && (
+          <h1>
+            {globalThis.A6YReactAuthConfig.components?.forgotPassword?.title}
+          </h1>
+        )}
+      {globalThis.A6YReactAuthConfig &&
+        globalThis.A6YReactAuthConfig.components?.forgotPassword?.title &&
+        globalThis.A6YReactAuthConfig.components?.forgotPassword
+          ?.headerComponent}
       <ErrorBoundary showError={apiError ? true : false}>
         {apiError}
       </ErrorBoundary>
@@ -138,7 +142,13 @@ const ForgotPassword = ({
           Reset password
         </Button>
       </form>
-      <FormLinks linkStyles={linkStyles} onLinkHandler={onLinkHandler} />
+      {globalThis.A6YReactAuthConfig &&
+      globalThis.A6YReactAuthConfig.components?.forgotPassword
+        ?.linksComponent ? (
+        globalThis.A6YReactAuthConfig.components?.forgotPassword?.linksComponent
+      ) : (
+        <FormLinks linkStyles={linkStyles} onLinkHandler={onLinkHandler} />
+      )}
     </div>
   )
 }

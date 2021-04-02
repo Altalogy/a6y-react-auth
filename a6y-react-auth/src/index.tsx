@@ -26,18 +26,31 @@ interface IA6YReactAuth {
   components?: {
     signUp?: {
       title?: string
+      headerComponent?: React.ReactNode
+      linksComponent?: React.ReactNode
       confirmation?: boolean
+      consents?: boolean
+      consentsPosition?: 'top' | 'bottom'
     }
     signIn?: {
       title?: string
+      headerComponent?: React.ReactNode
+      linksComponent?: React.ReactNode
     }
     forgotPassword?: {
       title?: string
+      headerComponent?: React.ReactNode
+      linksComponent?: React.ReactNode
     }
     forgotPasswordSubmit?: {
       title?: string
+      headerComponent?: React.ReactNode
     }
-    consents?: IConsent[]
+    consents?: {
+      display?: 'sign-up' | 'sign-in' | 'both'
+      position?: 'top' | 'bottom'
+      consents?: IConsent[]
+    }
   }
 }
 

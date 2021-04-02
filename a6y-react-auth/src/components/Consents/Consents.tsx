@@ -8,6 +8,13 @@ import Checkbox from '../UI/Checkbox/Checkbox'
 
 export interface IConsents {
   isValid?: (value: boolean) => void
+  className?: string
+  consentsLabelStyle?: string
+  consentsHrefStyle?: string
+  consentInputLabelStyle?: string
+  consentInputStyle?: string
+  consentTextStyle?: string
+  consentSpanStyle?: string
 }
 
 /**
@@ -40,7 +47,16 @@ interface IValues {
  * <Consents />
  */
 
-const Consents = ({ isValid }: IConsents): JSX.Element => {
+const Consents = ({
+  isValid,
+  className = 'a6y-react-auth__consents',
+  consentsLabelStyle = `a6y-react-auth__checkbox-label--without-input`,
+  consentsHrefStyle = '',
+  consentInputLabelStyle = '',
+  consentInputStyle = '',
+  consentTextStyle = '',
+  consentSpanStyle = '',
+}: IConsents): JSX.Element => {
   const [consents, setConsents] = useState<IConsent[]>([])
   const [required] = useState<string[]>([])
   const [values, setValues] = useState<IValues>({})
@@ -76,7 +92,11 @@ const Consents = ({ isValid }: IConsents): JSX.Element => {
         {arrayOfContent.map(el => {
           if (linkRgx.test(el)) {
             const match = el.match(matchRgx)
-            return <a href={match ? match[2] : ''}>{match && match[1]}</a>
+            return (
+              <a className={consentsHrefStyle} href={match ? match[2] : ''}>
+                {match && match[1]}
+              </a>
+            )
           } else {
             return el + ' '
           }
@@ -94,6 +114,10 @@ const Consents = ({ isValid }: IConsents): JSX.Element => {
         }
         rendersElements.push(
           <Checkbox
+            labelStyle={consentInputLabelStyle}
+            inputStyle={consentInputStyle}
+            textStyle={consentTextStyle}
+            spanStyle={consentSpanStyle}
             id={`consent-${idx}`}
             onChange={e =>
               setValues({ ...values, [`consent${idx}`]: e.target.checked })
@@ -105,7 +129,7 @@ const Consents = ({ isValid }: IConsents): JSX.Element => {
         )
       } else {
         rendersElements.push(
-          <label className={`a6y-react-auth__checkbox-label--without-input`}>
+          <label className={consentsLabelStyle}>
             {getLabel(consent.content)}
           </label>,
         )
@@ -114,7 +138,7 @@ const Consents = ({ isValid }: IConsents): JSX.Element => {
     return rendersElements
   }
   return (
-    <div className='a6y-react-auth__consents'>
+    <div className={className}>
       {consents.length > 0 && renderConsentsElements()}
     </div>
   )

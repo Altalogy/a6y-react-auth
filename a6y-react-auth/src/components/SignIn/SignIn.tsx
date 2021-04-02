@@ -33,6 +33,13 @@ export interface ISignInProps {
   linkStyles?: string
   formGroupStyles?: string
   formStyles?: string
+  consentsLabelStyle?: string
+  consentsHrefStyle?: string
+  consentInputLabelStyle?: string
+  consentInputStyle?: string
+  consentTextStyle?: string
+  consentSpanStyle?: string
+  consentsStyle?: string
 }
 
 /**
@@ -70,15 +77,22 @@ const SignIn = ({
   linkStyles = '',
   formGroupStyles = '',
   formStyles = '',
+  consentsHrefStyle = '',
+  consentInputLabelStyle = '',
+  consentInputStyle = '',
+  consentTextStyle = '',
+  consentSpanStyle = '',
+  consentsStyle = '',
 }: ISignInProps): JSX.Element => {
   return (
     <div className={className}>
-      <h1>
-        {globalThis.A6YReactAuthConfig &&
-        globalThis.A6YReactAuthConfig.components?.signIn?.title
-          ? globalThis.A6YReactAuthConfig.components?.signIn?.title
-          : 'Sign In'}
-      </h1>
+      {globalThis.A6YReactAuthConfig &&
+        globalThis.A6YReactAuthConfig.components?.signIn?.title && (
+          <h1>{globalThis.A6YReactAuthConfig.components?.signIn?.title}</h1>
+        )}
+      {globalThis.A6YReactAuthConfig &&
+        globalThis.A6YReactAuthConfig.components?.signIn?.title &&
+        globalThis.A6YReactAuthConfig.components?.signIn?.headerComponent}
       <ErrorBoundary showError={apiError ? true : false}>
         {apiError}
       </ErrorBoundary>
@@ -91,12 +105,24 @@ const SignIn = ({
         formGroupStyles={formGroupStyles}
         submitLabel='sign in'
         onClick={onClick}
-      />
-      <FormLinks
-        linkStyles={linkStyles}
-        onLinkHandler={onLinkHandler}
         path='sign-in'
+        consentsHrefStyle={consentsHrefStyle}
+        consentInputLabelStyle={consentInputLabelStyle}
+        consentInputStyle={consentInputStyle}
+        consentTextStyle={consentTextStyle}
+        consentSpanStyle={consentSpanStyle}
+        consentsStyle={consentsStyle}
       />
+      {globalThis.A6YReactAuthConfig &&
+      globalThis.A6YReactAuthConfig.components?.signIn?.linksComponent ? (
+        globalThis.A6YReactAuthConfig.components?.signIn?.linksComponent
+      ) : (
+        <FormLinks
+          linkStyles={linkStyles}
+          onLinkHandler={onLinkHandler}
+          path='sign-in'
+        />
+      )}
     </div>
   )
 }

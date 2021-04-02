@@ -17,6 +17,10 @@ export interface ICheckboxProps {
   className?: string
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   value: string
+  labelStyle?: string
+  inputStyle?: string
+  textStyle?: string
+  spanStyle?: string
 }
 
 /**
@@ -44,29 +48,34 @@ const Checkbox = ({
   className = 'a6y-react-auth',
   onChange,
   value,
+  labelStyle,
+  inputStyle,
+  textStyle,
+  spanStyle,
 }: ICheckboxProps): JSX.Element => {
-  const classNames = require('classnames')
-  const LabelClass = classNames({
-    [`${className}__label--${id}`]: id ? true : false,
-  })
-  const InputClass = classNames({
-    [`${className}__label__input--${id}`]: id ? true : false,
-  })
   return (
     <label
       htmlFor={id}
-      className={`${className}__checkbox-label ` + LabelClass}
+      className={labelStyle ? labelStyle : `${className}__checkbox-label `}
     >
-      <p>{children && children}</p>
+      <p className={textStyle ? textStyle : ''}>{children && children}</p>
       <input
         id={id}
         name={id}
         type='checkbox'
         onChange={onChange}
-        className={`${className}__checkbox-label__input ` + InputClass}
+        className={
+          inputStyle ? inputStyle : `${className}__checkbox-label__input `
+        }
         value={value ? value : ''}
       />
-      <span className={`${className}__checkbox-label__input--checkmark`} />
+      <span
+        className={
+          spanStyle
+            ? spanStyle
+            : `${className}__checkbox-label__input--checkmark`
+        }
+      />
     </label>
   )
 }

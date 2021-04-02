@@ -73,7 +73,7 @@ const FormLinks = ({
         )
     }
   }
-  return <div className={className + '__links'}>{renderLinks()}</div>
+  return <div className={className}>{renderLinks()}</div>
 }
 
 export default FormLinks
