@@ -84,6 +84,7 @@ const SignUp = ({
   consentTextStyle = '',
   consentSpanStyle = '',
   consentsStyle = '',
+  consentsLabelStyle = '',
   formLinkStyle,
 }: ISignUpProps): JSX.Element => {
   const onSubmit = (email: string, password: string) => {
@@ -117,6 +118,7 @@ const SignUp = ({
         consentTextStyle={consentTextStyle}
         consentSpanStyle={consentSpanStyle}
         consentsStyle={consentsStyle}
+        consentsLabelStyle={consentsLabelStyle}
       />
       {globalThis.A6YReactAuthConfig &&
       globalThis.A6YReactAuthConfig.components?.signUp?.linksComponent

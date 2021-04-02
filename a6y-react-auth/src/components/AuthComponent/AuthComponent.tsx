@@ -68,6 +68,7 @@ const AuthComponent = ({
   consentInputStyle = '',
   consentTextStyle = '',
   consentSpanStyle = '',
+  consentsLabelStyle = '',
   consentsStyle = '',
   formLinkStyle = '',
   defaultFormState = 'sign-in',
@@ -97,6 +98,7 @@ const AuthComponent = ({
             consentTextStyle={consentTextStyle}
             consentSpanStyle={consentSpanStyle}
             consentsStyle={consentsStyle}
+            consentsLabelStyle={consentsLabelStyle}
             formLinkStyle={formLinkStyle}
           />
         )
@@ -125,12 +127,6 @@ const AuthComponent = ({
             linkStyles={linkStyles}
             formStyles={formStyles}
             formGroupStyles={formGroupStyles}
-            consentsHrefStyle={consentsHrefStyle}
-            consentInputLabelStyle={consentInputLabelStyle}
-            consentInputStyle={consentInputStyle}
-            consentTextStyle={consentTextStyle}
-            consentSpanStyle={consentSpanStyle}
-            consentsStyle={consentsStyle}
             formLinkStyle={formLinkStyle}
           />
         )

@@ -74,6 +74,7 @@ const SignUpContainer = ({
   consentTextStyle = '',
   consentSpanStyle = '',
   consentsStyle = '',
+  consentsLabelStyle = '',
   formLinkStyle,
 }: ISignUpContainerProps): JSX.Element => {
   const [apiError, setApiError] = useState(undefined)
@@ -149,6 +150,7 @@ const SignUpContainer = ({
           consentInputLabelStyle={consentInputLabelStyle}
           consentInputStyle={consentInputStyle}
           consentTextStyle={consentTextStyle}
+          consentsLabelStyle={consentsLabelStyle}
           consentSpanStyle={consentSpanStyle}
           consentsStyle={consentsStyle}
           formLinkStyle={formLinkStyle}
