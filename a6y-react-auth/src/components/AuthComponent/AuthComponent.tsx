@@ -23,7 +23,16 @@ export interface IAuthProps {
   labelStyles?: string
   linkStyles?: string
   formStyles?: string
+  consentsLabelStyle?: string
+  consentsHrefStyle?: string
+  consentInputLabelStyle?: string
+  consentInputStyle?: string
+  consentTextStyle?: string
+  consentSpanStyle?: string
+  consentsStyle?: string
   formGroupStyles?: string
+  defaultFormState?: string
+  formLinkStyle?: string
 }
 
 /**
@@ -54,9 +63,18 @@ const AuthComponent = ({
   linkStyles = '',
   formStyles = '',
   formGroupStyles = '',
+  consentsHrefStyle = '',
+  consentInputLabelStyle = '',
+  consentInputStyle = '',
+  consentTextStyle = '',
+  consentSpanStyle = '',
+  consentsLabelStyle = '',
+  consentsStyle = '',
+  formLinkStyle = '',
+  defaultFormState = 'sign-in',
 }: IAuthProps): JSX.Element => {
   const classNames = require('classnames')
-  const [currentForm, setCurrentForm] = useState('sign-in')
+  const [currentForm, setCurrentForm] = useState(defaultFormState)
   const mainClass = classNames({
     [`a6y-react-auth__${currentForm}`]:
       className === 'a6y-react-auth' ? true : false,
@@ -74,6 +92,14 @@ const AuthComponent = ({
             linkStyles={linkStyles}
             formStyles={formStyles}
             formGroupStyles={formGroupStyles}
+            consentsHrefStyle={consentsHrefStyle}
+            consentInputLabelStyle={consentInputLabelStyle}
+            consentInputStyle={consentInputStyle}
+            consentTextStyle={consentTextStyle}
+            consentSpanStyle={consentSpanStyle}
+            consentsStyle={consentsStyle}
+            consentsLabelStyle={consentsLabelStyle}
+            formLinkStyle={formLinkStyle}
           />
         )
       case 'forgot-password':
@@ -87,6 +113,7 @@ const AuthComponent = ({
             linkStyles={linkStyles}
             formStyles={formStyles}
             formGroupStyles={formGroupStyles}
+            formLinkStyle={formLinkStyle}
           />
         )
       default:
@@ -100,6 +127,7 @@ const AuthComponent = ({
             linkStyles={linkStyles}
             formStyles={formStyles}
             formGroupStyles={formGroupStyles}
+            formLinkStyle={formLinkStyle}
           />
         )
     }

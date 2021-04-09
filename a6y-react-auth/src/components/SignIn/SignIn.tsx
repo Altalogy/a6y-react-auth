@@ -33,6 +33,14 @@ export interface ISignInProps {
   linkStyles?: string
   formGroupStyles?: string
   formStyles?: string
+  consentsLabelStyle?: string
+  consentsHrefStyle?: string
+  consentInputLabelStyle?: string
+  consentInputStyle?: string
+  consentTextStyle?: string
+  consentSpanStyle?: string
+  consentsStyle?: string
+  formLinkStyle?: string
 }
 
 /**
@@ -70,15 +78,22 @@ const SignIn = ({
   linkStyles = '',
   formGroupStyles = '',
   formStyles = '',
+  consentsHrefStyle = '',
+  consentInputLabelStyle = '',
+  consentInputStyle = '',
+  consentTextStyle = '',
+  consentSpanStyle = '',
+  consentsStyle = '',
+  formLinkStyle,
 }: ISignInProps): JSX.Element => {
   return (
     <div className={className}>
-      <h1>
-        {globalThis.A6YReactAuthConfig &&
-        globalThis.A6YReactAuthConfig.components?.signIn?.title
-          ? globalThis.A6YReactAuthConfig.components?.signIn?.title
-          : 'Sign In'}
-      </h1>
+      {globalThis.A6YReactAuthConfig &&
+        globalThis.A6YReactAuthConfig.components?.signIn?.title && (
+          <h1>{globalThis.A6YReactAuthConfig.components?.signIn?.title}</h1>
+        )}
+      {globalThis.A6YReactAuthConfig &&
+        globalThis.A6YReactAuthConfig.components?.signIn?.headerComponent}
       <ErrorBoundary showError={apiError ? true : false}>
         {apiError}
       </ErrorBoundary>
@@ -91,12 +106,46 @@ const SignIn = ({
         formGroupStyles={formGroupStyles}
         submitLabel='sign in'
         onClick={onClick}
-      />
-      <FormLinks
-        linkStyles={linkStyles}
-        onLinkHandler={onLinkHandler}
         path='sign-in'
+        consentsHrefStyle={consentsHrefStyle}
+        consentInputLabelStyle={consentInputLabelStyle}
+        consentInputStyle={consentInputStyle}
+        consentTextStyle={consentTextStyle}
+        consentSpanStyle={consentSpanStyle}
+        consentsStyle={consentsStyle}
       />
+      {globalThis.A6YReactAuthConfig &&
+      globalThis.A6YReactAuthConfig.components?.signIn?.linksComponent
+        ?.customLinksComponent ? (
+        globalThis.A6YReactAuthConfig.components?.signIn?.linksComponent
+          .customLinksComponent
+      ) : (
+        <FormLinks
+          className={formLinkStyle}
+          linkStyles={linkStyles}
+          onLinkHandler={onLinkHandler}
+          path='sign-in'
+          beforeLinkText1={
+            globalThis.A6YReactAuthConfig.components?.signIn?.linksComponent
+              ?.linkText01 &&
+            globalThis.A6YReactAuthConfig.components?.signIn?.linksComponent
+              ?.linkText01
+          }
+          beforeLinkText2={
+            globalThis.A6YReactAuthConfig.components?.signIn?.linksComponent
+              ?.linkText02 &&
+            globalThis.A6YReactAuthConfig.components?.signIn?.linksComponent
+              ?.linkText02
+          }
+          displayLinks={
+            globalThis.A6YReactAuthConfig.components?.signIn?.linksComponent
+              ?.display
+              ? globalThis.A6YReactAuthConfig.components?.signIn?.linksComponent
+                  ?.display
+              : 'both'
+          }
+        />
+      )}
     </div>
   )
 }

@@ -27,6 +27,14 @@ export interface ISignUpContainerProps {
   linkStyles?: string
   formStyles?: string
   formGroupStyles?: string
+  consentsLabelStyle?: string
+  consentsHrefStyle?: string
+  consentInputLabelStyle?: string
+  consentInputStyle?: string
+  consentTextStyle?: string
+  consentSpanStyle?: string
+  consentsStyle?: string
+  formLinkStyle?: string
 }
 
 /**
@@ -60,6 +68,14 @@ const SignUpContainer = ({
   linkStyles = '',
   formStyles = '',
   formGroupStyles = '',
+  consentsHrefStyle = '',
+  consentInputLabelStyle = '',
+  consentInputStyle = '',
+  consentTextStyle = '',
+  consentSpanStyle = '',
+  consentsStyle = '',
+  consentsLabelStyle = '',
+  formLinkStyle,
 }: ISignUpContainerProps): JSX.Element => {
   const [apiError, setApiError] = useState(undefined)
   const [confirmation, setConfirmation] = useState(false)
@@ -130,6 +146,14 @@ const SignUpContainer = ({
           linkStyles={linkStyles}
           formStyles={formStyles}
           formGroupStyles={formGroupStyles}
+          consentsHrefStyle={consentsHrefStyle}
+          consentInputLabelStyle={consentInputLabelStyle}
+          consentInputStyle={consentInputStyle}
+          consentTextStyle={consentTextStyle}
+          consentsLabelStyle={consentsLabelStyle}
+          consentSpanStyle={consentSpanStyle}
+          consentsStyle={consentsStyle}
+          formLinkStyle={formLinkStyle}
         />
       )}
     </div>

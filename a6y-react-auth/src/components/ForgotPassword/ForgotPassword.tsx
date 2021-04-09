@@ -29,6 +29,7 @@ export interface IForgotPasswordProps {
   linkStyles?: string
   formStyles?: string
   formGroupStyles?: string
+  formLinkStyle?: string
 }
 
 /**
@@ -63,6 +64,7 @@ const ForgotPassword = ({
   linkStyles = '',
   formStyles = '',
   formGroupStyles = '',
+  formLinkStyle,
 }: IForgotPasswordProps): JSX.Element => {
   const [forgotPasswordData, setForgotPasswordData] = useState({
     email: '',
@@ -99,12 +101,15 @@ const ForgotPassword = ({
   }
   return (
     <div className={className + '__forgot-password'}>
-      <h1>
-        {globalThis.A6YReactAuthConfig &&
-        globalThis.A6YReactAuthConfig.components?.forgotPassword?.title
-          ? globalThis.A6YReactAuthConfig.components?.forgotPassword?.title
-          : 'Forgot Password'}
-      </h1>
+      {globalThis.A6YReactAuthConfig &&
+        globalThis.A6YReactAuthConfig.components?.forgotPassword?.title && (
+          <h1>
+            {globalThis.A6YReactAuthConfig.components?.forgotPassword?.title}
+          </h1>
+        )}
+      {globalThis.A6YReactAuthConfig &&
+        globalThis.A6YReactAuthConfig.components?.forgotPassword
+          ?.headerComponent}
       <ErrorBoundary showError={apiError ? true : false}>
         {apiError}
       </ErrorBoundary>
@@ -127,7 +132,7 @@ const ForgotPassword = ({
             id='email'
             placeholder='Email'
             typeInput='email'
-            label=''
+            label='email'
             onChange={e => onInputChange(e, 'email')}
             value={forgotPasswordData.email}
             inputStyles={inputStyles}
@@ -138,7 +143,37 @@ const ForgotPassword = ({
           Reset password
         </Button>
       </form>
-      <FormLinks linkStyles={linkStyles} onLinkHandler={onLinkHandler} />
+      {globalThis.A6YReactAuthConfig &&
+      globalThis.A6YReactAuthConfig.components?.forgotPassword?.linksComponent
+        ?.customLinksComponent ? (
+        globalThis.A6YReactAuthConfig.components?.forgotPassword?.linksComponent
+          .customLinksComponent
+      ) : (
+        <FormLinks
+          className={formLinkStyle}
+          linkStyles={linkStyles}
+          onLinkHandler={onLinkHandler}
+          beforeLinkText1={
+            globalThis.A6YReactAuthConfig.components?.forgotPassword
+              ?.linksComponent?.linkText01 &&
+            globalThis.A6YReactAuthConfig.components?.forgotPassword
+              ?.linksComponent?.linkText01
+          }
+          beforeLinkText2={
+            globalThis.A6YReactAuthConfig.components?.forgotPassword
+              ?.linksComponent?.linkText02 &&
+            globalThis.A6YReactAuthConfig.components?.forgotPassword
+              ?.linksComponent?.linkText02
+          }
+          displayLinks={
+            globalThis.A6YReactAuthConfig.components?.forgotPassword
+              ?.linksComponent?.display
+              ? globalThis.A6YReactAuthConfig.components?.forgotPassword
+                  ?.linksComponent?.display
+              : 'both'
+          }
+        />
+      )}
     </div>
   )
 }

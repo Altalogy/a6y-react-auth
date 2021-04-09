@@ -1,8 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
 import AuthCnt from './components/AuthComponent'
+import { IAuthProps } from './components/AuthComponent/AuthComponent'
 import SignInCnt from './containers/SignInContainer'
+import { ISignInContainerProps } from './containers/SignInContainer/SignInContainer'
 import SignUpCnt from './containers/SignUpContainer'
+import { ISignUpContainerProps } from './containers/SignUpContainer/SignUpContainer'
 import ForgotPasswordCnt from './containers/ForgotPasswordContainer'
 import SignIn from './components/SignIn'
 import SignUp from './components/SignUp'
@@ -21,20 +24,51 @@ interface IA6YReactAuth {
   }
   auth?: IProviderConfig[]
   components?: {
+    Inputs?: {
+      labels?: boolean
+    }
     signUp?: {
       title?: string
+      headerComponent?: React.ReactNode
+      linksComponent?: {
+        display?: 'forgot-password' | 'sign-in' | 'both'
+        linkText01?: string
+        linkText02?: string
+        customLinksComponent?: React.ReactNode
+      }
       confirmation?: boolean
+      consents?: boolean
+      consentsPosition?: 'top' | 'bottom'
     }
     signIn?: {
       title?: string
+      headerComponent?: React.ReactNode
+      linksComponent?: {
+        display?: 'forgot-password' | 'sign-up' | 'both'
+        linkText01?: string
+        linkText02?: string
+        customLinksComponent?: React.ReactNode
+      }
     }
     forgotPassword?: {
       title?: string
+      headerComponent?: React.ReactNode
+      linksComponent?: {
+        display?: 'sign-up' | 'sign-in' | 'both'
+        linkText01?: string
+        linkText02?: string
+        customLinksComponent?: React.ReactNode
+      }
     }
     forgotPasswordSubmit?: {
       title?: string
+      headerComponent?: React.ReactNode
     }
-    consents?: IConsent[]
+    consents?: {
+      display?: 'sign-up' | 'sign-in' | 'both'
+      position?: 'top' | 'bottom'
+      consents?: IConsent[]
+    }
   }
 }
 
@@ -47,11 +81,6 @@ declare global {
   var A6YReactAuthConfig: IA6YReactAuth
 }
 
-interface Ia6yReactAuthParam {
-  onSuccess?: (response: unknown) => void
-  className?: string
-}
-
 class A6YReactAuth {
   initialize(config: IA6YReactAuth): void {
     globalThis.A6YReactAuthConfig = config
@@ -59,41 +88,15 @@ class A6YReactAuth {
   }
 }
 
-export const Auth = ({
-  onSuccess,
-  className,
-}: Ia6yReactAuthParam): JSX.Element => (
-  <AuthCnt
-    className={className ? className : undefined}
-    onSuccess={onSuccess ? onSuccess : undefined}
-  />
+export const Auth = (props: IAuthProps): JSX.Element => <AuthCnt {...props} />
+export const SignInContainer = (props: ISignInContainerProps): JSX.Element => (
+  <SignInCnt {...props} />
 )
-export const SignInContainer = ({
-  onSuccess,
-  className,
-}: Ia6yReactAuthParam): JSX.Element => (
-  <SignInCnt
-    className={className ? className : undefined}
-    onSuccess={onSuccess ? onSuccess : undefined}
-  />
+export const SignUpContainer = (props: ISignUpContainerProps): JSX.Element => (
+  <SignUpCnt {...props} />
 )
-export const SignUpContainer = ({
-  onSuccess,
-  className,
-}: Ia6yReactAuthParam): JSX.Element => (
-  <SignUpCnt
-    className={className ? className : undefined}
-    onSuccess={onSuccess ? onSuccess : undefined}
-  />
-)
-export const ForgotPasswordContainer = ({
-  onSuccess,
-  className,
-}: Ia6yReactAuthParam): JSX.Element => (
-  <ForgotPasswordCnt
-    className={className ? className : undefined}
-    onSuccess={onSuccess ? onSuccess : undefined}
-  />
+export const ForgotPasswordContainer = (props: IAuthProps): JSX.Element => (
+  <ForgotPasswordCnt {...props} />
 )
 
 export const SignOut = async (): Promise<unknown> => {

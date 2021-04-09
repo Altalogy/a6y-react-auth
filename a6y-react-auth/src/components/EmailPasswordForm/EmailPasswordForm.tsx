@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { Button, Input } from '../UI'
+import { Button, ErrorBoundary, Input } from '../UI'
 import validate from '../../utilities/validation'
+import Consents from '../Consents'
 
 /**
  * @typedef ISignInData
@@ -38,6 +39,14 @@ export interface IEmailPasswordFormProps {
   labelStyles?: string
   formStyles?: string
   formGroupStyles?: string
+  path?: string
+  consentsLabelStyle?: string
+  consentsHrefStyle?: string
+  consentInputLabelStyle?: string
+  consentInputStyle?: string
+  consentTextStyle?: string
+  consentSpanStyle?: string
+  consentsStyle?: string
 }
 
 /**
@@ -72,7 +81,17 @@ function EmailPasswordForm({
   labelStyles = '',
   formStyles = '',
   formGroupStyles = '',
+  path,
+  consentsHrefStyle = '',
+  consentInputLabelStyle = '',
+  consentInputStyle = '',
+  consentTextStyle = '',
+  consentSpanStyle = '',
+  consentsStyle = '',
+  consentsLabelStyle = '',
 }: IEmailPasswordFormProps): JSX.Element {
+  const [conditions, setConditions] = useState(false)
+  const [conditionsError, setConditionsError] = useState(false)
   const [signUpData, setSignUpData] = useState({
     email: '',
     password: '',
@@ -122,12 +141,18 @@ function EmailPasswordForm({
     if (onClick && validate(data)) {
       if (signUp) {
         if (signUpData.password === signUpData.confirmPassword) {
-          onClick(signUpData.email, signUpData.password)
+          setConditionsError(!conditions)
+          if (onClick && conditions) {
+            onClick(signUpData.email, signUpData.password)
+          }
         } else {
           setErrorData({ ...errorData, password: true, confirmPassword: true })
         }
       } else {
-        onClick(signUpData.email, signUpData.password)
+        setConditionsError(!conditions)
+        if (onClick && conditions) {
+          onClick(signUpData.email, signUpData.password)
+        }
       }
     } else {
       if (!errorData.email && !errorData.password)
@@ -136,72 +161,113 @@ function EmailPasswordForm({
   }
 
   return (
-    <form
-      className={
-        formStyles && formStyles.length > 0 ? formStyles : `${className}`
-      }
-      onSubmit={e => onSubmit(e)}
-    >
-      <div
+    <>
+      <ErrorBoundary showError={conditionsError ? true : false}>
+        All required consents must be accepted.
+      </ErrorBoundary>
+      <form
         className={
-          formGroupStyles && formGroupStyles.length > 0
-            ? `${formGroupStyles} `
-            : `${className}-group ${FormClassEmail}`
+          formStyles && formStyles.length > 0 ? formStyles : `${className}`
         }
+        onSubmit={e => onSubmit(e)}
       >
-        <Input
-          id='email'
-          placeholder='Email'
-          typeInput='email'
-          label=''
-          onChange={e => onInputChange(e, 'email')}
-          value={signUpData.email}
-          inputStyles={inputStyles}
-          labelStyles={labelStyles}
-        />
-      </div>
-      <div
-        className={
-          formGroupStyles && formGroupStyles.length > 0
-            ? `${formGroupStyles} ${FormClassPassword}`
-            : `${className}-group ${FormClassPassword}`
-        }
-      >
-        <Input
-          id='password'
-          typeInput='password'
-          placeholder='Password'
-          label=''
-          onChange={e => onInputChange(e, 'password')}
-          value={signUpData.password}
-          inputStyles={inputStyles}
-          labelStyles={labelStyles}
-        />
-      </div>
-      {signUp && (
         <div
           className={
             formGroupStyles && formGroupStyles.length > 0
               ? `${formGroupStyles} `
-              : `${className}-group ${FormClassRepeatPassword}`
+              : `${className}-group ${FormClassEmail}`
           }
         >
           <Input
-            id='confirm-password'
-            typeInput='password'
-            placeholder='Confirm password'
+            id='email'
+            placeholder='Email'
+            typeInput='email'
+            label='email'
+            onChange={e => onInputChange(e, 'email')}
+            value={signUpData.email}
             inputStyles={inputStyles}
             labelStyles={labelStyles}
-            label=''
-            onChange={e => onInputChange(e, 'confirmPassword')}
-            value={signUpData.confirmPassword}
           />
         </div>
-      )}
-      <Button className={buttonStyles} role='submit' style='primary'>
-        {submitLabel}
-      </Button>
-    </form>
+        <div
+          className={
+            formGroupStyles && formGroupStyles.length > 0
+              ? `${formGroupStyles} ${FormClassPassword}`
+              : `${className}-group ${FormClassPassword}`
+          }
+        >
+          <Input
+            id='password'
+            typeInput='password'
+            placeholder='Password'
+            label='password'
+            onChange={e => onInputChange(e, 'password')}
+            value={signUpData.password}
+            inputStyles={inputStyles}
+            labelStyles={labelStyles}
+          />
+        </div>
+        {signUp &&
+          globalThis.A6YReactAuthConfig.components?.signUp?.confirmation && (
+            <div
+              className={
+                formGroupStyles && formGroupStyles.length > 0
+                  ? `${formGroupStyles} `
+                  : `${className}-group ${FormClassRepeatPassword}`
+              }
+            >
+              <Input
+                id='confirm-password'
+                typeInput='password'
+                placeholder='Confirm password'
+                inputStyles={inputStyles}
+                labelStyles={labelStyles}
+                label='confirm password'
+                onChange={e => onInputChange(e, 'confirmPassword')}
+                value={signUpData.confirmPassword}
+              />
+            </div>
+          )}
+        {globalThis.A6YReactAuthConfig &&
+          (globalThis.A6YReactAuthConfig.components?.consents?.display ===
+            'both' ||
+            globalThis.A6YReactAuthConfig.components?.consents?.display ===
+              path) &&
+          globalThis.A6YReactAuthConfig.components?.consents?.position ===
+            'top' && (
+            <Consents
+              consentsHrefStyle={consentsHrefStyle}
+              consentInputLabelStyle={consentInputLabelStyle}
+              consentInputStyle={consentInputStyle}
+              consentTextStyle={consentTextStyle}
+              consentSpanStyle={consentSpanStyle}
+              consentsLabelStyle={consentsLabelStyle}
+              className={consentsStyle}
+              isValid={(value: boolean) => setConditions(value)}
+            />
+          )}
+        <Button className={buttonStyles} role='submit' style='primary'>
+          {submitLabel}
+        </Button>
+        {globalThis.A6YReactAuthConfig &&
+          (globalThis.A6YReactAuthConfig.components?.consents?.display ===
+            'both' ||
+            globalThis.A6YReactAuthConfig.components?.consents?.display ===
+              path) &&
+          globalThis.A6YReactAuthConfig.components?.consents?.position ===
+            'bottom' && (
+            <Consents
+              consentsHrefStyle={consentsHrefStyle}
+              consentInputLabelStyle={consentInputLabelStyle}
+              consentInputStyle={consentInputStyle}
+              consentTextStyle={consentTextStyle}
+              consentSpanStyle={consentSpanStyle}
+              className={consentsStyle}
+              isValid={(value: boolean) => setConditions(value)}
+            />
+          )}
+      </form>
+    </>
   )
 }
 

@@ -115,13 +115,20 @@ const ForgotPassword = ({
   }
   return (
     <div className={className + '__forgot-password'}>
-      <h1>
-        {globalThis.A6YReactAuthConfig &&
-        globalThis.A6YReactAuthConfig.components?.forgotPasswordSubmit?.title
-          ? globalThis.A6YReactAuthConfig.components?.forgotPasswordSubmit
-              ?.title
-          : 'Forgot Password'}
-      </h1>
+      {globalThis.A6YReactAuthConfig &&
+        globalThis.A6YReactAuthConfig.components?.forgotPasswordSubmit
+          ?.title && (
+          <h1>
+            {
+              globalThis.A6YReactAuthConfig.components?.forgotPasswordSubmit
+                ?.title
+            }
+          </h1>
+        )}
+      {globalThis.A6YReactAuthConfig &&
+        globalThis.A6YReactAuthConfig.components?.forgotPasswordSubmit?.title &&
+        globalThis.A6YReactAuthConfig.components?.forgotPasswordSubmit
+          ?.headerComponent}
       <ErrorBoundary showError={apiError ? true : false}>
         {apiError}
       </ErrorBoundary>
@@ -144,7 +151,7 @@ const ForgotPassword = ({
             id='code'
             placeholder='Confirmation code'
             typeInput='text'
-            label=''
+            label='confirmation code'
             onChange={e => onInputChange(e, 'code')}
             value={forgotPasswordData.code}
             labelStyles={labelStyles}
@@ -162,7 +169,7 @@ const ForgotPassword = ({
             id='new-password'
             typeInput='password'
             placeholder='New password'
-            label=''
+            label='new password'
             onChange={e => onInputChange(e, 'password')}
             value={forgotPasswordData.password}
             labelStyles={labelStyles}
@@ -180,7 +187,7 @@ const ForgotPassword = ({
             id='confirm-password'
             typeInput='password'
             placeholder='Confirm password'
-            label=''
+            label='confirm password'
             onChange={e => onInputChange(e, 'confirmPassword')}
             value={forgotPasswordData.confirmPassword}
             labelStyles={labelStyles}

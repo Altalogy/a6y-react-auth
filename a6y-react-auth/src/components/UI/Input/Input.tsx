@@ -77,7 +77,9 @@ const Input = ({
           : `${className}__label ` + LabelClass
       }
     >
-      {label && label}
+      {label &&
+        globalThis.A6YReactAuthConfig.components?.Inputs?.labels &&
+        label}
       <input
         id={id}
         name={id}

@@ -25,6 +25,14 @@ export interface ISignInContainerProps {
   linkStyles?: string
   formStyles?: string
   formGroupStyles?: string
+  consentsLabelStyle?: string
+  consentsHrefStyle?: string
+  consentInputLabelStyle?: string
+  consentInputStyle?: string
+  consentTextStyle?: string
+  consentSpanStyle?: string
+  consentsStyle?: string
+  formLinkStyle?: string
 }
 
 /**
@@ -58,6 +66,13 @@ const SignInContainer = ({
   linkStyles = '',
   formStyles = '',
   formGroupStyles = '',
+  consentsHrefStyle = '',
+  consentInputLabelStyle = '',
+  consentInputStyle = '',
+  consentTextStyle = '',
+  consentSpanStyle = '',
+  consentsStyle = '',
+  formLinkStyle,
 }: ISignInContainerProps): JSX.Element => {
   const [apiError, setApiError] = useState(undefined)
   async function signIn(email: string, password: string) {
@@ -100,6 +115,13 @@ const SignInContainer = ({
         linkStyles={linkStyles}
         formStyles={formStyles}
         formGroupStyles={formGroupStyles}
+        consentsHrefStyle={consentsHrefStyle}
+        consentInputLabelStyle={consentInputLabelStyle}
+        consentInputStyle={consentInputStyle}
+        consentTextStyle={consentTextStyle}
+        consentSpanStyle={consentSpanStyle}
+        consentsStyle={consentsStyle}
+        formLinkStyle={formLinkStyle}
       />
     </div>
   )

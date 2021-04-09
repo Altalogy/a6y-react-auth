@@ -15,6 +15,9 @@ export interface IFormLinksProps {
   path?: string
   onLinkHandler?: (to: string) => void
   linkStyles?: string
+  displayLinks?: string
+  beforeLinkText1?: string
+  beforeLinkText2?: string
 }
 
 /**
@@ -34,6 +37,9 @@ const FormLinks = ({
   path,
   onLinkHandler,
   linkStyles = '',
+  displayLinks = '',
+  beforeLinkText1 = '',
+  beforeLinkText2 = '',
 }: IFormLinksProps): JSX.Element => {
   function renderLinks(): JSX.Element {
     const ForgotPassword = (
@@ -41,39 +47,61 @@ const FormLinks = ({
         Forgot Password
       </Link>
     )
+    const SignIn = (
+      <Link onClick={onLinkHandler} className={linkStyles} to='sign-in'>
+        Sign In
+      </Link>
+    )
+    const SignUp = (
+      <Link onClick={onLinkHandler} className={linkStyles} to='sign-up'>
+        Sign Up
+      </Link>
+    )
     switch (path) {
       case 'sign-in':
         return (
           <>
-            {ForgotPassword}
-            <Link onClick={onLinkHandler} className={linkStyles} to='sign-up'>
-              Sign Up
-            </Link>
+            {(displayLinks === 'forgot-password' || displayLinks === 'both') &&
+              beforeLinkText1 &&
+              beforeLinkText1}
+            {(displayLinks === 'forgot-password' || displayLinks === 'both') &&
+              ForgotPassword}
+            {(displayLinks === 'sign-up' || displayLinks === 'both') &&
+              beforeLinkText2 &&
+              beforeLinkText2}
+            {(displayLinks === 'sign-up' || displayLinks === 'both') && SignUp}
           </>
         )
       case 'sign-up':
         return (
           <>
-            {ForgotPassword}
-            <Link onClick={onLinkHandler} className={linkStyles} to='sign-in'>
-              Sign In
-            </Link>
+            {(displayLinks === 'forgot-password' || displayLinks === 'both') &&
+              beforeLinkText1 &&
+              beforeLinkText1}
+            {(displayLinks === 'forgot-password' || displayLinks === 'both') &&
+              ForgotPassword}
+            {(displayLinks === 'sign-in' || displayLinks === 'both') &&
+              beforeLinkText2 &&
+              beforeLinkText2}
+            {(displayLinks === 'sign-in' || displayLinks === 'both') && SignIn}
           </>
         )
       default:
         return (
           <>
-            <Link onClick={onLinkHandler} className={linkStyles} to='sign-in'>
-              Sign In
-            </Link>
-            <Link onClick={onLinkHandler} className={linkStyles} to='sign-up'>
-              Sign Up
-            </Link>
+            {(displayLinks === 'sign-up' || displayLinks === 'both') &&
+              beforeLinkText1 &&
+              beforeLinkText1}
+            {(displayLinks === 'sign-up' || displayLinks === 'both') && SignUp}
+            {(displayLinks === 'sign-in' || displayLinks === 'both') &&
+              beforeLinkText2 &&
+              beforeLinkText2}
+            {(displayLinks === 'sign-in' || displayLinks === 'both') && SignIn}
           </>
         )
     }
   }
-  return <div className={className + '__links'}>{renderLinks()}</div>
+  return <div className={className}>{renderLinks()}</div>
 }
 
 export default FormLinks
