@@ -290,13 +290,21 @@ Open [http://localhost:6006](http://localhost:6006) to view it in the browser.
 
 ### Build and publish NPM
 
+Increase the version in the `package.json`, and then:
+
 **to build use**
+
 `npm run build`
+
 or just use
+
 `npm run prepublishOnly`
 
 **to publish NPM**
+
 `npm publish`
+
+(You may need to use `--access=public`).
 
 ### ESLint
 
