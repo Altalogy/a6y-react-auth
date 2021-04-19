@@ -1,7 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
+import { Auth } from 'aws-amplify'
+import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth/lib/types'
+import FacebookButton from './components/FacebookButton'
 import FacebookLogin from './components/FacebookLogin'
 import GoogleLogin from './components/GoogleLogin'
+import GoogleButton from './components/GoogleButton'
 
 /**
  * @typedef IProvider
@@ -21,6 +25,7 @@ export interface IProvider {
 export interface IProviderConfig {
   appId: string
   provider: string
+  federatedIdentities?: boolean
 }
 
 /**
@@ -28,7 +33,7 @@ export interface IProviderConfig {
  * @props {(response: any) => void} [callback] - callback with response from social provider
  */
 export interface ISocialLogin {
-  callback: (response: any) => void
+  callback: (provider: string, response: any) => void
 }
 
 /**
@@ -42,27 +47,53 @@ export interface ISocialLogin {
  * />
  */
 const SocialLogin = ({ callback }: ISocialLogin): JSX.Element => {
-  const callbackFromSocialProviders = (response: any) => {
-    callback(response)
+  const callbackFromSocialProviders = (provider: string, response: any) => {
+    callback(provider, response)
   }
   const renderLoginProviders = (config: any[]): JSX.Element[] => {
     const render: JSX.Element[] = []
     config.map((el, idx) => {
       switch (el.provider) {
         case 'facebook':
+          if (el.federatedIdentities) {
+            return render.push(
+              <FacebookLogin
+                key={idx}
+                appId={el.appId}
+                callback={response =>
+                  callbackFromSocialProviders('facebook', response)
+                }
+              />,
+            )
+          }
           return render.push(
-            <FacebookLogin
-              key={idx}
-              appId={el.appId}
-              callback={callbackFromSocialProviders}
+            <FacebookButton
+              onClick={() =>
+                Auth.federatedSignIn({
+                  provider: CognitoHostedUIIdentityProvider.Facebook,
+                })
+              }
             />,
           )
         case 'google':
+          if (el.federatedIdentities) {
+            return render.push(
+              <GoogleLogin
+                key={idx}
+                appId={el.appId}
+                callback={response =>
+                  callbackFromSocialProviders('google', response)
+                }
+              />,
+            )
+          }
           return render.push(
-            <GoogleLogin
-              key={idx}
-              appId={el.appId}
-              callback={callbackFromSocialProviders}
+            <GoogleButton
+              onClick={() =>
+                Auth.federatedSignIn({
+                  provider: CognitoHostedUIIdentityProvider.Google,
+                })
+              }
             />,
           )
         default:

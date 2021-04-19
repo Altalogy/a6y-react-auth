@@ -58,7 +58,7 @@ const Consents = ({
   consentSpanStyle = '',
 }: IConsents): JSX.Element => {
   const [consents, setConsents] = useState<IConsent[]>([])
-  const [required] = useState<string[]>([])
+  const [required] = useState<string[]>(() => getRequired())
   const [values, setValues] = useState<IValues>({})
   useEffect(() => {
     const consentsData =
@@ -69,20 +69,42 @@ const Consents = ({
     if (Array.isArray(consentsData)) {
       setConsents(consentsData)
     }
+    validate()
   }, [])
 
   useEffect(() => {
-    const validation = []
+    validate()
+  }, [values])
+
+  function getRequired() {
+    const consentsData =
+      globalThis.A6YReactAuthConfig &&
+      globalThis.A6YReactAuthConfig.components &&
+      globalThis.A6YReactAuthConfig.components.consents &&
+      globalThis.A6YReactAuthConfig.components.consents.consents
+    const newRequired: string[] = []
+    if (Array.isArray(consentsData)) {
+      consentsData.map((consent: IConsent, idx) => {
+        if (consent.type === 'checkbox' && consent.required) {
+          newRequired.push(`consent${idx}`)
+        }
+      })
+    }
+    return newRequired
+  }
+
+  function validate() {
+    const notCheckedButRequired = []
     const valuesKeys = Object.keys(values)
     required.map(value => {
       if (valuesKeys.includes(value) && !values[value]) {
-        validation.push(value)
+        notCheckedButRequired.push(value)
       } else if (!valuesKeys.includes(value)) {
-        validation.push(value)
+        notCheckedButRequired.push(value)
       }
     })
-    if (isValid) isValid(validation.length > 0 ? false : true)
-  }, [values])
+    if (isValid) isValid(notCheckedButRequired.length === 0)
+  }
 
   function getLabel(content: string) {
     const linkRgx = /\(.*?\)\[.*?\]/
@@ -111,9 +133,6 @@ const Consents = ({
     const rendersElements: JSX.Element[] = []
     consents.map((consent: IConsent, idx) => {
       if (consent.type === 'checkbox') {
-        if (consent.required) {
-          required.push(`consent${idx}`)
-        }
         rendersElements.push(
           <Checkbox
             labelStyle={consentInputLabelStyle}

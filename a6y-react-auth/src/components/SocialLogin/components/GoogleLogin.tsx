@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
 import Google from 'react-google-login'
-import { Button } from '../../UI'
+import GoogleButton from './GoogleButton'
 import { IProvider } from '../SocialLogin'
-import googleIcon from '../../../assets/icons/google.svg'
 
 /**
  * Renders the google login button
@@ -40,15 +39,7 @@ const GoogleLogin = ({ callback, appId }: IProvider): JSX.Element => {
         onFailure={responseGoogle}
         onScriptLoadFailure={(er: unknown) => console.log(er)}
         cookiePolicy={'single_host_origin'}
-        render={renderProps => (
-          <Button
-            role='button'
-            className='a6y-react-auth__google-btn'
-            onClick={renderProps.onClick}
-          >
-            <img src={googleIcon} alt='google-icon' /> Login with Google
-          </Button>
-        )}
+        render={renderProps => <GoogleButton onClick={renderProps.onClick} />}
       />
     </div>
   )

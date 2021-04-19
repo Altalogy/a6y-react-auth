@@ -10,7 +10,7 @@ import SocialLogin from '../SocialLogin'
  * @typedef ISignUpProps
  * @props {string} [className] - the CSS classes
  * @props {(email: string, password: string) => void} [onClick] - onClick handler launching after submit form
- * @props {(response: any) => void} [onSocialClick] - onClick handler launching after submit on social providers
+ * @props {(provider: string, response: any) => void} [onSocialClick] - onClick handler launching after submit on social providers
  * @props {string} [apiError] - api error messages
  * @props {(to: string) => void} [onLinkHandler] - links onClick handler
  * @props {string} [inputStyles] - input CSS classes
@@ -24,7 +24,7 @@ import SocialLogin from '../SocialLogin'
 export interface ISignUpProps {
   className?: string
   onClick?: (email: string, password: string) => void
-  onSocialClick?: (response: any) => void
+  onSocialClick?: (provider: string, response: any) => void
   apiError?: string
   onLinkHandler?: (to: string) => void
   inputStyles?: string
@@ -46,17 +46,17 @@ export interface ISignUpProps {
 /**
  * Renders the sign-up component
  *
- * @param  {string} [className] - the CSS classes
- * @param  {(email: string, password: string) => void} [onClick] - onClick handler launching after submit form
- * @param  {(response: any) => void} [onSocialClick] - onClick handler launching after submit on social providers
- * @param  {string} [apiError] - api error messages
- * @param  {(to: string) => void} [onLinkHandler] - links onClick handler
- * @param  {string} [inputStyles] - input CSS classes
- * @param  {string} [buttonStyles] - btn CSS classes
- * @param  {string} [labelStyles] - label CSS classes
- * @param  {string} [linkStyles] - link CSS classes
- * @param  {string} [formStyles] - form CSS classes
- * @param  {string} [formGroupStyles] - form group CSS classes
+ * @param {string} [className] - the CSS classes
+ * @param {(email: string, password: string) => void} [onClick] - onClick handler launching after submit form
+ * @param {(provider: string, response: any) => void} [onSocialClick] - onClick handler launching after submit on social providers
+ * @param {string} [apiError] - api error messages
+ * @param {(to: string) => void} [onLinkHandler] - links onClick handler
+ * @param {string} [inputStyles] - input CSS classes
+ * @param {string} [buttonStyles] - btn CSS classes
+ * @param {string} [labelStyles] - label CSS classes
+ * @param {string} [linkStyles] - link CSS classes
+ * @param {string} [formStyles] - form CSS classes
+ * @param {string} [formGroupStyles] - form group CSS classes
  *
  * @example
  * <SignUp

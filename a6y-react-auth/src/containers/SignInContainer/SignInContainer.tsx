@@ -82,20 +82,20 @@ const SignInContainer = ({
       if (response && response.code) {
         return setApiError(response.message)
       } else {
-        if (onSuccess) return onSuccess('SUCCESS')
+        if (onSuccess) return onSuccess(response)
       }
     } catch (error) {
       return setApiError(error.message)
     }
   }
-  async function socialSignIn(data: any) {
+  async function socialSignIn(provider: string, data: any) {
     try {
       // eslint-disable-next-line
-      const response: any = await AuthService.socialSignIn(data)
+      const response: any = await AuthService.socialSignIn(provider, data)
       if (response && response.code) {
         return setApiError(response.message)
       } else {
-        if (onSuccess) return onSuccess('SUCCESS')
+        if (onSuccess) return onSuccess(response)
       }
     } catch (error) {
       return setApiError(error.message)

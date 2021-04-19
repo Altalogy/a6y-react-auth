@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from 'react'
+import React, { ReactNode, useState } from 'react'
 import ConfirmationCode from '../../components/ConfirmationCode'
 import SignUp from '../../components/SignUp'
 import AuthService from '../../services/AuthService'
@@ -9,6 +9,9 @@ import AuthService from '../../services/AuthService'
  * @props {string} [className] - the CSS classes
  * @props {(response: unknown) => void} [onSuccess] - onSuccess call function
  * @props {(to: string) => void} [onLinkHandler] - links onClick handler
+ * @props {(email: string, password: string) => Promise<{ success: boolean; errorMessage: string }>} [apiSignUp] - call this function instead of calling provider automatically.
+ * @props {ReactNode | null} => [confirmationStep] - show custom component on instead of typical confirmation.
+ * @props {boolean} [skipConfirmation=false] - skip showing confirmation step.
  * @props {string} [inputStyles] - input CSS classes
  * @props {string} [buttonStyles] - btn CSS classes
  * @props {string} [labelStyles] - label CSS classes
@@ -21,6 +24,12 @@ export interface ISignUpContainerProps {
   className?: string
   onSuccess?: (response: unknown) => void
   onLinkHandler?: (to: string) => void
+  apiSignUp?: (
+    email: string,
+    password: string,
+  ) => Promise<{ success: boolean; errorMessage: string }>
+  confirmationStep?: ReactNode | null
+  skipConfirmation?: boolean
   inputStyles?: string
   buttonStyles?: string
   labelStyles?: string
@@ -40,15 +49,18 @@ export interface ISignUpContainerProps {
 /**
  * Renders the sign-up component with API call
  *
- * @param  {string} [className] - the CSS classes
- * @param  {(response: unknown) => void} [onSuccess] - onSuccess call function
- * @param  {(to: string) => void} [onLinkHandler] - links onClick handler
- * @param  {string} [inputStyles] - input CSS classes
- * @param  {string} [buttonStyles] - btn CSS classes
- * @param  {string} [labelStyles] - label CSS classes
- * @param  {string} [linkStyles] - link CSS classes
- * @param  {string} [formStyles] - form CSS classes
- * @param  {string} [formGroupStyles] - form group CSS classes
+ * @param {string} [className] - the CSS classes
+ * @param {(response: unknown) => void} [onSuccess] - onSuccess call function
+ * @param {(to: string) => void} [onLinkHandler] - links onClick handler
+ * @param {(email: string, password: string) => Promise<{ success: boolean; errorMessage: string }>} [apiSignUp] - call this function instead of calling provider automatically.
+ * @param {ReactNode | null} => [confirmationStep] - show custom component on instead of typical confirmation.
+ * @param {boolean} [skipConfirmation=false] - skip showing confirmation step.
+ * @param {string} [inputStyles] - input CSS classes
+ * @param {string} [buttonStyles] - btn CSS classes
+ * @param {string} [labelStyles] - label CSS classes
+ * @param {string} [linkStyles] - link CSS classes
+ * @param {string} [formStyles] - form CSS classes
+ * @param {string} [formGroupStyles] - form group CSS classes
  *
  * @example
  * <SignUpContainer
@@ -62,6 +74,9 @@ const SignUpContainer = ({
   className = '',
   onSuccess,
   onLinkHandler = undefined,
+  apiSignUp,
+  confirmationStep = null,
+  skipConfirmation = false,
   inputStyles = '',
   buttonStyles = '',
   labelStyles = '',
@@ -77,10 +92,19 @@ const SignUpContainer = ({
   consentsLabelStyle = '',
   formLinkStyle,
 }: ISignUpContainerProps): JSX.Element => {
-  const [apiError, setApiError] = useState(undefined)
+  const [apiError, setApiError] = useState<string | undefined>(undefined)
   const [confirmation, setConfirmation] = useState(false)
   const [user, setUser] = useState('')
   async function signUp(email: string, password: string) {
+    if (apiSignUp) {
+      const { success, errorMessage } = await apiSignUp(email, password)
+      if (!success) {
+        setApiError(errorMessage)
+      } else {
+        setApiError(undefined)
+      }
+      return null
+    }
     try {
       // eslint-disable-next-line
       const response: any = await AuthService.signUp(email, password)
@@ -99,21 +123,23 @@ const SignUpContainer = ({
         }
         setUser(email)
       }
+      return null
     } catch (error) {
-      return setApiError(error.message)
+      setApiError(error.message)
+      return null
     }
   }
-  async function socialSignUp(data: any) {
+  async function socialSignUp(provider: string, data: any) {
     try {
       // eslint-disable-next-line
-      const response: any = await AuthService.socialSignUp(data)
+      const response: any = await AuthService.socialSignUp(provider, data)
       if (response && response.code) {
         setApiError(response.message)
       } else if (response) {
         if (onSuccess) onSuccess(response)
       }
     } catch (error) {
-      return setApiError(error.message)
+      setApiError(error.message)
     }
   }
   async function confirmSignUp(code: string) {
@@ -131,8 +157,12 @@ const SignUpContainer = ({
   }
   return (
     <div className={className ? className : 'a6y-react-auth__sign-up-cnt'}>
-      {confirmation ? (
-        <ConfirmationCode onClick={confirmSignUp} apiError={apiError} />
+      {confirmation && !skipConfirmation ? (
+        confirmationStep ? (
+          confirmationStep
+        ) : (
+          <ConfirmationCode onClick={confirmSignUp} apiError={apiError} />
+        )
       ) : (
         <SignUp
           className={className}

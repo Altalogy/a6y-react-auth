@@ -85,7 +85,7 @@ const ForgotPasswordContainer = ({
       const response: any = await AuthService.forgotPasswordSubmit(user, code, password)
       if (response && response.code) {
         setApiError(response.message)
-      } else if (response) {
+      } else {
         if (onSuccess) onSuccess(response)
       }
     } catch (error) {

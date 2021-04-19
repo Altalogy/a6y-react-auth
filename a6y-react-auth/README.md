@@ -167,6 +167,7 @@ Here is the full configurable options from initialize:
   auth?: [{
     appId: string
     provider: string
+    federatedIdentites?: boolean
   }],
   components?: {
     signUp?: {
@@ -203,6 +204,7 @@ param | type | description
 --- | --- | ---
 [provider]|string|It determines type of social auth provider. Available `facebook` or `google`
 [appId]|string|The app id or client id required by provider.
+[federatedIdentites]|boolean|Set to true if you want to log in with Federated Identites. Otherwise, it logs the user with User Pool.
 
 **consents**
 param | type | description

@@ -1,15 +1,16 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Auth } from 'aws-amplify'
+import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth/lib/types'
 
 class CognitoService {
   static async signIn(email: string, password: string): Promise<unknown> {
     try {
-      return await Auth.signIn(email, password).then(() => {
-        localStorage.setItem('a6y_provider', 'cognito')
-        localStorage.setItem('a6y_token', '')
-        localStorage.setItem('a6y_token_exp', '')
-      })
+      const response = await Auth.signIn(email, password)
+      localStorage.setItem('a6y_provider', 'cognito')
+      localStorage.setItem('a6y_token', '')
+      localStorage.setItem('a6y_token_exp', '')
+      return response
     } catch (error) {
       return error
     }
@@ -31,18 +32,24 @@ class CognitoService {
     }
   }
 
-  static async socialLogin(data: any): Promise<unknown> {
+  static async socialLogin(provider: string, data: any): Promise<unknown> {
     try {
-      const response = await Auth.federatedSignIn(
-        data.provider,
-        { token: data.token, expires_at: data.expiresAt },
-        data.user.email,
-      ).then(credentials => {
-        localStorage.setItem('a6y_provider', data.provider)
-        localStorage.setItem('a6y_token', data.token)
-        localStorage.setItem('a6y_token_exp', data.expiresAt)
-        return credentials
-      })
+      let theProvider = null
+      switch (provider) {
+        case 'facebook':
+          theProvider = CognitoHostedUIIdentityProvider.Facebook
+          break
+        case 'google':
+          theProvider = CognitoHostedUIIdentityProvider.Google
+          break
+      }
+      if (!theProvider) {
+        return null
+      }
+      const response = await Auth.federatedSignIn({ provider: theProvider })
+      localStorage.setItem('a6y_provider', data.provider)
+      localStorage.setItem('a6y_token', data.token)
+      localStorage.setItem('a6y_token_exp', data.expiresAt)
       return response
     } catch (error) {
       return error
@@ -55,8 +62,7 @@ class CognitoService {
     password: string,
   ): Promise<unknown> {
     try {
-      const response = await Auth.forgotPasswordSubmit(user, code, password)
-      return response
+      return await Auth.forgotPasswordSubmit(user, code, password)
     } catch (error) {
       return error
     }
@@ -64,8 +70,7 @@ class CognitoService {
 
   static async forgotPassword(email: string): Promise<unknown> {
     try {
-      const response = await Auth.forgotPassword(email)
-      return response
+      return await Auth.forgotPassword(email)
     } catch (error) {
       return error
     }

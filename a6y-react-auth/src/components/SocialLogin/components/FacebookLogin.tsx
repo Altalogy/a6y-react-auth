@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
 import Facebook from 'react-facebook-login'
-import { Button } from '../../UI'
+import FacebookButton from './FacebookButton'
 import { IProvider } from '../SocialLogin'
-import facebookIcon from '../../../assets/icons/facebook.svg'
 
 /**
  * Renders the facebook login button
@@ -40,15 +39,7 @@ const FacebookLogin = ({ callback, appId }: IProvider): JSX.Element => {
         fields='name,email'
         render={(renderProps: {
           onClick: React.MouseEventHandler<HTMLButtonElement>
-        }) => (
-          <Button
-            role='button'
-            className='a6y-react-auth__facebook-btn'
-            onClick={renderProps.onClick}
-          >
-            <img src={facebookIcon} alt='facebook-icon' /> Login with Facebook
-          </Button>
-        )}
+        }) => <FacebookButton onClick={renderProps.onClick} />}
       />
     </div>
   )

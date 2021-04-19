@@ -138,6 +138,7 @@ function EmailPasswordForm({
         rules: ['CANNOT_BE_BLANK'],
       },
     ]
+
     if (onClick && validate(data)) {
       if (signUp) {
         if (signUpData.password === signUpData.confirmPassword) {
@@ -150,7 +151,7 @@ function EmailPasswordForm({
         }
       } else {
         setConditionsError(!conditions)
-        if (onClick && conditions) {
+        if (onClick) {
           onClick(signUpData.email, signUpData.password)
         }
       }
@@ -162,7 +163,7 @@ function EmailPasswordForm({
 
   return (
     <>
-      <ErrorBoundary showError={conditionsError ? true : false}>
+      <ErrorBoundary showError={signUp && conditionsError ? true : false}>
         All required consents must be accepted.
       </ErrorBoundary>
       <form

@@ -10,10 +10,30 @@ class AuthService {
       default:
         Amplify.configure({
           Auth: {
+            identityPoolId:
+              globalThis.A6YReactAuthConfig.provider.identityPoolId,
+            identityPoolRegion: globalThis.A6YReactAuthConfig.provider.region,
             region: globalThis.A6YReactAuthConfig.provider.region,
             userPoolId: globalThis.A6YReactAuthConfig.provider.userPoolId,
             userPoolWebClientId:
               globalThis.A6YReactAuthConfig.provider.userPoolWebClientId,
+            oauth: {
+              domain: globalThis.A6YReactAuthConfig.provider.oauthDomain,
+              scope: [
+                'phone',
+                'email',
+                'profile',
+                'openid',
+                'aws.cognito.signin.user.admin',
+              ],
+              redirectSignIn:
+                globalThis.A6YReactAuthConfig.provider.oauthRedirectSignIn,
+              redirectSignOut:
+                globalThis.A6YReactAuthConfig.provider.oauthRedirectSignOut,
+              clientId:
+                globalThis.A6YReactAuthConfig.provider.userPoolWebClientId,
+              responseType: 'code', // or 'token', note that REFRESH token will only be generated when the responseType is code
+            },
           },
         })
     }
@@ -23,8 +43,8 @@ class AuthService {
     return await CognitoService.signIn(email, password)
   }
 
-  static async socialSignIn(data: any): Promise<unknown> {
-    return await CognitoService.socialLogin(data)
+  static async socialSignIn(provider: string, data: any): Promise<unknown> {
+    return await CognitoService.socialLogin(provider, data)
   }
 
   static async signUp(email: string, password: string): Promise<unknown> {
@@ -35,8 +55,8 @@ class AuthService {
     return await CognitoService.confirmSignUp(email, code)
   }
 
-  static async socialSignUp(data: any): Promise<unknown> {
-    return await CognitoService.socialLogin(data)
+  static async socialSignUp(provider: string, data: any): Promise<unknown> {
+    return await CognitoService.socialLogin(provider, data)
   }
 
   static async forgotPassword(email: string): Promise<unknown> {

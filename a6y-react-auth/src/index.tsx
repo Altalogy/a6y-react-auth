@@ -21,6 +21,9 @@ interface IA6YReactAuth {
     userPoolWebClientId: string
     identityPoolId: string
     region: string
+    oauthDomain: string
+    oauthRedirectSignIn: string
+    oauthRedirectSignOut: string
   }
   auth?: IProviderConfig[]
   components?: {
@@ -103,6 +106,6 @@ export const SignOut = async (): Promise<unknown> => {
   return await AuthService.signOut()
 }
 
-export { SignIn, SignUp, ForgotPassword }
+export { SignIn, SignUp, ForgotPassword, AuthService }
 
 export default A6YReactAuth

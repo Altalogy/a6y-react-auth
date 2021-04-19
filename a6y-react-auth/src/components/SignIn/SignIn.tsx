@@ -10,7 +10,7 @@ import SocialLogin from '../SocialLogin'
  * @typedef ISignInProps
  * @props {string} [className] - the CSS classes
  * @props {(email: string, password: string) => void} [onClick] - onClick handler launching after submit form
- * @props {(response: any) => void} [onSocialClick] - onClick handler launching after submit on social providers
+ * @props {(provider: string, response: any) => void} [onSocialClick] - onClick handler launching after submit on social providers
  * @props {string} [apiError] - api error messages
  * @props {(to: string) => void} [onLinkHandler] - links onClick handler
  * @props {string} [inputStyles] - input CSS classes
@@ -24,7 +24,7 @@ import SocialLogin from '../SocialLogin'
 export interface ISignInProps {
   className?: string
   onClick?: (email: string, password: string) => void
-  onSocialClick?: (response: any) => void
+  onSocialClick?: (provider: string, response: any) => void
   apiError?: string
   onLinkHandler?: (to: string) => void
   inputStyles?: string
@@ -48,7 +48,7 @@ export interface ISignInProps {
  *
  * @param  {string} [className] - the CSS classes
  * @param  {(email: string, password: string) => void} [onClick] - onClick handler launching after submit form
- * @param  {(response: any) => void} [onSocialClick] - onClick handler launching after submit on social providers
+ * @param  {(provider: string, response: any) => void} [onSocialClick] - onClick handler launching after submit on social providers
  * @param  {string} [apiError] - api error messages
  * @param  {(to: string) => void} [onLinkHandler] - links onClick handler
  * @param  {string} [inputStyles] - input CSS classes
