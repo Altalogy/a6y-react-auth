@@ -84,6 +84,7 @@ formGroupStyles[optional] | string | form group CSS classes
 param | type | description
 --- | --- | ---
 className[optional] | string | the CSS classes
+containerClassName[optional] | string | the CSS classes of the wrapping element
 onSuccess[optional]] | (response: unknown) => void | onSuccess callback function
 onLinkHandler[optional] | it's a link callback function to redirect the app. If not declared it's using by pathname `sign-in`
 inputStyles[optional] | string | input CSS classes
@@ -108,6 +109,7 @@ formGroupStyles[optional] | string | form group CSS classes
 param | type | description
 --- | --- | ---
 className[optional] | string | the CSS classes
+containerClassName[optional] | string | the CSS classes of the wrapping element
 onSuccess[optional]] | (response: unknown) => void | onSuccess callback function
 onLinkHandler[optional] | it's a link callback function to redirect the app. If not declared it's using by pathname `sign-up`
 inputStyles[optional] | string | input CSS classes
@@ -133,6 +135,7 @@ formGroupStyles[optional] | string | form group CSS classes
 param | type | description
 --- | --- | ---
 className[optional] | string | the CSS classes
+containerClassName[optional] | string | the CSS classes of the wrapping element
 onSuccess[optional]] | (response: unknown) => void | onSuccess callback function
 onLinkHandler[optional] | (to: string) => void | it's a link callback function to redirect the app. If not declared it's using by pathname `forgot-password`
 inputStyles[optional] | string | input CSS classes
@@ -167,6 +170,8 @@ Here is the full configurable options from initialize:
   auth?: [{
     appId: string
     provider: string
+    className?: string
+    federatedIdentites?: boolean
   }],
   components?: {
     signUp?: {
@@ -203,6 +208,8 @@ param | type | description
 --- | --- | ---
 [provider]|string|It determines type of social auth provider. Available `facebook` or `google`
 [appId]|string|The app id or client id required by provider.
+[federatedIdentites]|boolean|Set to true if you want to log in with Federated Identites. Otherwise, it logs the user with User Pool.
+[className]|string|Adds the CSS classes.
 
 **consents**
 param | type | description
@@ -243,7 +250,7 @@ content|string|Here is the label message with consent. Message can be used with 
         },
       ],
       auth: [
-        { appId: 'xyz', provider: 'facebook' },
+        { appId: 'xyz', provider: 'facebook', className: 'any-class },
         { appId: 'xyz', provider: 'google' }
       ]
     }

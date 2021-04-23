@@ -9,6 +9,7 @@ import { IProvider } from '../SocialLogin'
  *
  * @param  {string} [appId] - {string} [apiId] - the app id or client id required by provider
  * @param  {(response: any) => void} [callback] - callback with response from social provider
+ * @param  {string} [className] - CSS classes
  *
  * @example
  * <GoogleLogin
@@ -16,7 +17,11 @@ import { IProvider } from '../SocialLogin'
  *  appId='000000000'
  * />
  */
-const GoogleLogin = ({ callback, appId }: IProvider): JSX.Element => {
+const GoogleLogin = ({
+  callback,
+  appId,
+  className = 'a6y-react-auth__google-login',
+}: IProvider): JSX.Element => {
   const responseGoogle = (response: any) => {
     const profile = response.profileObj
     const { id_token, expires_at } = response.getAuthResponse()
@@ -32,7 +37,7 @@ const GoogleLogin = ({ callback, appId }: IProvider): JSX.Element => {
     })
   }
   return (
-    <div className='a6y-react-auth__google-login'>
+    <div className={className}>
       <Google
         clientId={appId}
         onSuccess={responseGoogle}

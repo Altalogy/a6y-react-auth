@@ -7,6 +7,9 @@ import facebookIcon from '../../../assets/icons/facebook.svg'
  * Renders the Facebook button
  *
  * @param  {(response: any) => void} [onClick]
+ * @param  {string} [className]
+ * @param  {string} [iconClassName]
+ * @param  {string} [textClassName]
  *
  * @example
  * <FacebookButton
@@ -15,16 +18,19 @@ import facebookIcon from '../../../assets/icons/facebook.svg'
  */
 const FacebookButton = ({
   onClick,
+  className = 'a6y-react-auth__facebook-btn',
+  iconClassName = '',
+  textClassName = '',
 }: {
   onClick: (response: any) => void
+  className?: string
+  iconClassName?: string
+  textClassName?: string
 }): JSX.Element => {
   return (
-    <Button
-      role='button'
-      className='a6y-react-auth__facebook-btn'
-      onClick={onClick}
-    >
-      <img src={facebookIcon} alt='facebook-icon' /> Login with Facebook
+    <Button role='button' className={className} onClick={onClick}>
+      <img src={facebookIcon} alt='facebook-icon' className={iconClassName} />
+      <span className={textClassName}>Login with Facebook</span>
     </Button>
   )
 }

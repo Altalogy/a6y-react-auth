@@ -17,6 +17,7 @@ import AuthService from '../../services/AuthService'
  */
 export interface ISignInContainerProps {
   className?: string
+  containerClassName?: string
   onSuccess?: (response: unknown) => void
   onLinkHandler?: (to: string) => void
   inputStyles?: string
@@ -39,6 +40,7 @@ export interface ISignInContainerProps {
  * Renders the sign-in component with API call
  *
  * @param  {string} [className] - the CSS classes
+ * @param  {string} [containerClassName] - the CSS classes
  * @param  {(response: unknown) => void} [onSuccess] - onSuccess call function
  * @param  {(to: string) => void} [onLinkHandler] - links onClick handler
  * @param  {string} [inputStyles] - input CSS classes
@@ -58,6 +60,7 @@ export interface ISignInContainerProps {
 
 const SignInContainer = ({
   className = '',
+  containerClassName,
   onSuccess,
   onLinkHandler = undefined,
   inputStyles = '',
@@ -102,7 +105,11 @@ const SignInContainer = ({
     }
   }
   return (
-    <div className={className ? className : 'a6y-react-auth__sign-in-cnt'}>
+    <div
+      className={
+        containerClassName ? containerClassName : 'a6y-react-auth__sign-in-cnt'
+      }
+    >
       <SignIn
         className={className}
         onLinkHandler={onLinkHandler}

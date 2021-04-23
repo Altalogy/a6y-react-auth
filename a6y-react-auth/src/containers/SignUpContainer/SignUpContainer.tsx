@@ -22,6 +22,7 @@ import AuthService from '../../services/AuthService'
 
 export interface ISignUpContainerProps {
   className?: string
+  containerClassName?: string
   onSuccess?: (response: unknown) => void
   onLinkHandler?: (to: string) => void
   apiSignUp?: (
@@ -50,6 +51,7 @@ export interface ISignUpContainerProps {
  * Renders the sign-up component with API call
  *
  * @param {string} [className] - the CSS classes
+ * @param {string} [containerClassName] - the CSS classes
  * @param {(response: unknown) => void} [onSuccess] - onSuccess call function
  * @param {(to: string) => void} [onLinkHandler] - links onClick handler
  * @param {(email: string, password: string) => Promise<{ success: boolean; errorMessage: string }>} [apiSignUp] - call this function instead of calling provider automatically.
@@ -72,6 +74,7 @@ export interface ISignUpContainerProps {
 
 const SignUpContainer = ({
   className = '',
+  containerClassName,
   onSuccess,
   onLinkHandler = undefined,
   apiSignUp,
@@ -156,7 +159,11 @@ const SignUpContainer = ({
     }
   }
   return (
-    <div className={className ? className : 'a6y-react-auth__sign-up-cnt'}>
+    <div
+      className={
+        containerClassName ? containerClassName : 'a6y-react-auth__sign-up-cnt'
+      }
+    >
       {confirmation && !skipConfirmation ? (
         confirmationStep ? (
           confirmationStep

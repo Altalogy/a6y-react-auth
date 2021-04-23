@@ -7,6 +7,7 @@ import AuthService from '../../services/AuthService'
 /**
  * @typedef IForgotPasswordContainerProps
  * @props {string} [className] - the CSS classes
+ * @props {string} [containerClassName] - the CSS classes
  * @props {(response: unknown) => void} [onSuccess] - onSuccess call function
  * @props {(to: string) => void} [onLinkHandler] - links onClick handler
  * @props {string} [inputStyles] - input CSS classes
@@ -19,6 +20,7 @@ import AuthService from '../../services/AuthService'
 
 export interface IForgotPasswordContainerProps {
   className?: string
+  containerClassName?: string
   onSuccess?: (response: unknown) => void
   onLinkHandler?: (to: string) => void
   inputStyles?: string
@@ -34,6 +36,7 @@ export interface IForgotPasswordContainerProps {
  * Renders the sign-in component with API call
  *
  * @param  {string} [className] - the CSS classes
+ * @param  {string} [containerClassName] - the CSS classes
  * @param  {(response: unknown) => void} [onSuccess] - onSuccess call function
  * @param  {(to: string) => void} [onLinkHandler] - links onClick handler
  * @param  {string} [inputStyles] - input CSS classes
@@ -52,6 +55,7 @@ export interface IForgotPasswordContainerProps {
 
 const ForgotPasswordContainer = ({
   className = '',
+  containerClassName,
   onSuccess,
   onLinkHandler = undefined,
   inputStyles = '',
@@ -94,7 +98,11 @@ const ForgotPasswordContainer = ({
   }
   return (
     <div
-      className={className ? className : 'a6y-react-auth__forgot-password-cnt'}
+      className={
+        containerClassName
+          ? containerClassName
+          : 'a6y-react-auth__forgot-password-cnt'
+      }
     >
       {step === 1 ? (
         <ForgotPassword

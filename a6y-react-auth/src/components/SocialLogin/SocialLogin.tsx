@@ -15,6 +15,9 @@ import GoogleButton from './components/GoogleButton'
 export interface IProvider {
   callback: (response: any) => void
   appId: string
+  className?: string
+  iconClassName?: string
+  textClassName?: string
 }
 
 /**
@@ -26,6 +29,9 @@ export interface IProviderConfig {
   appId: string
   provider: string
   federatedIdentities?: boolean
+  className?: string
+  iconClassName?: string
+  textClassName?: string
 }
 
 /**
@@ -53,6 +59,9 @@ const SocialLogin = ({ callback }: ISocialLogin): JSX.Element => {
   const renderLoginProviders = (config: any[]): JSX.Element[] => {
     const render: JSX.Element[] = []
     config.map((el, idx) => {
+      const className = el.className || null
+      const iconClassName = el.iconClassName || null
+      const textClassName = el.textClassName || null
       switch (el.provider) {
         case 'facebook':
           if (el.federatedIdentities) {
@@ -60,6 +69,7 @@ const SocialLogin = ({ callback }: ISocialLogin): JSX.Element => {
               <FacebookLogin
                 key={idx}
                 appId={el.appId}
+                className={className}
                 callback={response =>
                   callbackFromSocialProviders('facebook', response)
                 }
@@ -68,6 +78,10 @@ const SocialLogin = ({ callback }: ISocialLogin): JSX.Element => {
           }
           return render.push(
             <FacebookButton
+              key={idx}
+              className={className}
+              iconClassName={iconClassName}
+              textClassName={textClassName}
               onClick={() =>
                 Auth.federatedSignIn({
                   provider: CognitoHostedUIIdentityProvider.Facebook,
@@ -80,6 +94,7 @@ const SocialLogin = ({ callback }: ISocialLogin): JSX.Element => {
             return render.push(
               <GoogleLogin
                 key={idx}
+                className={className}
                 appId={el.appId}
                 callback={response =>
                   callbackFromSocialProviders('google', response)
@@ -89,6 +104,10 @@ const SocialLogin = ({ callback }: ISocialLogin): JSX.Element => {
           }
           return render.push(
             <GoogleButton
+              key={idx}
+              className={className}
+              iconClassName={iconClassName}
+              textClassName={textClassName}
               onClick={() =>
                 Auth.federatedSignIn({
                   provider: CognitoHostedUIIdentityProvider.Google,

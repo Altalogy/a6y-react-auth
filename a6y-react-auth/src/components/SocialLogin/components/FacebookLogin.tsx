@@ -9,6 +9,7 @@ import { IProvider } from '../SocialLogin'
  *
  * @param  {string} [appId] - {string} [apiId] - the app id or client id required by provider
  * @param  {(response: any) => void} [callback] - callback with response from social provider
+ * @param  {string} [className] - CSS classes
  *
  * @example
  * <FacebookLogin
@@ -16,7 +17,11 @@ import { IProvider } from '../SocialLogin'
  *  appId='000000000'
  * />
  */
-const FacebookLogin = ({ callback, appId }: IProvider): JSX.Element => {
+const FacebookLogin = ({
+  callback,
+  appId,
+  className = 'a6y-react-auth__facebook-login',
+}: IProvider): JSX.Element => {
   const responseFacebook = (response: any) => {
     const expiresAt = response.expiresIn * 1000 + new Date().getTime()
     const token = response.accessToken
@@ -32,7 +37,7 @@ const FacebookLogin = ({ callback, appId }: IProvider): JSX.Element => {
     })
   }
   return (
-    <div className='a6y-react-auth__facebook-login'>
+    <div className={className}>
       <Facebook
         appId={appId}
         callback={responseFacebook}
