@@ -36,7 +36,7 @@ export interface IEmailPasswordFormProps {
   onClick?: (email: string, password: string, consents?: IConsent[]) => void
   submitLabel?: string
   signUp?: boolean
-  loader: boolean
+  loader?: boolean
   buttonStyles?: string
   inputStyles?: string
   labelStyles?: string
@@ -79,7 +79,7 @@ function EmailPasswordForm({
   onClick,
   submitLabel = 'Submit',
   signUp = false,
-  loader,
+  loader = false,
   inputStyles = '',
   buttonStyles = '',
   labelStyles = '',

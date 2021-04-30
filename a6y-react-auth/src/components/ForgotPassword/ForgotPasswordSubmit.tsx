@@ -18,7 +18,7 @@ import { Loader } from '../UI/Loader'
 
 export interface IForgotPasswordProps {
   className?: string
-  loader: boolean
+  loader?: boolean
   onClick?: (code: string, password: string) => void
   apiError?: string
   inputStyles?: string
@@ -51,7 +51,7 @@ const ForgotPassword = ({
   className = 'a6y-react-auth',
   onClick,
   apiError,
-  loader,
+  loader = false,
   inputStyles = '',
   buttonStyles = '',
   labelStyles = '',

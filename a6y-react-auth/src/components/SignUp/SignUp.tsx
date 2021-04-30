@@ -24,7 +24,7 @@ import { IConsent } from '../Consents/Consents'
 
 export interface ISignUpProps {
   className?: string
-  loader: boolean
+  loader?: boolean
   onClick?: (email: string, password: string, consents: IConsent[]) => void
   onSocialClick?: (provider: string, response: any) => void
   apiError?: string
@@ -73,7 +73,7 @@ const SignUp = ({
   onClick,
   onSocialClick,
   apiError,
-  loader,
+  loader = false,
   onLinkHandler = undefined,
   inputStyles = '',
   buttonStyles = '',

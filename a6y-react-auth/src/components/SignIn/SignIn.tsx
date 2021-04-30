@@ -23,7 +23,7 @@ import SocialLogin from '../SocialLogin'
 
 export interface ISignInProps {
   className?: string
-  loader: boolean
+  loader?: boolean
   onClick?: (email: string, password: string) => void
   onSocialClick?: (provider: string, response: any) => void
   apiError?: string
@@ -72,7 +72,7 @@ const SignIn = ({
   onClick,
   onSocialClick,
   apiError,
-  loader,
+  loader = false,
   onLinkHandler = undefined,
   inputStyles = '',
   buttonStyles = '',
