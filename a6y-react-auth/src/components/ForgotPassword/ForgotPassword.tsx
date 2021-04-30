@@ -3,6 +3,7 @@ import FormLinks from '../FormLinks'
 import { ErrorBoundary, Input, Button } from '../UI'
 import validate from '../../utilities/validation'
 import '../../index.css'
+import { Loader } from '../UI/Loader'
 
 /**
  * @typedef IForgotPasswordProps
@@ -20,6 +21,7 @@ import '../../index.css'
 
 export interface IForgotPasswordProps {
   className?: string
+  loader: boolean
   onClick?: (email: string) => void
   apiError?: string
   onLinkHandler?: (to: string) => void
@@ -56,6 +58,7 @@ export interface IForgotPasswordProps {
 const ForgotPassword = ({
   className = 'a6y-react-auth',
   onClick,
+  loader,
   apiError,
   onLinkHandler,
   inputStyles = '',
@@ -139,8 +142,13 @@ const ForgotPassword = ({
             labelStyles={labelStyles}
           />
         </div>
-        <Button className={buttonStyles} role='submit' style='primary'>
-          Reset password
+        <Button
+          className={buttonStyles}
+          role='submit'
+          style='primary'
+          disabled={loader}
+        >
+          {loader ? <Loader /> : 'Reset password'}
         </Button>
       </form>
       {globalThis.A6YReactAuthConfig &&

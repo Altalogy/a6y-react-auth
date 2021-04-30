@@ -69,30 +69,39 @@ const ForgotPasswordContainer = ({
   const [user, setUser] = useState('')
   const [step, setStep] = useState(1)
   const [apiError, setApiError] = useState(undefined)
+  const [loader, setLoader] = useState(false)
   async function forgotPassword(email: string) {
+    setLoader(true)
     try {
       setUser(email)
       // eslint-disable-next-line
       const response: any = await AuthService.forgotPassword(email)
       if (response && response.code) {
+        setLoader(false)
         setApiError(response.message)
       } else if (response) {
+        setLoader(false)
         setStep(2)
       }
     } catch (error) {
+      setLoader(false)
       return setApiError(error)
     }
   }
   async function forgotPasswordSubmit(code: string, password: string) {
+    setLoader(true)
     try {
       // eslint-disable-next-line
       const response: any = await AuthService.forgotPasswordSubmit(user, code, password)
       if (response && response.code) {
         setApiError(response.message)
+        setLoader(false)
       } else {
         if (onSuccess) onSuccess(response)
+        setLoader(false)
       }
     } catch (error) {
+      setLoader(false)
       return setApiError(error)
     }
   }
@@ -106,6 +115,7 @@ const ForgotPasswordContainer = ({
     >
       {step === 1 ? (
         <ForgotPassword
+          loader={loader}
           className={className}
           onLinkHandler={onLinkHandler}
           onClick={forgotPassword}
@@ -120,6 +130,7 @@ const ForgotPasswordContainer = ({
         />
       ) : (
         <ForgotPasswordSubmit
+          loader={loader}
           className={className}
           onClick={forgotPasswordSubmit}
           apiError={apiError}

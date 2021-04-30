@@ -25,16 +25,19 @@ ReactAuth.initialize({
       position: 'top',
       consents: [
         {
+          name: 'survey-flagged',
           type: 'checkbox',
           required: true,
           content: 'We will let you know when your survey is flagged. *',
         },
         {
+          name: 'survey-better',
           type: 'checkbox',
           required: false,
           content: 'We will let youk know when your survey could do better',
         },
         {
+          name: 'terms',
           type: 'other',
           required: false,
           content:

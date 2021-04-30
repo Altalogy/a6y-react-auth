@@ -78,29 +78,38 @@ const SignInContainer = ({
   formLinkStyle,
 }: ISignInContainerProps): JSX.Element => {
   const [apiError, setApiError] = useState(undefined)
+  const [loader, setLoader] = useState(false)
   async function signIn(email: string, password: string) {
+    setLoader(true)
     try {
       // eslint-disable-next-line
       const response: any = await AuthService.signIn(email, password)
       if (response && response.code) {
+        setLoader(false)
         return setApiError(response.message)
       } else {
+        setLoader(false)
         if (onSuccess) return onSuccess(response)
       }
     } catch (error) {
+      setLoader(false)
       return setApiError(error.message)
     }
   }
   async function socialSignIn(provider: string, data: any) {
+    setLoader(true)
     try {
       // eslint-disable-next-line
       const response: any = await AuthService.socialSignIn(provider, data)
       if (response && response.code) {
+        setLoader(false)
         return setApiError(response.message)
       } else {
+        setLoader(false)
         if (onSuccess) return onSuccess(response)
       }
     } catch (error) {
+      setLoader(false)
       return setApiError(error.message)
     }
   }
@@ -111,6 +120,7 @@ const SignInContainer = ({
       }
     >
       <SignIn
+        loader={loader}
         className={className}
         onLinkHandler={onLinkHandler}
         onClick={signIn}

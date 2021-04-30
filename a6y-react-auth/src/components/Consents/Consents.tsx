@@ -7,7 +7,7 @@ import Checkbox from '../UI/Checkbox/Checkbox'
  */
 
 export interface IConsents {
-  isValid?: (value: boolean) => void
+  isValid?: (valid: boolean, consentsValues: IValues) => void
   className?: string
   consentsLabelStyle?: string
   consentsHrefStyle?: string
@@ -25,18 +25,20 @@ export interface IConsents {
  */
 
 export interface IConsent {
+  name?: string
   type?: string
   required?: boolean
   content: string
+  value?: boolean
 }
 
 /**
  * @typedef IValues
- * @props {string} [key:string] - type of value key in object of values
+ * @props {number} [key:string] - type of value key in object of values
  */
 
-interface IValues {
-  [key: string]: boolean
+export interface IValues {
+  [key: number]: boolean
 }
 
 /**
@@ -58,7 +60,7 @@ const Consents = ({
   consentSpanStyle = '',
 }: IConsents): JSX.Element => {
   const [consents, setConsents] = useState<IConsent[]>([])
-  const [required] = useState<string[]>(() => getRequired())
+  const [required] = useState<number[]>(() => getRequired())
   const [values, setValues] = useState<IValues>({})
   useEffect(() => {
     const consentsData =
@@ -82,11 +84,11 @@ const Consents = ({
       globalThis.A6YReactAuthConfig.components &&
       globalThis.A6YReactAuthConfig.components.consents &&
       globalThis.A6YReactAuthConfig.components.consents.consents
-    const newRequired: string[] = []
+    const newRequired: number[] = []
     if (Array.isArray(consentsData)) {
       consentsData.map((consent: IConsent, idx) => {
         if (consent.type === 'checkbox' && consent.required) {
-          newRequired.push(`consent${idx}`)
+          newRequired.push(idx)
         }
       })
     }
@@ -96,14 +98,14 @@ const Consents = ({
   function validate() {
     const notCheckedButRequired = []
     const valuesKeys = Object.keys(values)
-    required.map(value => {
-      if (valuesKeys.includes(value) && !values[value]) {
+    required.map((value: number) => {
+      if (valuesKeys.includes(`${value}`) && !values[value]) {
         notCheckedButRequired.push(value)
-      } else if (!valuesKeys.includes(value)) {
+      } else if (!valuesKeys.includes(`${value}`)) {
         notCheckedButRequired.push(value)
       }
     })
-    if (isValid) isValid(notCheckedButRequired.length === 0)
+    if (isValid) isValid(notCheckedButRequired.length === 0, values)
   }
 
   function getLabel(content: string) {
@@ -140,10 +142,8 @@ const Consents = ({
             textStyle={consentTextStyle}
             spanStyle={consentSpanStyle}
             id={`consent-${idx}`}
-            onChange={e =>
-              setValues({ ...values, [`consent${idx}`]: e.target.checked })
-            }
-            value={`${values[`consent${idx}`]}`}
+            onChange={e => setValues({ ...values, [idx]: e.target.checked })}
+            value={`${values[idx]}`}
           >
             {getLabel(consent.content)}
           </Checkbox>,

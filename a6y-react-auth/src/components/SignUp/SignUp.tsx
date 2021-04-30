@@ -5,6 +5,7 @@ import FormLinks from '../FormLinks'
 import { ErrorBoundary } from '../UI'
 import '../../index.css'
 import SocialLogin from '../SocialLogin'
+import { IConsent } from '../Consents/Consents'
 
 /**
  * @typedef ISignUpProps
@@ -23,7 +24,8 @@ import SocialLogin from '../SocialLogin'
 
 export interface ISignUpProps {
   className?: string
-  onClick?: (email: string, password: string) => void
+  loader: boolean
+  onClick?: (email: string, password: string, consents: IConsent[]) => void
   onSocialClick?: (provider: string, response: any) => void
   apiError?: string
   onLinkHandler?: (to: string) => void
@@ -71,6 +73,7 @@ const SignUp = ({
   onClick,
   onSocialClick,
   apiError,
+  loader,
   onLinkHandler = undefined,
   inputStyles = '',
   buttonStyles = '',
@@ -87,8 +90,8 @@ const SignUp = ({
   consentsLabelStyle = '',
   formLinkStyle,
 }: ISignUpProps): JSX.Element => {
-  const onSubmit = (email: string, password: string) => {
-    if (onClick) onClick(email, password)
+  const onSubmit = (email: string, password: string, consents?: IConsent[]) => {
+    if (onClick && consents) onClick(email, password, consents)
   }
   return (
     <div className={className}>
@@ -103,6 +106,7 @@ const SignUp = ({
       </ErrorBoundary>
       {onSocialClick && <SocialLogin callback={onSocialClick} />}
       <EmailPasswordForm
+        loader={loader}
         inputStyles={inputStyles}
         labelStyles={labelStyles}
         buttonStyles={buttonStyles}

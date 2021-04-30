@@ -23,6 +23,7 @@ import SocialLogin from '../SocialLogin'
 
 export interface ISignInProps {
   className?: string
+  loader: boolean
   onClick?: (email: string, password: string) => void
   onSocialClick?: (provider: string, response: any) => void
   apiError?: string
@@ -71,6 +72,7 @@ const SignIn = ({
   onClick,
   onSocialClick,
   apiError,
+  loader,
   onLinkHandler = undefined,
   inputStyles = '',
   buttonStyles = '',
@@ -99,6 +101,7 @@ const SignIn = ({
       </ErrorBoundary>
       {onSocialClick && <SocialLogin callback={onSocialClick} />}
       <EmailPasswordForm
+        loader={loader}
         inputStyles={inputStyles}
         labelStyles={labelStyles}
         buttonStyles={buttonStyles}

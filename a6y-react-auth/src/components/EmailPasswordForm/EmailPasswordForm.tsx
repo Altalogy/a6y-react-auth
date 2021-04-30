@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { Button, ErrorBoundary, Input } from '../UI'
 import validate from '../../utilities/validation'
 import Consents from '../Consents'
+import { IConsent, IValues } from '../Consents/Consents'
+import { Loader } from '../UI/Loader'
 
 /**
  * @typedef ISignInData
@@ -31,9 +33,10 @@ export interface ISignInData {
 
 export interface IEmailPasswordFormProps {
   className?: string
-  onClick?: (email: string, password: string) => void
+  onClick?: (email: string, password: string, consents?: IConsent[]) => void
   submitLabel?: string
   signUp?: boolean
+  loader: boolean
   buttonStyles?: string
   inputStyles?: string
   labelStyles?: string
@@ -76,6 +79,7 @@ function EmailPasswordForm({
   onClick,
   submitLabel = 'Submit',
   signUp = false,
+  loader,
   inputStyles = '',
   buttonStyles = '',
   labelStyles = '',
@@ -91,6 +95,7 @@ function EmailPasswordForm({
   consentsLabelStyle = '',
 }: IEmailPasswordFormProps): JSX.Element {
   const [conditions, setConditions] = useState(false)
+  const [consents, setConsents] = useState<IConsent[]>([])
   const [conditionsError, setConditionsError] = useState(false)
   const [signUpData, setSignUpData] = useState({
     email: '',
@@ -120,6 +125,26 @@ function EmailPasswordForm({
     setSignUpData({ ...signUpData, [target]: e.target.value })
   }
 
+  function setConditionsValues(val: boolean, consentsVal: IValues) {
+    const newConsents: React.SetStateAction<IConsent[]> = []
+    if (globalThis.A6YReactAuthConfig.components?.consents?.consents) {
+      globalThis.A6YReactAuthConfig.components?.consents?.consents.map(
+        (el, idx) => {
+          if (consentsVal[idx]) {
+            newConsents.push({ ...el, value: consentsVal[idx] })
+          } else {
+            newConsents.push({
+              ...el,
+              value: el.type !== 'checkbox' ? true : false,
+            })
+          }
+        },
+      )
+    }
+    setConsents(newConsents)
+    setConditions(val)
+  }
+
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     setErrorData({
       email: false,
@@ -144,7 +169,7 @@ function EmailPasswordForm({
         if (signUpData.password === signUpData.confirmPassword) {
           setConditionsError(!conditions)
           if (onClick && conditions) {
-            onClick(signUpData.email, signUpData.password)
+            onClick(signUpData.email, signUpData.password, consents)
           }
         } else {
           setErrorData({ ...errorData, password: true, confirmPassword: true })
@@ -244,11 +269,18 @@ function EmailPasswordForm({
               consentSpanStyle={consentSpanStyle}
               consentsLabelStyle={consentsLabelStyle}
               className={consentsStyle}
-              isValid={(value: boolean) => setConditions(value)}
+              isValid={(value: boolean, consents: IValues) =>
+                setConditionsValues(value, consents)
+              }
             />
           )}
-        <Button className={buttonStyles} role='submit' style='primary'>
-          {submitLabel}
+        <Button
+          className={buttonStyles}
+          role='submit'
+          style='primary'
+          disabled={loader}
+        >
+          {loader ? <Loader /> : submitLabel}
         </Button>
         {globalThis.A6YReactAuthConfig &&
           (globalThis.A6YReactAuthConfig.components?.consents?.display ===
@@ -264,7 +296,9 @@ function EmailPasswordForm({
               consentTextStyle={consentTextStyle}
               consentSpanStyle={consentSpanStyle}
               className={consentsStyle}
-              isValid={(value: boolean) => setConditions(value)}
+              isValid={(value: boolean, consents: IValues) =>
+                setConditionsValues(value, consents)
+              }
             />
           )}
       </form>

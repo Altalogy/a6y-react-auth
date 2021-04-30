@@ -8,6 +8,7 @@ import './Button.css'
  * @props {React.MouseEventHandler<HTMLButtonElement>} [onclick] - onClick handler.
  * @props {string} [className] - the CSS classes.
  * @props {string} [style] - the CSS default style 'primary' | 'secondary'
+ * @props {boolean} [disabled] - disable button
  */
 
 export interface IButtonProps {
@@ -16,6 +17,7 @@ export interface IButtonProps {
   className?: string
   onClick?: React.MouseEventHandler<HTMLButtonElement>
   style?: 'primary' | 'secondary'
+  disabled?: boolean
 }
 
 /**
@@ -26,6 +28,7 @@ export interface IButtonProps {
  * @param {React.MouseEventHandler<HTMLButtonElement>} [onClick] - onClick handler.
  * @param {string} [style] - the CSS default style 'primary' | 'secondary'
  * @param {string} role - the html role for button 'button' | 'submit'
+ * @param {boolean} [disabled] - disable button
  *
  * @example
  * <Button
@@ -43,6 +46,7 @@ const Button = ({
   children,
   className,
   onClick,
+  disabled = false,
   style = 'primary',
 }: IButtonProps): JSX.Element => {
   const classNames = require('classnames')
@@ -53,6 +57,7 @@ const Button = ({
   })
   return (
     <button
+      disabled={disabled}
       onClick={onClick}
       className={className && className.length > 0 ? className : btnClass}
       type={role}

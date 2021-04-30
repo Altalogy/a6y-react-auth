@@ -9,6 +9,10 @@ button.a6y-react-auth__button {
   width: 100%;
 }
 
+button:disabled {
+  cursor: not-allowed;
+}
+
 button.a6y-react-auth__button:hover {
   opacity: .7;
 }

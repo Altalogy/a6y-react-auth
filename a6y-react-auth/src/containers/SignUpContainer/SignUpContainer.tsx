@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { ReactNode, useState } from 'react'
 import ConfirmationCode from '../../components/ConfirmationCode'
+import { IConsent } from '../../components/Consents/Consents'
 import SignUp from '../../components/SignUp'
 import AuthService from '../../services/AuthService'
 
@@ -28,6 +29,7 @@ export interface ISignUpContainerProps {
   apiSignUp?: (
     email: string,
     password: string,
+    consents: IConsent[],
   ) => Promise<{ success: boolean; errorMessage: string }>
   confirmationStep?: ReactNode | null
   skipConfirmation?: boolean
@@ -98,12 +100,20 @@ const SignUpContainer = ({
   const [apiError, setApiError] = useState<string | undefined>(undefined)
   const [confirmation, setConfirmation] = useState(false)
   const [user, setUser] = useState('')
-  async function signUp(email: string, password: string) {
+  const [loader, setLoader] = useState(false)
+  async function signUp(email: string, password: string, consents: IConsent[]) {
+    setLoader(true)
     if (apiSignUp) {
-      const { success, errorMessage } = await apiSignUp(email, password)
+      const { success, errorMessage } = await apiSignUp(
+        email,
+        password,
+        consents,
+      )
       if (!success) {
+        setLoader(false)
         setApiError(errorMessage)
       } else {
+        setLoader(false)
         setApiError(undefined)
       }
       return null
@@ -112,6 +122,7 @@ const SignUpContainer = ({
       // eslint-disable-next-line
       const response: any = await AuthService.signUp(email, password)
       if (response && response.code) {
+        setLoader(false)
         setApiError(response.message)
       } else if (response) {
         if (onSuccess) onSuccess(response)
@@ -124,37 +135,47 @@ const SignUpContainer = ({
         ) {
           setConfirmation(true)
         }
+        setLoader(false)
         setUser(email)
       }
       return null
     } catch (error) {
+      setLoader(false)
       setApiError(error.message)
       return null
     }
   }
   async function socialSignUp(provider: string, data: any) {
+    setLoader(true)
     try {
       // eslint-disable-next-line
       const response: any = await AuthService.socialSignUp(provider, data)
       if (response && response.code) {
+        setLoader(false)
         setApiError(response.message)
       } else if (response) {
         if (onSuccess) onSuccess(response)
+        setLoader(false)
       }
     } catch (error) {
       setApiError(error.message)
+      setLoader(false)
     }
   }
   async function confirmSignUp(code: string) {
+    setLoader(true)
     try {
       // eslint-disable-next-line
       const response: any = await AuthService.confirmSignUp(user, code)
       if (response && response.code) {
         setApiError(response.message)
+        setLoader(false)
       } else if (response) {
         if (onSuccess) onSuccess(response)
+        setLoader(false)
       }
     } catch (error) {
+      setLoader(false)
       return setApiError(error.message)
     }
   }
@@ -172,6 +193,7 @@ const SignUpContainer = ({
         )
       ) : (
         <SignUp
+          loader={loader}
           className={className}
           onLinkHandler={onLinkHandler}
           onClick={signUp}

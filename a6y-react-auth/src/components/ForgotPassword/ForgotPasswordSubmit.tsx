@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { ErrorBoundary, Input, Button } from '../UI'
 import validate from '../../utilities/validation'
 import '../../index.css'
+import { Loader } from '../UI/Loader'
 
 /**
  * @typedef IForgotPasswordProps
@@ -17,6 +18,7 @@ import '../../index.css'
 
 export interface IForgotPasswordProps {
   className?: string
+  loader: boolean
   onClick?: (code: string, password: string) => void
   apiError?: string
   inputStyles?: string
@@ -49,6 +51,7 @@ const ForgotPassword = ({
   className = 'a6y-react-auth',
   onClick,
   apiError,
+  loader,
   inputStyles = '',
   buttonStyles = '',
   labelStyles = '',
@@ -195,8 +198,13 @@ const ForgotPassword = ({
             inputStyles={inputStyles}
           />
         </div>
-        <Button className={buttonStyles} role='submit' style='primary'>
-          Reset password
+        <Button
+          className={buttonStyles}
+          role='submit'
+          style='primary'
+          disabled={loader}
+        >
+          {loader ? <Loader /> : 'Reset password'}
         </Button>
       </form>
     </div>

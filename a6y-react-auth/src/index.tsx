@@ -72,6 +72,10 @@ interface IA6YReactAuth {
       position?: 'top' | 'bottom'
       consents?: IConsent[]
     }
+    loader?: {
+      classNames: string
+      color: string
+    }
   }
 }
 
