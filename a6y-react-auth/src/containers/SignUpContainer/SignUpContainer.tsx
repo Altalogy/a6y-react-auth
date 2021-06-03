@@ -26,6 +26,7 @@ export interface ISignUpContainerProps {
   containerClassName?: string
   onSuccess?: (response: unknown) => void
   onLinkHandler?: (to: string) => void
+  onResponse?: (method: string, response: unknown) => boolean
   apiSignUp?: (
     email: string,
     password: string,
@@ -79,6 +80,7 @@ const SignUpContainer = ({
   containerClassName,
   onSuccess,
   onLinkHandler = undefined,
+  onResponse,
   apiSignUp,
   confirmationStep = null,
   skipConfirmation = false,
@@ -121,6 +123,13 @@ const SignUpContainer = ({
     try {
       // eslint-disable-next-line
       const response: any = await AuthService.signUp(email, password)
+      let stopExecution = false
+      if (onResponse) {
+        stopExecution = onResponse('email', response)
+      }
+      if (stopExecution) {
+        return
+      }
       if (response && response.code) {
         setLoader(false)
         setApiError(response.message)
@@ -141,6 +150,13 @@ const SignUpContainer = ({
       return null
     } catch (error) {
       setLoader(false)
+      let stopExecution = false
+      if (onResponse) {
+        stopExecution = onResponse('email', error)
+      }
+      if (stopExecution) {
+        return
+      }
       setApiError(error.message)
       return null
     }
@@ -150,6 +166,13 @@ const SignUpContainer = ({
     try {
       // eslint-disable-next-line
       const response: any = await AuthService.socialSignUp(provider, data)
+      let stopExecution = false
+      if (onResponse) {
+        stopExecution = onResponse(provider, response)
+      }
+      if (stopExecution) {
+        return
+      }
       if (response && response.code) {
         setLoader(false)
         setApiError(response.message)
@@ -158,8 +181,15 @@ const SignUpContainer = ({
         setLoader(false)
       }
     } catch (error) {
-      setApiError(error.message)
       setLoader(false)
+      let stopExecution = false
+      if (onResponse) {
+        stopExecution = onResponse(provider, error)
+      }
+      if (stopExecution) {
+        return
+      }
+      setApiError(error.message)
     }
   }
   async function confirmSignUp(code: string) {

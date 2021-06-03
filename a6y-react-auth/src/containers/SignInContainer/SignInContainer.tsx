@@ -20,6 +20,7 @@ export interface ISignInContainerProps {
   containerClassName?: string
   onSuccess?: (response: unknown) => void
   onLinkHandler?: (to: string) => void
+  onResponse?: (method: string, response: unknown) => boolean
   inputStyles?: string
   buttonStyles?: string
   labelStyles?: string
@@ -63,6 +64,7 @@ const SignInContainer = ({
   containerClassName,
   onSuccess,
   onLinkHandler = undefined,
+  onResponse,
   inputStyles = '',
   buttonStyles = '',
   labelStyles = '',
@@ -84,6 +86,13 @@ const SignInContainer = ({
     try {
       // eslint-disable-next-line
       const response: any = await AuthService.signIn(email, password)
+      let stopExecution = false
+      if (onResponse) {
+        stopExecution = onResponse('email', response)
+      }
+      if (stopExecution) {
+        return
+      }
       if (response && response.code) {
         setLoader(false)
         return setApiError(response.message)
@@ -93,6 +102,13 @@ const SignInContainer = ({
       }
     } catch (error) {
       setLoader(false)
+      let stopExecution = false
+      if (onResponse) {
+        stopExecution = onResponse('email', error)
+      }
+      if (stopExecution) {
+        return
+      }
       return setApiError(error.message)
     }
   }
@@ -101,6 +117,13 @@ const SignInContainer = ({
     try {
       // eslint-disable-next-line
       const response: any = await AuthService.socialSignIn(provider, data)
+      let stopExecution = false
+      if (onResponse) {
+        stopExecution = onResponse(provider, response)
+      }
+      if (stopExecution) {
+        return
+      }
       if (response && response.code) {
         setLoader(false)
         return setApiError(response.message)
@@ -110,6 +133,13 @@ const SignInContainer = ({
       }
     } catch (error) {
       setLoader(false)
+      let stopExecution = false
+      if (onResponse) {
+        stopExecution = onResponse(provider, error)
+      }
+      if (stopExecution) {
+        return
+      }
       return setApiError(error.message)
     }
   }
