@@ -157,7 +157,9 @@ const SignUpContainer = ({
       if (stopExecution) {
         return
       }
-      setApiError(error.message)
+      if (error instanceof Error) {
+        return setApiError(error.message)
+      }
       return null
     }
   }
@@ -189,7 +191,9 @@ const SignUpContainer = ({
       if (stopExecution) {
         return
       }
-      setApiError(error.message)
+      if (error instanceof Error) {
+        return setApiError(error.message)
+      }
     }
   }
   async function confirmSignUp(code: string) {
@@ -206,7 +210,9 @@ const SignUpContainer = ({
       }
     } catch (error) {
       setLoader(false)
-      return setApiError(error.message)
+      if (error instanceof Error) {
+        return setApiError(error.message)
+      }
     }
   }
   return (

@@ -5,6 +5,8 @@ import Consents from '../Consents'
 import { IConsent, IValues } from '../Consents/Consents'
 import { Loader } from '../UI/Loader'
 
+const classNames = require('classnames')
+
 /**
  * @typedef ISignInData
  * @props {string} email - email input state
@@ -107,8 +109,6 @@ function EmailPasswordForm({
     password: false,
     confirmPassword: false,
   })
-
-  const classNames = require('classnames')
 
   const FormClassEmail = classNames({
     [`${className}--error`]: errorData.email ? true : false,

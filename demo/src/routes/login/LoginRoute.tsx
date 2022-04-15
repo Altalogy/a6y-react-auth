@@ -1,6 +1,6 @@
 import React from 'react'
 import MainLayout from '../../layouts/MainLayout'
-import { Auth } from 'a6y-react-auth'
+import { Auth } from '@altalogy/a6y-react-auth'
 
 const LoginRoute = () => {
   return (

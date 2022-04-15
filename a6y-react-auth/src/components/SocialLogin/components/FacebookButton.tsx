@@ -21,16 +21,26 @@ const FacebookButton = ({
   className = 'a6y-react-auth__facebook-btn',
   iconClassName = '',
   textClassName = '',
+  socialConfig = {
+    buttonText: 'Login with Facebook',
+  },
 }: {
   onClick: (response: any) => void
   className?: string
   iconClassName?: string
   textClassName?: string
+  socialConfig?: {
+    buttonText?: string
+  }
 }): JSX.Element => {
   return (
     <Button role='button' className={className} onClick={onClick}>
       <img src={facebookIcon} alt='facebook-icon' className={iconClassName} />
-      <span className={textClassName}>Login with Facebook</span>
+      <span className={textClassName}>
+        {socialConfig?.buttonText
+          ? socialConfig.buttonText
+          : 'Login with Facebook'}
+      </span>
     </Button>
   )
 }

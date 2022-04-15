@@ -79,7 +79,7 @@ const SignInContainer = ({
   consentsStyle = '',
   formLinkStyle,
 }: ISignInContainerProps): JSX.Element => {
-  const [apiError, setApiError] = useState(undefined)
+  const [apiError, setApiError] = useState<string | undefined>(undefined)
   const [loader, setLoader] = useState(false)
   async function signIn(email: string, password: string) {
     setLoader(true)
@@ -109,7 +109,9 @@ const SignInContainer = ({
       if (stopExecution) {
         return
       }
-      return setApiError(error.message)
+      if (error instanceof Error) {
+        return setApiError(error.message)
+      }
     }
   }
   async function socialSignIn(provider: string, data: any) {
@@ -140,7 +142,9 @@ const SignInContainer = ({
       if (stopExecution) {
         return
       }
-      return setApiError(error.message)
+      if (error instanceof Error) {
+        return setApiError(error.message)
+      }
     }
   }
   return (

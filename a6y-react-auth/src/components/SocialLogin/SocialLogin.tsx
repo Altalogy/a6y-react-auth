@@ -18,6 +18,9 @@ export interface IProvider {
   className?: string
   iconClassName?: string
   textClassName?: string
+  socialConfig?: {
+    buttonText?: string
+  }
 }
 
 /**
@@ -40,6 +43,14 @@ export interface IProviderConfig {
  */
 export interface ISocialLogin {
   callback: (provider: string, response: any) => void
+  socialConfig?: {
+    google?: {
+      buttonText?: string
+    }
+    facebook?: {
+      buttonText?: string
+    }
+  }
 }
 
 /**
@@ -52,7 +63,7 @@ export interface ISocialLogin {
  *  callback={response => console.log(response)}
  * />
  */
-const SocialLogin = ({ callback }: ISocialLogin): JSX.Element => {
+const SocialLogin = ({ callback, socialConfig }: ISocialLogin): JSX.Element => {
   const callbackFromSocialProviders = (provider: string, response: any) => {
     callback(provider, response)
   }
@@ -70,6 +81,7 @@ const SocialLogin = ({ callback }: ISocialLogin): JSX.Element => {
                 key={idx}
                 appId={el.appId}
                 className={className}
+                socialConfig={socialConfig?.facebook}
                 callback={response =>
                   callbackFromSocialProviders('facebook', response)
                 }
@@ -82,6 +94,7 @@ const SocialLogin = ({ callback }: ISocialLogin): JSX.Element => {
               className={className}
               iconClassName={iconClassName}
               textClassName={textClassName}
+              socialConfig={socialConfig?.facebook}
               onClick={() =>
                 Auth.federatedSignIn({
                   provider: CognitoHostedUIIdentityProvider.Facebook,
@@ -96,6 +109,7 @@ const SocialLogin = ({ callback }: ISocialLogin): JSX.Element => {
                 key={idx}
                 className={className}
                 appId={el.appId}
+                socialConfig={socialConfig?.google}
                 callback={response =>
                   callbackFromSocialProviders('google', response)
                 }
@@ -108,6 +122,7 @@ const SocialLogin = ({ callback }: ISocialLogin): JSX.Element => {
               className={className}
               iconClassName={iconClassName}
               textClassName={textClassName}
+              socialConfig={socialConfig?.google}
               onClick={() =>
                 Auth.federatedSignIn({
                   provider: CognitoHostedUIIdentityProvider.Google,

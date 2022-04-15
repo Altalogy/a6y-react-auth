@@ -1,6 +1,6 @@
 import React from 'react'
 import MainLayout from '../../layouts/MainLayout'
-import { ForgotPassword } from 'a6y-react-auth'
+import { ForgotPassword } from '@altalogy/a6y-react-auth'
 
 const ForgotPasswordRoute = () => {
   return (

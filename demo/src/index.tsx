@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 import reportWebVitals from './reportWebVitals'
-import A6YReactAuth from 'a6y-react-auth'
+import A6YReactAuth from '@altalogy/a6y-react-auth'
 import App from './App'
 
 const ReactAuth = new A6YReactAuth()
@@ -14,11 +14,23 @@ ReactAuth.initialize({
     userPoolWebClientId: 'xyz',
     identityPoolId: 'x-xx-1:xyz',
     region: 'x-xx-1',
+    oauthDomain: 'test.domain',
+    oauthRedirectSignIn: 'https://example.com',
+    oauthRedirectSignOut: 'https://example.com'
   },
   auth: [
     { appId: 'xyz', provider: 'facebook' },
     { appId: 'xyz', provider: 'google' }
-  ]
+  ],
+  components: {
+    signUp: {
+      social: {
+        google: {
+          buttonText: 'Test text'
+        }
+      }
+    }
+  }
 })
 
 ReactDOM.render(

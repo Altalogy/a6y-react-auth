@@ -3,6 +3,8 @@ import SignIn from '../../containers/SignInContainer'
 import SignUp from '../../containers/SignUpContainer'
 import ForgotPassword from '../../containers/ForgotPasswordContainer'
 
+const classNames = require('classnames')
+
 /**
  * @typedef IAuthProps
  * @props {string} [className] - the CSS classes
@@ -73,7 +75,6 @@ const AuthComponent = ({
   formLinkStyle = '',
   defaultFormState = 'sign-in',
 }: IAuthProps): JSX.Element => {
-  const classNames = require('classnames')
   const [currentForm, setCurrentForm] = useState(defaultFormState)
   const mainClass = classNames({
     [`a6y-react-auth__${currentForm}`]:

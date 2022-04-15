@@ -20,6 +20,7 @@
     "lint-fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "prepare": "copyfiles -u 1 src/**/*.html src/**/*.css src/**/*.svg lib/",
     "prepublishOnly": "npm test && npm run lint-fix && npm run build",
+    "preinstall": "npm install --package-lock-only --ignore-scripts && npx npm-force-resolutions",
     "size": "size-limit",
     "analyze": "size-limit --why",
     "clean": "rimraf lib/",
@@ -71,8 +72,18 @@
     "url": "https://github.com/Altalogy/a6y-react-auth/issues"
   },
   "peerDependencies": {
-    "react": ">=16",
-    "react-dom": "16.13.1"
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "@types/react": "17.0.2",
+    "@types/react-dom": "17.0.2"
+  },
+  "resolutions": {
+    "@types/react": "17.0.2",
+    "@types/react-dom": "17.0.2"
+  },
+  "overrides": {
+    "@types/react": "17.0.2",
+    "@types/react-dom": "17.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.13.1",
@@ -87,9 +98,9 @@
     "@testing-library/react": "^11.2.5",
     "@types/jest": "^26.0.20",
     "@types/node": "^14.14.31",
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^17.0.0",
-    "@types/react-facebook-login": "^4.1.3",
+    "@types/react": "17.0.2",
+    "@types/react-dom": "17.0.2",
+    "@types/react-facebook-login": "4.1.3",
     "@types/testing-library__react": "^10.2.0",
     "@typescript-eslint/eslint-plugin": "^4.15.2",
     "@typescript-eslint/parser": "^4.15.2",
@@ -106,8 +117,8 @@
     "jest-css-modules": "^2.1.0",
     "node-sass": "^5.0.0",
     "prettier": "^2.2.1",
-    "react": ">=16",
-    "react-dom": "16.13.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
     "rimraf": "^3.0.2",
     "sass-loader": "^11.0.1",
     "size-limit": "^4.9.1",

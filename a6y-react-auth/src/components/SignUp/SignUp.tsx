@@ -104,7 +104,14 @@ const SignUp = ({
       <ErrorBoundary showError={apiError ? true : false}>
         {apiError}
       </ErrorBoundary>
-      {onSocialClick && <SocialLogin callback={onSocialClick} />}
+      {onSocialClick && (
+        <SocialLogin
+          callback={onSocialClick}
+          socialConfig={
+            globalThis.A6YReactAuthConfig.components?.signUp?.social
+          }
+        />
+      )}
       <EmailPasswordForm
         loader={loader}
         inputStyles={inputStyles}

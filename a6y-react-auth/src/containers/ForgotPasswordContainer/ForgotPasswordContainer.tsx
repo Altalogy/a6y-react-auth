@@ -68,7 +68,7 @@ const ForgotPasswordContainer = ({
 }: IForgotPasswordContainerProps): JSX.Element => {
   const [user, setUser] = useState('')
   const [step, setStep] = useState(1)
-  const [apiError, setApiError] = useState(undefined)
+  const [apiError, setApiError] = useState<string | undefined>(undefined)
   const [loader, setLoader] = useState(false)
   async function forgotPassword(email: string) {
     setLoader(true)
@@ -85,7 +85,9 @@ const ForgotPasswordContainer = ({
       }
     } catch (error) {
       setLoader(false)
-      return setApiError(error)
+      if (error instanceof Error) {
+        return setApiError(error.message)
+      }
     }
   }
   async function forgotPasswordSubmit(code: string, password: string) {
@@ -102,7 +104,9 @@ const ForgotPasswordContainer = ({
       }
     } catch (error) {
       setLoader(false)
-      return setApiError(error)
+      if (error instanceof Error) {
+        return setApiError(error.message)
+      }
     }
   }
   return (

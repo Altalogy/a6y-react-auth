@@ -42,6 +42,14 @@ interface IA6YReactAuth {
       confirmation?: boolean
       consents?: boolean
       consentsPosition?: 'top' | 'bottom'
+      social?: {
+        google?: {
+          buttonText?: string
+        }
+        facebook?: {
+          buttonText?: string
+        }
+      }
     }
     signIn?: {
       title?: string
@@ -51,6 +59,14 @@ interface IA6YReactAuth {
         linkText01?: string
         linkText02?: string
         customLinksComponent?: React.ReactNode
+      }
+      social?: {
+        google?: {
+          buttonText?: string
+        }
+        facebook?: {
+          buttonText?: string
+        }
       }
     }
     forgotPassword?: {
