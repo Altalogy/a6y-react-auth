@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react'
+import React, { ReactNode } from 'react'
 import EmailPasswordForm from '../EmailPasswordForm'
 import FormLinks from '../FormLinks'
 import { ErrorBoundary } from '../UI'
@@ -43,6 +43,8 @@ export interface ISignUpProps {
   consentSpanStyle?: string
   consentsStyle?: string
   formLinkStyle?: string
+  showSocialLogin?: boolean
+  headerComponent?: ReactNode | null
 }
 
 /**
@@ -89,22 +91,34 @@ const SignUp = ({
   consentsStyle = '',
   consentsLabelStyle = '',
   formLinkStyle,
+  showSocialLogin = true,
+  headerComponent,
 }: ISignUpProps): JSX.Element => {
   const onSubmit = (email: string, password: string, consents?: IConsent[]) => {
     if (onClick && consents) onClick(email, password, consents)
   }
+
+  const headerCmp = headerComponent
+    ? headerComponent
+    : globalThis.A6YReactAuthConfig &&
+      globalThis.A6YReactAuthConfig.components?.signUp?.headerComponent
+
   return (
     <div className={className}>
       {globalThis.A6YReactAuthConfig &&
         globalThis.A6YReactAuthConfig.components?.signUp?.title && (
           <h1>{globalThis.A6YReactAuthConfig.components?.signUp?.title}</h1>
         )}
-      {globalThis.A6YReactAuthConfig &&
-        globalThis.A6YReactAuthConfig.components?.signUp?.headerComponent}
+      {headerCmp}
       <ErrorBoundary showError={apiError ? true : false}>
         {apiError}
       </ErrorBoundary>
-      {onSocialClick && <SocialLogin callback={onSocialClick} />}
+      {onSocialClick && showSocialLogin && (
+        <SocialLogin
+          callback={onSocialClick}
+          uiConfig={globalThis.A6YReactAuthConfig.components?.signUp?.social}
+        />
+      )}
       <EmailPasswordForm
         loader={loader}
         inputStyles={inputStyles}

@@ -176,9 +176,25 @@ Here is the full configurable options from initialize:
   components?: {
     signUp?: {
       title?: string
+      social?: {
+        google?: {
+          buttonText?: string
+        }
+        facebook?: {
+          buttonText?: string
+        }
+      }
     }
     signIn?: {
       title?: string
+      social?: {
+        google?: {
+          buttonText?: string
+        }
+        facebook?: {
+          buttonText?: string
+        }
+      }
     }
     forgotPassword?: {
       title?: string
@@ -235,7 +251,12 @@ content|string|Here is the label message with consent. Message can be used with 
     },
     components: {
       signIn: {
-        title: 'Welcome back!' 
+        title: 'Welcome back!',
+        social: {
+          google: {
+            buttonText: 'Start with Google',
+          }
+        }
       },
       consents: [
         {

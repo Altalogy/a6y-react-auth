@@ -26,7 +26,11 @@ export interface ISignUpContainerProps {
   containerClassName?: string
   onSuccess?: (response: unknown) => void
   onLinkHandler?: (to: string) => void
-  onResponse?: (method: string, response: unknown) => boolean
+  onResponse?: (
+    method: string,
+    username: string,
+    response: unknown,
+  ) => Promise<boolean>
   apiSignUp?: (
     email: string,
     password: string,
@@ -48,6 +52,8 @@ export interface ISignUpContainerProps {
   consentSpanStyle?: string
   consentsStyle?: string
   formLinkStyle?: string
+  showSocialLogin?: boolean
+  headerComponent?: ReactNode | null
 }
 
 /**
@@ -98,6 +104,8 @@ const SignUpContainer = ({
   consentsStyle = '',
   consentsLabelStyle = '',
   formLinkStyle,
+  showSocialLogin = true,
+  headerComponent,
 }: ISignUpContainerProps): JSX.Element => {
   const [apiError, setApiError] = useState<string | undefined>(undefined)
   const [confirmation, setConfirmation] = useState(false)
@@ -125,7 +133,7 @@ const SignUpContainer = ({
       const response: any = await AuthService.signUp(email, password)
       let stopExecution = false
       if (onResponse) {
-        stopExecution = onResponse('email', response)
+        stopExecution = await onResponse('email', email, response)
       }
       if (stopExecution) {
         return
@@ -152,7 +160,7 @@ const SignUpContainer = ({
       setLoader(false)
       let stopExecution = false
       if (onResponse) {
-        stopExecution = onResponse('email', error)
+        stopExecution = await onResponse('email', email, error)
       }
       if (stopExecution) {
         return
@@ -168,7 +176,7 @@ const SignUpContainer = ({
       const response: any = await AuthService.socialSignUp(provider, data)
       let stopExecution = false
       if (onResponse) {
-        stopExecution = onResponse(provider, response)
+        stopExecution = await onResponse(provider, '', response)
       }
       if (stopExecution) {
         return
@@ -184,7 +192,7 @@ const SignUpContainer = ({
       setLoader(false)
       let stopExecution = false
       if (onResponse) {
-        stopExecution = onResponse(provider, error)
+        stopExecution = await onResponse(provider, '', error)
       }
       if (stopExecution) {
         return
@@ -243,6 +251,8 @@ const SignUpContainer = ({
           consentSpanStyle={consentSpanStyle}
           consentsStyle={consentsStyle}
           formLinkStyle={formLinkStyle}
+          showSocialLogin={showSocialLogin}
+          headerComponent={headerComponent}
         />
       )}
     </div>

@@ -28,7 +28,8 @@ export interface IConsent {
   name?: string
   type?: string
   required?: boolean
-  content: string
+  content: string | JSX.Element
+  isElement?: boolean
   value?: boolean
 }
 
@@ -108,10 +109,13 @@ const Consents = ({
     if (isValid) isValid(notCheckedButRequired.length === 0, values)
   }
 
-  function getLabel(content: string) {
+  function getLabel(content: string | JSX.Element, isElement?: boolean) {
+    if (isElement) {
+      return content
+    }
     const linkRgx = /\(.*?\)\[.*?\]/
     const matchRgx = /\((.*?)\)\[(.*?)\]/
-    const arrayOfContent = content.split(' ')
+    const arrayOfContent = (content as string).split(' ')
     return (
       <>
         {arrayOfContent.map(el => {
@@ -145,13 +149,13 @@ const Consents = ({
             onChange={e => setValues({ ...values, [idx]: e.target.checked })}
             value={`${values[idx]}`}
           >
-            {getLabel(consent.content)}
+            {getLabel(consent.content, consent.isElement)}
           </Checkbox>,
         )
       } else {
         rendersElements.push(
           <label className={consentsLabelStyle}>
-            {getLabel(consent.content)}
+            {getLabel(consent.content, consent.isElement)}
           </label>,
         )
       }

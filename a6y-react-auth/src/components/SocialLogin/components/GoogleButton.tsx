@@ -21,16 +21,22 @@ const GoogleButton = ({
   className = 'a6y-react-auth__google-btn',
   iconClassName = '',
   textClassName = '',
+  uiConfig,
 }: {
   onClick: (response: any) => void
   className?: string
   iconClassName?: string
   textClassName?: string
+  uiConfig?: {
+    buttonText?: string
+  }
 }): JSX.Element => {
   return (
     <Button role='button' className={className} onClick={onClick}>
       <img src={googleIcon} alt='google-icon' className={iconClassName} />
-      <span className={textClassName}>Login with Google</span>
+      <span className={textClassName}>
+        {uiConfig?.buttonText ? uiConfig?.buttonText : 'Login with Google'}
+      </span>
     </Button>
   )
 }
