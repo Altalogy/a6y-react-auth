@@ -21,6 +21,7 @@ const FacebookLogin = ({
   callback,
   appId,
   className = 'a6y-react-auth__facebook-login',
+  uiConfig,
 }: IProvider): JSX.Element => {
   const responseFacebook = (response: any) => {
     const expiresAt = response.expiresIn * 1000 + new Date().getTime()
@@ -44,7 +45,9 @@ const FacebookLogin = ({
         fields='name,email'
         render={(renderProps: {
           onClick: React.MouseEventHandler<HTMLButtonElement>
-        }) => <FacebookButton onClick={renderProps.onClick} />}
+        }) => (
+          <FacebookButton onClick={renderProps.onClick} uiConfig={uiConfig} />
+        )}
       />
     </div>
   )

@@ -21,6 +21,7 @@ const GoogleLogin = ({
   callback,
   appId,
   className = 'a6y-react-auth__google-login',
+  uiConfig,
 }: IProvider): JSX.Element => {
   const responseGoogle = (response: any) => {
     const profile = response.profileObj
@@ -44,7 +45,9 @@ const GoogleLogin = ({
         onFailure={responseGoogle}
         onScriptLoadFailure={(er: unknown) => console.log(er)}
         cookiePolicy={'single_host_origin'}
-        render={renderProps => <GoogleButton onClick={renderProps.onClick} />}
+        render={renderProps => (
+          <GoogleButton onClick={renderProps.onClick} uiConfig={uiConfig} />
+        )}
       />
     </div>
   )
